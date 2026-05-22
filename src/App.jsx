@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Stack from './Components/Stack';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -47,11 +48,7 @@ function App() {
         </section>
         
         <section id="stack" className="min-h-screen bg-gray-50">
-          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">My Stack</h2>
-            </div>
-          </div>
+          <Stack />
         </section>
         
         <section id="journey" className="min-h-screen">
