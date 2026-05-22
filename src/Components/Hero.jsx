@@ -96,146 +96,173 @@ export default function Hero() {
 
       {/* DESKTOP LAYOUT */}
       <div className="hidden md:block relative min-h-screen">
-        {/* LEFT SIDE - Content */}
-        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 w-full md:w-auto md:pt-16 lg:pt-20">
-          <div className="md:pl-32 pl-8 pr-8 md:pr-0 max-w-2xl">
-            
-            {/* Subtitle */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-2"
-            >
-              <span className="text-retro-orange-5 font-mono text-sm tracking-wider uppercase">
-                Hi, my name is
-              </span>
-            </motion.div>
+{/* LEFT SIDE - Content */}
+<div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 w-full md:w-auto md:pt-16 lg:pt-20">
+  <div className="md:pl-32 pl-8 pr-8 md:pr-0 max-w-2xl">
+    
+    {/* Subtitle */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="mb-1"
+    >
+      <span className="text-retro-orange-5 font-mono text-sm tracking-wider uppercase">
+        Hi, my name is
+      </span>
+    </motion.div>
 
-            {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-retro-purple-1"
+    {/* Name */}
+    <motion.h1
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.1 }}
+      className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-retro-purple-1"
+      style={{
+        fontFamily: "'Playfair Display', serif",
+      }}
+    >
+      Saqlain
+    </motion.h1>
+
+    {/* Animated Phrase Line */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="flex items-center gap-2 mb-5 flex-wrap"
+    >
+      <span 
+        className="text-2xl md:text-3xl font-semibold"
+        style={{
+          color: "#240046",
+          opacity: 0.9,
+          fontFamily: "'Playfair Display', serif",
+        }}
+      >
+        I
+      </span>
+      <div className="relative flex items-center min-h-[70px] md:min-h-[80px]">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={currentPhrase}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -30, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-2xl md:text-3xl font-semibold"
+            style={{
+              color: "#240046",
+              opacity: 0.9,
+              fontFamily: "'Playfair Display', serif",
+            }}
+          >
+            {phrases[currentPhrase]}
+          </motion.span>
+        </AnimatePresence>
+      </div>
+    </motion.div>
+
+    {/* Achievements */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      className="flex gap-4 mb-5 flex-wrap"
+    >
+      {achievements.map((item) => {
+        const Icon = item.icon;
+        return (
+          <motion.div
+            key={item.label}
+            className="relative group"
+            whileHover={{ y: -3 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          >
+            <div
+              className="px-4 py-2 rounded-xl backdrop-blur-sm transition-all duration-300 ease-out"
               style={{
-                fontFamily: "'Playfair Display', serif",
+                background: "rgba(255,255,255,0.7)",
+                border: `1px solid ${item.color}20`,
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
               }}
             >
-              Saqlain
-            </motion.h1>
-
-            {/* Animated Phrase Line */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex items-center gap-2 mb-6 flex-wrap"
-            >
-              <span 
-                className="text-2xl md:text-3xl font-semibold"
-                style={{
-                  color: "#240046",
-                  opacity: 0.9,
-                  fontFamily: "'Playfair Display', serif",
-                }}
-              >
-                I
-              </span>
-              <div className="relative flex items-center min-h-[70px] md:min-h-[80px]">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={currentPhrase}
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -30, opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="text-2xl md:text-3xl font-semibold"
-                    style={{
-                      color: "#240046",
-                      opacity: 0.9,
-                      fontFamily: "'Playfair Display', serif",
-                    }}
-                  >
-                    {phrases[currentPhrase]}
-                  </motion.span>
-                </AnimatePresence>
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <Icon size={14} style={{ color: item.color }} />
+                <span className="text-lg md:text-xl font-bold" style={{ color: item.color }}>
+                  {item.value}
+                </span>
               </div>
-            </motion.div>
+              <div className="text-[9px] font-mono text-gray-500 tracking-wider">
+                {item.label}
+              </div>
+            </div>
+          </motion.div>
+        );
+      })}
+    </motion.div>
 
-            {/* Achievements */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex gap-4 mb-6 flex-wrap"
-            >
-              {achievements.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.label}
-                    className="relative group"
-                    whileHover={{ y: -3 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                  >
-                    <div
-                      className="px-4 py-2 rounded-xl backdrop-blur-sm transition-all duration-300 ease-out"
-                      style={{
-                        background: "rgba(255,255,255,0.7)",
-                        border: `1px solid ${item.color}20`,
-                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                      }}
-                    >
-                      <div className="flex items-center gap-1.5 mb-0.5">
-                        <Icon size={14} style={{ color: item.color }} />
-                        <span className="text-lg md:text-xl font-bold" style={{ color: item.color }}>
-                          {item.value}
-                        </span>
-                      </div>
-                      <div className="text-[9px] font-mono text-gray-500 tracking-wider">
-                        {item.label}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+    {/* CTA Buttons - Side by side Desktop */}
+    <div className="flex gap-4">
+      {/* Get My Resume Button */}
+      <motion.button
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35, duration: 0.6 }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative group flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden"
+        style={{
+          background: "rgba(255,255,255,0.5)",
+          backdropFilter: "blur(8px)",
+          border: "1px solid rgba(255,109,0,0.3)",
+          color: "#ff6d00",
+          fontSize: "11px",
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+          fontFamily: '"Space Mono", monospace',
+          cursor: "pointer",
+          fontWeight: "bold"
+        }}
+      >
+        <span className="relative z-10">Get My Resume</span>
+      </motion.button>
 
-            {/* CTA Button */}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="relative group flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden"
-              style={{
-                background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
-                border: "1px solid rgba(255,109,0,0.4)",
-                color: "#fff",
-                fontSize: "12px",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                fontFamily: '"Space Mono", monospace',
-                cursor: "pointer",
-                boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
-              }}
-            >
-              <motion.span
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.13) 50%, transparent 70%)",
-                  backgroundSize: "300% 100%",
-                }}
-                animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
-                transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
-              />
-              <span className="relative z-10">Connect</span>
-              <ArrowRight size={12} className="relative z-10 opacity-70 transition-transform group-hover:translate-x-1" />
-            </motion.button>
-          </div>
-        </div>
+      {/* Connect Button */}
+      <motion.button
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative group flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
+          border: "1px solid rgba(255,109,0,0.4)",
+          color: "#fff",
+          fontSize: "11px",
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+          fontFamily: '"Space Mono", monospace',
+          cursor: "pointer",
+          boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
+        }}
+      >
+        <motion.span
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.13) 50%, transparent 70%)",
+            backgroundSize: "300% 100%",
+          }}
+          animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
+        />
+        <span className="relative z-10">Connect</span>
+        <ArrowRight size={11} className="relative z-10 opacity-70 transition-transform group-hover:translate-x-1" />
+      </motion.button>
+    </div>
+  </div>
+</div>
 
         {/* RIGHT SIDE - Image */}
         <div className="absolute bottom-0 right-auto z-10" style={{ margin: 0, padding: 0, right: "5%" }}>
@@ -456,28 +483,54 @@ export default function Hero() {
         })}
       </motion.div>
 
-      {/* CTA Button */}
-      <motion.button
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        whileTap={{ scale: 0.98 }}
-        className="relative group flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden mx-auto mt-6"
-        style={{
-          background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
-          border: "1px solid rgba(255,109,0,0.4)",
-          color: "#fff",
-          fontSize: "11px",
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          fontFamily: '"Space Mono", monospace',
-          cursor: "pointer",
-          width: "fit-content",
-        }}
-      >
-        <span className="relative z-10">Connect</span>
-        <ArrowRight size={11} className="relative z-10 opacity-70" />
-      </motion.button>
+{/* CTA Buttons - Side by side */}
+<div className="flex justify-center gap-3 mt-6">
+  {/* Get My Resume Button */}
+  <motion.button
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.35, duration: 0.6 }}
+    whileTap={{ scale: 0.98 }}
+    className="relative group flex items-center gap-2 px-5 py-2.5 rounded-full overflow-hidden"
+    style={{
+      background: "rgba(255,255,255,0.5)",
+      backdropFilter: "blur(8px)",
+      border: "1px solid rgba(255,109,0,0.3)",
+      color: "#ff6d00",
+      fontSize: "10px",
+      letterSpacing: "0.16em",
+      textTransform: "uppercase",
+      fontFamily: '"Space Mono", monospace',
+      cursor: "pointer",
+      fontWeight: "bold"
+    }}
+  >
+    <span className="relative z-10">Get My Resume</span>
+  </motion.button>
+
+  {/* Connect Button */}
+  <motion.button
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.4, duration: 0.6 }}
+    whileTap={{ scale: 0.98 }}
+    className="relative group flex items-center gap-2 px-5 py-2.5 rounded-full overflow-hidden"
+    style={{
+      background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
+      border: "1px solid rgba(255,109,0,0.4)",
+      color: "#fff",
+      fontSize: "10px",
+      letterSpacing: "0.16em",
+      textTransform: "uppercase",
+      fontFamily: '"Space Mono", monospace',
+      cursor: "pointer",
+      boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
+    }}
+  >
+    <span className="relative z-10">Connect</span>
+    <ArrowRight size={10} className="relative z-10 opacity-70" />
+  </motion.button>
+</div>
     </div>
 
     {/* Mobile Image - Centered, no extra padding */}
