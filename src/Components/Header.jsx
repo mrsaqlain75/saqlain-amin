@@ -149,94 +149,40 @@ const Header = ({ onSectionChange }) => {
                     <h1 className="font-['Playfair_Display'] text-xl font-bold text-white">
                       Saqlain Amin
                     </h1>
-                    <p className="text-[10px] text-retro-purple-5">Full Stack Developer</p>
+                    <p className="text-[10px] text-retro-purple-5">Full Stack Engineer</p>
                   </div>
                 </motion.div>
-
-                {/* Animated Premium CTA Button */}
-                <motion.button
-                  onClick={() => handleNavClick('connect')}
-                  className="relative group overflow-hidden rounded-full px-6 py-2 font-['Playfair_Display'] font-medium"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(255, 109, 0, 0.15), rgba(255, 158, 0, 0.1))',
-                    border: '1px solid rgba(255, 109, 0, 0.4)',
-                  }}
-                >
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(255, 109, 0, 0.3), rgba(255, 158, 0, 0.2))',
-                    }}
-                  />
-                  
-                  <span className="relative z-10 flex items-center gap-2">
-                    <span className="text-retro-orange-1 group-hover:text-retro-orange-2 transition-colors duration-300">
-                      Connect
-                    </span>
-                    <motion.span
-                      animate={{
-                        x: [0, 4, 0],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                      }}
-                    >
-                      <ArrowRight size={16} className="text-retro-orange-1 group-hover:text-retro-orange-2 transition-colors duration-300" />
-                    </motion.span>
-                  </span>
-                  
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    animate={{
-                      boxShadow: [
-                        '0 0 0px rgba(255, 109, 0, 0)',
-                        '0 0 15px rgba(255, 109, 0, 0.3)',
-                        '0 0 0px rgba(255, 109, 0, 0)',
-                      ],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                  />
-                  
-                  <motion.div
-                    className="absolute -top-1 -right-1"
-                    animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: 0.5,
-                    }}
-                  >
-                    <Sparkles size={10} className="text-retro-orange-1" />
-                  </motion.div>
-                  <motion.div
-                    className="absolute -bottom-1 -left-1"
-                    animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: 1,
-                    }}
-                  >
-                    <Sparkles size={8} className="text-retro-orange-2" />
-                  </motion.div>
-                </motion.button>
+         <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="relative group flex items-center gap-2.5 px-6 py-2.5 rounded-full overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
+              border: "1px solid rgba(255,109,0,0.4)",
+              color: "#fff",
+              fontSize: "12px",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              fontFamily: '"Space Mono", monospace',
+              cursor: "pointer",
+              boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
+            }}
+          >
+            <motion.span
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.13) 50%, transparent 70%)",
+                backgroundSize: "300% 100%",
+              }}
+              animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
+              transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
+            />
+            <span className="relative z-10">Connect</span>
+            <ArrowRight size={12} className="relative z-10 opacity-60 transition-transform group-hover:translate-x-0.5" />
+          </motion.button>
               </div>
             </motion.div>
           </div>
@@ -248,7 +194,6 @@ const Header = ({ onSectionChange }) => {
   // Mobile Header - Full Name Display
   return (
     <>
-      <div className="h-4" />
       
       <motion.div
         initial={{ y: 100, opacity: 0 }}
@@ -322,15 +267,15 @@ const Header = ({ onSectionChange }) => {
                     ease: 'linear',
                   }}
                 >
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-retro-orange-1 to-retro-purple-5 flex items-center justify-center">
-                    <Zap size={14} className="text-white" />
+                  <div className="w-7 h-7 flex items-center justify-center">
+                    <img src='logo.png'/>
                   </div>
                 </motion.div>
                 <div className="flex flex-col">
-                  <h2 className="font-['Playfair_Display'] text-sm font-bold text-white leading-tight">
+                  <h2 className="font-['Playfair_Display'] text-sm font-bold text-white leading-normal">
                     Saqlain Amin
                   </h2>
-                  <p className="text-[9px] text-retro-purple-5">Full Stack Architect</p>
+                  <p className="text-[9px] text-retro-orange-5">Full Stack Engineer</p>
                 </div>
               </motion.div>
 

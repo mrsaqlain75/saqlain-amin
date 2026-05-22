@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
+import Hero from './components/Hero';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -13,7 +14,6 @@ function App() {
     }
   };
 
-  // Scroll spy to update active section
   useEffect(() => {
     const sections = ['hero', 'stack', 'journey', 'portfolio', 'testimonials', 'connect'];
     const observer = new IntersectionObserver(
@@ -40,53 +40,49 @@ function App() {
       <Navbar activeSection={activeSection} onSectionChange={handleSectionChange} />
       <Header onSectionChange={handleSectionChange} />
       
-      {/* Main Content Area with left padding for navbar on desktop */}
-      <main className="md:ml-24">
-        {/* Section spacers */}
-        <div className="pt-24 md:pt-32" />
+      {/* No padding on main - each section handles its own */}
+      <main>
+        <section id="hero" className="min-h-screen">
+          <Hero />
+        </section>
         
-        {/* Hero Section */}
-        <section id="hero" className="min-h-screen px-4 md:px-8 py-20">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-['Playfair_Display'] font-bold text-retro-purple-1 text-center">
-              Hero Section Content
-            </h1>
-            <p className="text-retro-purple-3 text-center mt-4">Light background content</p>
+        <section id="stack" className="min-h-screen bg-gray-50">
+          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">My Stack</h2>
+            </div>
           </div>
         </section>
         
-        {/* Stack Section */}
-        <section id="stack" className="min-h-screen px-4 md:px-8 py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">My Stack</h2>
+        <section id="journey" className="min-h-screen">
+          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">My Journey</h2>
+            </div>
           </div>
         </section>
         
-        {/* Journey Section */}
-        <section id="journey" className="min-h-screen px-4 md:px-8 py-20">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">My Journey</h2>
+        <section id="portfolio" className="min-h-screen bg-gray-50">
+          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Portfolio</h2>
+            </div>
           </div>
         </section>
         
-        {/* Portfolio Section */}
-        <section id="portfolio" className="min-h-screen px-4 md:px-8 py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Portfolio</h2>
+        <section id="testimonials" className="min-h-screen">
+          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Testimonials</h2>
+            </div>
           </div>
         </section>
         
-        {/* Testimonials Section */}
-        <section id="testimonials" className="min-h-screen px-4 md:px-8 py-20">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Testimonials</h2>
-          </div>
-        </section>
-        
-        {/* Connect Section */}
-        <section id="connect" className="min-h-screen px-4 md:px-8 py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Connect</h2>
+        <section id="connect" className="min-h-screen bg-gray-50">
+          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Connect</h2>
+            </div>
           </div>
         </section>
       </main>
