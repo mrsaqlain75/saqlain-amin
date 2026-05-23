@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import TerminalHeading from "./TerminalHeading";
 
 export default function Stack() {
   const sectionRef = useRef(null);
@@ -53,12 +54,12 @@ export default function Stack() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 px-0 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{
         background: "#0a0a0f",
       }}
     >
-      {/* Background pattern - retro-orange-5 color */}
+      {/* Background pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.08]">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -77,25 +78,16 @@ export default function Stack() {
         <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-retro-purple-5/10 blur-3xl" />
       </div>
 
-      {/* Background Text "I Know" - More visible */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <span
-          className="text-[15vw] md:text-[10vw] font-bold whitespace-nowrap tracking-wide"
-          style={{ 
-            fontFamily: "'Playfair Display', serif",
-            color: "#ff6d00",
-            opacity: 0.5,
-          }}
-        >
-          I KNOW
-        </span>
-      </div>
+
+      <div className="relative z-10 md:ml-8 lg:ml-4 mr-8">
+  <TerminalHeading title="my_tech_stack" delay={0} darkBg={true} />
+</div>
 
       {/* Main Content - Full width belts */}
       <div className="relative z-10">
         
-        {/* Belt 1 - Full width, left down right up */}
-        <div className="mb-10 w-full">
+        {/* Belt 1 */}
+        <div className="mb-8 w-full">
           <div 
             className="relative w-full overflow-hidden" 
             style={{ 
@@ -103,7 +95,6 @@ export default function Stack() {
               transformOrigin: "center center",
             }}
           >
-            {/* White belt background - full width */}
             <div
               className="absolute inset-0 w-full"
               style={{
@@ -111,7 +102,6 @@ export default function Stack() {
               }}
             />
             
-            {/* Sliding logos */}
             <motion.div
               className="flex gap-6 py-3 px-4"
               animate={{ x: ["0%", "-50%"] }}
@@ -128,10 +118,6 @@ export default function Stack() {
                     alt={tech.name}
                     className="w-8 h-8 object-contain"
                     style={{ filter: "brightness(0) saturate(100%) invert(15%) sepia(89%) saturate(5000%) hue-rotate(268deg) brightness(70%) contrast(120%)" }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%239d4edd"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="10">${tech.name.charAt(0)}</text></svg>`;
-                    }}
                   />
                 </div>
               ))}
@@ -139,7 +125,7 @@ export default function Stack() {
           </div>
         </div>
 
-        {/* Belt 2 - Full width, left down right up */}
+        {/* Belt 2 */}
         <div className="w-full">
           <div 
             className="relative w-full overflow-hidden" 
@@ -148,7 +134,6 @@ export default function Stack() {
               transformOrigin: "center center",
             }}
           >
-            {/* White belt background - full width */}
             <div
               className="absolute inset-0 w-full"
               style={{
@@ -156,7 +141,6 @@ export default function Stack() {
               }}
             />
             
-            {/* Sliding logos (right to left) */}
             <motion.div
               className="flex gap-6 py-3 px-4"
               animate={{ x: ["-50%", "0%"] }}
@@ -173,10 +157,6 @@ export default function Stack() {
                     alt={tech.name}
                     className="w-8 h-8 object-contain"
                     style={{ filter: "brightness(0) saturate(100%) invert(15%) sepia(89%) saturate(5000%) hue-rotate(268deg) brightness(70%) contrast(120%)" }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%239d4edd"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="10">${tech.name.charAt(0)}</text></svg>`;
-                    }}
                   />
                 </div>
               ))}

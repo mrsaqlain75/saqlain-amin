@@ -1,0 +1,112 @@
+{
+  "featuredProjects": [
+    {
+      "id": 1,
+      "rank": "01",
+      "title": "Native Resort & Camping Bamborate",
+      "client": "Native Resort, Chitral",
+      "category": "Full Stack Web App",
+      "categoryTag": "fullstack",
+      "year": "2026",
+      "status": "live",
+      "liveUrl": "https://nativeresort.com",
+      "description": "A complete hospitality platform for one of Chitral's premier eco-resorts. Built end-to-end: booking engine, real-time availability, admin dashboard for room/package management, gallery CMS, and a customer-facing experience that reflects the resort's natural setting. Every interaction was crafted to feel as serene as the destination itself.",
+      "challenge": "The client needed a system that non-technical staff could operate daily — managing bookings, updating rooms, uploading photos — without any developer involvement. Reliability in a low-bandwidth mountain region was a hard constraint.",
+      "stack": ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Cloudinary", "JWT Auth", "Nodemailer"],
+      "screenshots": [
+        { "url": "/screenshots/native-1.jpg", "caption": "Landing page — hero with live availability widget" },
+        { "url": "/screenshots/native-2.jpg", "caption": "Rooms & packages listing" },
+        { "url": "/screenshots/native-3.jpg", "caption": "Booking flow — date picker + confirmation" },
+        { "url": "/screenshots/native-4.jpg", "caption": "Admin dashboard — reservations overview" },
+        { "url": "/screenshots/native-5.jpg", "caption": "Admin — room management CMS" }
+      ],
+      "previewAvailable": false,
+      "accentColor": "#ff8500"
+    },
+    {
+      "id": 2,
+      "rank": "02",
+      "title": "SADEVZ VPN Android App",
+      "client": "International Client (USA)",
+      "category": "Android Application",
+      "categoryTag": "mobile",
+      "year": "2023",
+      "status": "delivered",
+      "liveUrl": null,
+      "description": "A production-grade VPN client for Android built in my first international engagement. The app handled protocol selection, server switching, kill-switch logic, and a clean onboarding flow — all wrapped in a dark, technical UI that communicated security without intimidation.",
+      "challenge": "Integrating OpenVPN and WireGuard protocols within a single Android codebase while maintaining a smooth, consumer-friendly UX. Battery and connection-state management across Android versions was the hardest technical surface.",
+      "stack": ["Kotlin", "Android SDK", "OpenVPN3", "WireGuard", "Retrofit", "Room DB", "Hilt DI", "Material Design"],
+      "screenshots": [
+        { "url": "/screenshots/vpn-1.jpg", "caption": "Onboarding — server selection screen" },
+        { "url": "/screenshots/vpn-2.jpg", "caption": "Connected state with live data metrics" },
+        { "url": "/screenshots/vpn-3.jpg", "caption": "Protocol settings panel" }
+      ],
+      "previewAvailable": false,
+      "accentColor": "#9d4edd"
+    },
+    {
+      "id": 3,
+      "rank": "03",
+      "title": "Drosh Inn Hotel Platform",
+      "client": "Drosh Inn Hotel, Chitral",
+      "category": "Full Stack Web App",
+      "categoryTag": "fullstack",
+      "year": "2024",
+      "status": "live",
+      "liveUrl": null,
+      "description": "SADEVZ's first delivered product. A property management and booking platform for a hotel in the Drosh valley. Included a customer-facing booking site, WhatsApp integration for instant reservation confirmations, and a back-office panel with occupancy analytics and revenue tracking.",
+      "challenge": "Zero digital infrastructure to start. Built every layer from scratch — domain, hosting, database schema, email, WhatsApp webhook — and trained the owner's staff to use the admin panel independently within a week.",
+      "stack": ["React", "Node.js", "MongoDB", "WhatsApp Business API", "Recharts", "Tailwind CSS", "Vercel"],
+      "screenshots": [
+        { "url": "/screenshots/drosh-1.jpg", "caption": "Homepage with seasonal photography" },
+        { "url": "/screenshots/drosh-2.jpg", "caption": "Room catalog and pricing" },
+        { "url": "/screenshots/drosh-3.jpg", "caption": "Booking confirmation flow" },
+        { "url": "/screenshots/drosh-4.jpg", "caption": "Admin — occupancy analytics dashboard" }
+      ],
+      "previewAvailable": false,
+      "accentColor": "#ff6d00"
+    },
+    {
+      "id": 4,
+      "rank": "04",
+      "title": "Free Library Foundation Philadelphia",
+      "client": "Free Library Foundation, USA",
+      "category": "Graphic Design",
+      "categoryTag": "design",
+      "year": "2024",
+      "status": "delivered",
+      "liveUrl": null,
+      "description": "Brand and print collateral for one of Philadelphia's most storied cultural institutions. Designed fundraising materials, event posters, donor communication graphics, and social media assets — all aligned to the Foundation's existing identity while bringing fresh visual energy to each campaign.",
+      "challenge": "Working remotely with a US nonprofit whose brand standards are strict and whose audience ranges from major institutional donors to everyday library patrons. Every asset needed to speak to both extremes without condescending to either.",
+      "stack": ["Adobe Illustrator", "Adobe Photoshop", "Adobe InDesign", "Figma"],
+      "screenshots": [
+        { "url": "/screenshots/philly-1.jpg", "caption": "Fundraising campaign poster series" },
+        { "url": "/screenshots/philly-2.jpg", "caption": "Donor thank-you card design" },
+        { "url": "/screenshots/philly-3.jpg", "caption": "Social media asset kit" },
+        { "url": "/screenshots/philly-4.jpg", "caption": "Event program booklet spread" }
+      ],
+      "previewAvailable": false,
+      "accentColor": "#ff9100"
+    },
+    {
+      "id": 5,
+      "rank": "05",
+      "title": "SADEVZ Internal AI Assistant",
+      "client": "SADEVZ (Internal Tool)",
+      "category": "AI Chatbot",
+      "categoryTag": "ai",
+      "year": "2026",
+      "status": "internal",
+      "liveUrl": null,
+      "description": "An internal AI assistant built for the SADEVZ team — used for project scoping, client proposal drafting, code review summaries, and task triage. Integrates with our project management workflow to surface relevant context automatically. The team calls it 'the sixth member'.",
+      "challenge": "Making an LLM genuinely useful in a small agency context — not a generic chatbot, but something that knows our clients, our stack preferences, our proposal templates. The RAG pipeline and context management were the core engineering challenges.",
+      "stack": ["React", "Node.js", "OpenAI API", "LangChain", "Pinecone", "MongoDB", "Tailwind CSS"],
+      "screenshots": [
+        { "url": "/screenshots/ai-1.jpg", "caption": "Chat interface — proposal drafting mode" },
+        { "url": "/screenshots/ai-2.jpg", "caption": "Context panel — active project knowledge base" }
+      ],
+      "previewAvailable": false,
+      "accentColor": "#7b2cbf"
+    }
+  ]
+}

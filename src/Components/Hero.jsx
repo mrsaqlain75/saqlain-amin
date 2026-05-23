@@ -325,7 +325,7 @@ export default function Hero() {
               />
               
               <img
-                src="/pic.png"
+                src="./pic.png"
                 alt="Saqlain Amin"
                 className="object-contain relative z-10"
                 style={{
@@ -584,7 +584,7 @@ export default function Hero() {
         />
         
         <img
-          src="/pic.png"
+          src="./pic.png"
           alt="Saqlain Amin"
           className="object-contain relative z-10 block mx-auto"
           style={{

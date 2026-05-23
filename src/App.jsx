@@ -3,6 +3,11 @@ import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stack from './Components/Stack';
+import Journey from './Components/Journey';
+import Portfolio from './components/Portfolio';
+import Testimonials from './Components/Testimonials';
+import Contact from './Components/Contact';
+import Footer from './Components/Footer';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -47,41 +52,26 @@ function App() {
           <Hero />
         </section>
         
-        <section id="stack" className="min-h-screen bg-gray-50">
+        <section id="stack">
           <Stack />
         </section>
         
         <section id="journey" className="min-h-screen">
-          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">My Journey</h2>
-            </div>
-          </div>
+          <Journey />
         </section>
         
-        <section id="portfolio" className="min-h-screen bg-gray-50">
-          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Portfolio</h2>
-            </div>
-          </div>
+        <section id="portfolio" className="">
+          <Portfolio />
         </section>
         
-        <section id="testimonials" className="min-h-screen">
-          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Testimonials</h2>
-            </div>
-          </div>
+        <section id="testimonials" className="">
+          <Testimonials />
         </section>
         
-        <section id="connect" className="min-h-screen bg-gray-50">
-          <div className="md:pl-24 px-4 md:px-8 py-20 h-full">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-retro-purple-1">Connect</h2>
-            </div>
-          </div>
+        <section id="connect" className="">
+          <Contact />
         </section>
+        <Footer />
       </main>
     </div>
   );
