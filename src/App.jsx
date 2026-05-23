@@ -8,7 +8,7 @@ import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import WhatsAppFloat from './Components/WhatsAppFloat';
+import WhatsAppFloat from './components/WhatsAppFloat';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
