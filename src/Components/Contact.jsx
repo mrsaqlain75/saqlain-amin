@@ -5,20 +5,20 @@ import TerminalHeading from "./TerminalHeading";
 
 const contactMeta = [
   { label: "Email", value: "saqlainamin646@gmail.com", href: "mailto:saqlainamin646@gmail.com" },
-  { label: "Phone", value: "+92 345 678 9010", href: "tel:+923456789010" },
-  { label: "Location", value: "Chitral, Pakistan", href: null },
+  { label: "Phone", value: "+92 327 585 7692", href: "tel:+923275857692" },
+  { label: "Location", value: "Drosh, Chitral, Pakistan", href: null },
 ];
 
 const socials = [
-  { name: "GitHub", url: "https://github.com/saqlainamin", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/saqlainamin", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" },
-  { name: "Twitter", url: "https://twitter.com/saqlainamin", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" },
-  { name: "Instagram", url: "https://instagram.com/saqlainamin", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" },
-  { name: "Facebook", url: "https://facebook.com/saqlainamin", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" },
-  { name: "TikTok", url: "https://tiktok.com/@saqlainamin", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" },
-  { name: "YouTube", url: "https://youtube.com/@saqlainamin", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" },
-  { name: "Medium", url: "https://medium.com/@saqlainamin", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" },
-  { name: "Stack Overflow", url: "https://stackoverflow.com/users/saqlainamin", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/stackoverflow/stackoverflow-original.svg" },
+  { name: "GitHub", url: "https://github.com/mrsaqlain75", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+  { name: "LinkedIn", url: "https://linkedin.com/in/saqlain-amin-99206b260", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" },
+  { name: "Twitter", url: "https://twitter.com/x_saqlain", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" },
+  { name: "Instagram", url: "https://instagram.com/saqlainsta", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" },
+  { name: "Facebook", url: "https://facebook.com/fb.saqlain.75", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" },
+  { name: "TikTok", url: "https://tiktok.com/@saqlain_amin_sadevs", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" },
+  { name: "YouTube", url: "https://youtube.com/@saqlain_amin", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" },
+  { name: "Medium", url: "https://medium.com/@saqlain9696382", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" },
+  { name: "Stack Overflow", url: "https://stackoverflow.com/users/20660180/saqlain-amin?tab=profile", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/stackoverflow/stackoverflow-original.svg" },
 ];
 
 function Field({ label, name, type = "text", value, onChange, onFocus, onBlur, focused, rows }) {

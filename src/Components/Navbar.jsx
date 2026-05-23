@@ -50,6 +50,13 @@ const Navbar = ({ activeSection, onSectionChange }) => {
     };
   }, [isMobile, isNavbarOpen]);
 
+  // Handle nav click
+  const handleNavClick = (sectionId) => {
+    onSectionChange(sectionId);
+    // Use native hash navigation
+    window.location.hash = sectionId;
+  };
+
   if (isMobile) return null;
 
   return (
@@ -129,10 +136,15 @@ const Navbar = ({ activeSection, onSectionChange }) => {
                   onHoverStart={() => setHoveredItem(item.id)}
                   onHoverEnd={() => setHoveredItem(null)}
                 >
-                  <motion.button
-                    onClick={() => onSectionChange(item.id)}
+                  {/* Changed from motion.button to motion.a */}
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.id);
+                    }}
                     className="relative flex items-center w-full px-3 py-2 rounded-lg group"
-                    whileTap={{ scale: 0.97 }}
+                    style={{ textDecoration: 'none', cursor: 'pointer' }}
                   >
                     {/* Innovative Hover Effect - Glowing background */}
                     <motion.div
@@ -198,7 +210,7 @@ const Navbar = ({ activeSection, onSectionChange }) => {
                         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                       />
                     )}
-                  </motion.button>
+                  </a>
                 </motion.div>
               );
             })}

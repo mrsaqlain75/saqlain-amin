@@ -235,6 +235,7 @@ export default function Journey() {
 
   return (
     <section
+      id="journey"
       className="relative min-h-screen py-16 px-4 overflow-hidden"
       style={{ background: "linear-gradient(135deg, #fffaf5 0%, #fff5ea 25%, #fffaf0 50%, #fff5ea 75%, #fffaf5 100%)" }}
     >

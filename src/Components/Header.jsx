@@ -35,6 +35,16 @@ const Header = ({ onSectionChange }) => {
     setIsMenuOpen(false);
   };
 
+  const handleConnectClick = () => {
+    const connectSection = document.getElementById('connect');
+    if (connectSection) {
+      window.scrollTo({
+        top: connectSection.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Desktop Header
   if (!isMobile) {
     return (
@@ -126,7 +136,7 @@ const Header = ({ onSectionChange }) => {
                     }}
                   >
                     <div className="w-8 h-8 flex items-center justify-center">
-                      <img src='logo.png'/>
+                      <img src='logo.png' alt="logo" />
                     </div>
                     <motion.div
                       className="absolute inset-0 rounded-full"
@@ -152,37 +162,41 @@ const Header = ({ onSectionChange }) => {
                     <p className="text-[10px] text-retro-purple-5">Full Stack Engineer</p>
                   </div>
                 </motion.div>
-         <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative group flex items-center gap-2.5 px-6 py-2.5 rounded-full overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
-              border: "1px solid rgba(255,109,0,0.4)",
-              color: "#fff",
-              fontSize: "12px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              fontFamily: '"Space Mono", monospace',
-              cursor: "pointer",
-              boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
-            }}
-          >
-            <motion.span
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.13) 50%, transparent 70%)",
-                backgroundSize: "300% 100%",
-              }}
-              animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
-              transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
-            />
-            <span className="relative z-10">Connect</span>
-            <ArrowRight size={12} className="relative z-10 opacity-60 transition-transform group-hover:translate-x-0.5" />
-          </motion.button>
+
+                {/* Desktop Connect Button - FIXED */}
+                <a href="#connect" style={{ textDecoration: 'none' }}>
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative group flex items-center gap-2.5 px-6 py-2.5 rounded-full overflow-hidden"
+                  style={{
+                    background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
+                    border: "1px solid rgba(255,109,0,0.4)",
+                    color: "#fff",
+                    fontSize: "12px",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    fontFamily: '"Space Mono", monospace',
+                    cursor: "pointer",
+                    boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
+                  }}
+                >
+                  <motion.span
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.13) 50%, transparent 70%)",
+                      backgroundSize: "300% 100%",
+                    }}
+                    animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
+                    transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
+                  />
+                  <span className="relative z-10">Connect</span>
+                  <ArrowRight size={12} className="relative z-10 opacity-60 transition-transform group-hover:translate-x-0.5" />
+                </motion.button>
+                </a>
               </div>
             </motion.div>
           </div>
@@ -191,10 +205,9 @@ const Header = ({ onSectionChange }) => {
     );
   }
 
-  // Mobile Header - Full Name Display
+  // Mobile Header
   return (
     <>
-      
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -268,7 +281,7 @@ const Header = ({ onSectionChange }) => {
                   }}
                 >
                   <div className="w-7 h-7 flex items-center justify-center">
-                    <img src='logo.png'/>
+                    <img src='logo.png' alt="logo" />
                   </div>
                 </motion.div>
                 <div className="flex flex-col">
@@ -368,8 +381,9 @@ const Header = ({ onSectionChange }) => {
                     ))}
                   </div>
                   
+                  {/* Mobile Connect Button - FIXED */}
+                  <a href="#connect" style={{ textDecoration: 'none' }}>
                   <motion.button
-                    onClick={() => handleNavClick('connect')}
                     className="mt-4 w-full py-2 rounded-lg font-['Playfair_Display'] font-medium text-sm relative overflow-hidden"
                     style={{
                       background: 'linear-gradient(135deg, rgba(255, 109, 0, 0.15), rgba(255, 158, 0, 0.1))',
@@ -383,6 +397,7 @@ const Header = ({ onSectionChange }) => {
                       <ArrowRight size={14} className="text-retro-orange-1" />
                     </span>
                   </motion.button>
+                  </a>
                 </div>
               </div>
             </motion.div>

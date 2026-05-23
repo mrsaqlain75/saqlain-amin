@@ -224,11 +224,13 @@ export default function Hero() {
           cursor: "pointer",
           fontWeight: "bold"
         }}
+        onClick={() => window.open('/saqlain-amin/resume.html', '_blank')}
       >
         <span className="relative z-10">Get My Resume</span>
       </motion.button>
 
       {/* Connect Button */}
+      <a href="#connect" style={{ textDecoration: 'none' }}>
       <motion.button
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -260,6 +262,7 @@ export default function Hero() {
         <span className="relative z-10">Connect</span>
         <ArrowRight size={11} className="relative z-10 opacity-70 transition-transform group-hover:translate-x-1" />
       </motion.button>
+      </a>
     </div>
   </div>
 </div>
@@ -504,11 +507,13 @@ export default function Hero() {
       cursor: "pointer",
       fontWeight: "bold"
     }}
+    onClick={() => window.open('/saqlain-amin/resume.html', '_blank')}
   >
     <span className="relative z-10">Get My Resume</span>
   </motion.button>
 
   {/* Connect Button */}
+  <a href="#connect" style={{ textDecoration: 'none' }}>
   <motion.button
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -530,6 +535,7 @@ export default function Hero() {
     <span className="relative z-10">Connect</span>
     <ArrowRight size={10} className="relative z-10 opacity-70" />
   </motion.button>
+  </a>
 </div>
     </div>
 
