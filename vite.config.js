@@ -1,5 +1,5 @@
 export default {
-  base: '/saqlain-amin/',
+  base: './',
   server: {
     watch: {
       usePolling: true,
