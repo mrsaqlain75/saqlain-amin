@@ -1,115 +1,168 @@
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import TerminalHeading from "./TerminalHeading";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import projectsData from "../data/projects.json";
+import TerminalHeading from "./TerminalHeading";
 
-// Background images for categories
-const bgImages = {
-  fullstack: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=60",
-  mobile: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?w=1200&q=60",
-  design: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=60",
-  ai: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=60",
+/*
+  FEATURED WORK — "The Footnote" v2
+  ─────────────────────────────────
+  Changes from v1:
+  1. Uniform title sizes across all rows
+  2. Removed "5 Projects" pill
+  3. TerminalHeading used instead of custom heading
+  4. Compact row heights — entire list fits one viewport
+  5. FloatingThumb disabled on touch/mobile
+  6. Image slideshow with prev/next in side panel
+  7. Purple from config used on hover states
+*/
+
+const T = {
+  ground:   "#f8f7f4",
+  surface:  "#ffffff",
+  ink:      "#0e0e0d",
+  muted:    "rgba(14,14,13,0.4)",
+  faint:    "rgba(14,14,13,0.09)",
+  // orange scale
+  orange1:  "#ff6d00",
+  orange2:  "#ff7900",
+  orange3:  "#ff8500",
+  orange5:  "#ff9e00",
+  orangeD:  "#e55f00",
+  // purple scale
+  purple1:  "#240046",
+  purple2:  "#3c096c",
+  purple3:  "#5a189a",
+  purple4:  "#7b2cbf",
+  purple5:  "#9d4edd",
+  F: {
+    display: "'Playfair Display', serif",
+    mono:    "'Space Mono', monospace",
+    sans:    "'Inter', sans-serif",
+  },
 };
 
-// Screenshot placeholder
-const screenshotPlaceholder = (caption, index) =>
-  `https://images.unsplash.com/photo-${
-    ["1461749280684-dccba630e2f6", "1498050108023-c5249f4df085",
-     "1555066931-4365d14bab8c", "1593642632559-0c6d3fc62b89",
-     "1547658719-da2b51169166"][index % 5]
-  }?w=800&q=70`;
+const STATUS = {
+  live:      { label: "Live",      color: "#3a8a58" },
+  delivered: { label: "Delivered", color: T.purple5  },
+  internal:  { label: "Internal",  color: T.orange1  },
+};
 
-// Screenshot Gallery Component
-function ScreenshotGallery({ screenshots }) {
-  const [active, setActive] = useState(0);
+const SEEDS = [
+  "1461749280684-dccba630e2f6",
+  "1498050108023-c5249f4df085",
+  "1555066931-4365d14bab8c",
+  "1593642632559-0c6d3fc62b89",
+  "1547658719-da2b51169166",
+];
+const imgUrl = (i, w = 800) =>
+  `https://images.unsplash.com/photo-${SEEDS[i % SEEDS.length]}?w=${w}&q=80`;
+
+/* ── detect touch device ─────────────────── */
+function useIsTouch() {
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(hover: none)").matches);
+  }, []);
+  return isTouch;
+}
+
+/* ── Corner marks ────────────────────────── */
+function Marks({ size = 10, color = T.orange1 }) {
+  const arm = { position: "absolute", background: color };
+  return (
+    <>
+      <span style={{ position:"absolute", top:0, left:0 }}>
+        <span style={{ ...arm, top:0, left:0, width:size, height:1.5 }} />
+        <span style={{ ...arm, top:0, left:0, width:1.5, height:size }} />
+      </span>
+      <span style={{ position:"absolute", top:0, right:0 }}>
+        <span style={{ ...arm, top:0, right:0, width:size, height:1.5 }} />
+        <span style={{ ...arm, top:0, right:0, width:1.5, height:size }} />
+      </span>
+      <span style={{ position:"absolute", bottom:0, left:0 }}>
+        <span style={{ ...arm, bottom:0, left:0, width:size, height:1.5 }} />
+        <span style={{ ...arm, bottom:0, left:0, width:1.5, height:size }} />
+      </span>
+      <span style={{ position:"absolute", bottom:0, right:0 }}>
+        <span style={{ ...arm, bottom:0, right:0, width:size, height:1.5 }} />
+        <span style={{ ...arm, bottom:0, right:0, width:1.5, height:size }} />
+      </span>
+    </>
+  );
+}
+
+/* ── Image slideshow (for panel) ─────────── */
+function Slideshow({ screenshots, projectIndex }) {
+  const [cur, setCur] = useState(0);
+  // build array: use screenshots if available, else single seed image
+  const slides = screenshots && screenshots.length > 0
+    ? screenshots
+    : [{ caption: null }];
+  const n = slides.length;
+
+  const go = (dir) => setCur(i => (i + dir + n) % n);
 
   return (
-    <div className="flex flex-col gap-4">
-      <div
-        className="relative w-full overflow-hidden rounded-lg"
-        style={{
-          aspectRatio: "16/9",
-          background: "rgba(36,0,70,0.06)",
-          border: "1px solid rgba(60,9,108,0.1)",
-        }}
-      >
+    <div className="flex flex-col gap-2">
+      <div className="relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
         <AnimatePresence mode="wait">
           <motion.img
-            key={active}
-            src={screenshotPlaceholder(screenshots[active]?.caption, active)}
-            alt={screenshots[active]?.caption || "Screenshot"}
-            className="w-full h-full object-cover"
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.35 }}
+            key={cur}
+            src={imgUrl(projectIndex + cur, 800)}
+            alt={slides[cur]?.caption || ""}
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -24 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            style={{ filter: "saturate(0.88) contrast(1.03)" }}
           />
         </AnimatePresence>
 
-        <div
-          className="absolute bottom-0 left-0 right-0 px-4 py-3"
-          style={{
-            background: "linear-gradient(to top, rgba(26,0,53,0.85), transparent)",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: 10,
-              color: "rgba(255,255,255,0.7)",
-              letterSpacing: "0.06em",
-            }}
-          >
-            {screenshots[active]?.caption}
-          </p>
-        </div>
+        {/* purple-bottom wash */}
+        <div style={{
+          position:"absolute", inset:0, pointerEvents:"none",
+          background:"linear-gradient(to top, rgba(36,0,70,0.14) 0%, transparent 55%)",
+        }} />
+        <Marks />
 
-        {screenshots.length > 1 && (
+        {/* caption */}
+        {slides[cur]?.caption && (
+          <div style={{
+            position:"absolute", bottom:0, left:0, right:0,
+            padding:"6px 12px",
+            background:"rgba(248,247,244,0.92)",
+            borderTop:`1px solid ${T.faint}`,
+          }}>
+            <span style={{ fontFamily:T.F.mono, fontSize:9,
+              color:T.muted, letterSpacing:"0.08em" }}>
+              {slides[cur].caption}
+            </span>
+          </div>
+        )}
+
+        {/* prev / next arrows — only if multiple */}
+        {n > 1 && (
           <>
-            <button
-              onClick={() => setActive((a) => (a - 1 + screenshots.length) % screenshots.length)}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full transition-all"
-              style={{ background: "rgba(245,240,235,0.85)", border: "1px solid rgba(60,9,108,0.12)" }}
-            >
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M8 2L4 6l4 4" stroke="#1a0035" strokeWidth="1.5"
-                  strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              onClick={() => setActive((a) => (a + 1) % screenshots.length)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full transition-all"
-              style={{ background: "rgba(245,240,235,0.85)", border: "1px solid rgba(60,9,108,0.12)" }}
-            >
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M4 2l4 4-4 4" stroke="#1a0035" strokeWidth="1.5"
-                  strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <SlideBtn dir="left"  onClick={() => go(-1)} />
+            <SlideBtn dir="right" onClick={() => go(1)} />
           </>
         )}
       </div>
 
-      {screenshots.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {screenshots.map((s, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className="flex-shrink-0 overflow-hidden rounded transition-all"
+      {/* dot indicators */}
+      {n > 1 && (
+        <div className="flex gap-1.5 justify-center" style={{ paddingTop: 2 }}>
+          {slides.map((_, i) => (
+            <button key={i} onClick={() => setCur(i)}
               style={{
-                width: 72,
-                height: 46,
-                border: `1.5px solid ${i === active ? "#ff6d00" : "rgba(60,9,108,0.1)"}`,
-                opacity: i === active ? 1 : 0.55,
+                width: i === cur ? 18 : 5, height: 3,
+                borderRadius: 2, border:"none", cursor:"pointer", padding:0,
+                background: i === cur ? T.orange1 : T.faint,
+                transition:"all 0.25s",
+                boxShadow: i === cur ? `0 0 5px rgba(255,109,0,0.35)` : "none",
               }}
-            >
-              <img
-                src={screenshotPlaceholder(s.caption, i)}
-                alt={s.caption}
-                className="w-full h-full object-cover"
-              />
-            </button>
+            />
           ))}
         </div>
       )}
@@ -117,456 +170,429 @@ function ScreenshotGallery({ screenshots }) {
   );
 }
 
-// Rank Card Component
-function RankCard({ project, index, onClick }) {
-  const [hovered, setHovered] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  const bg = bgImages[project.categoryTag] || bgImages.fullstack;
-  const statusLabel = {
-    live: { text: "● LIVE", color: "#22c55e" },
-    delivered: { text: "✓ DELIVERED", color: "#9d4edd" },
-    internal: { text: "◈ INTERNAL", color: "#ff8500" },
-  }[project.status] || { text: project.status, color: "#888" };
-
+function SlideBtn({ dir, onClick }) {
+  const [h, setH] = useState(false);
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={visible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+    <button
       onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative overflow-hidden cursor-pointer"
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
       style={{
-        height: 120,
-        borderBottom: "1px solid rgba(60,9,108,0.1)",
+        position:"absolute", top:"50%", transform:"translateY(-50%)",
+        [dir === "left" ? "left" : "right"]: 10,
+        width:28, height:28,
+        display:"flex", alignItems:"center", justifyContent:"center",
+        background: h ? T.orange1 : "rgba(248,247,244,0.88)",
+        border:`1px solid ${h ? T.orange1 : T.faint}`,
+        cursor:"pointer", transition:"all 0.2s",
       }}
     >
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${bg})` }}
-        animate={{ filter: hovered ? "blur(18px) brightness(0.45)" : "blur(14px) brightness(0.35)" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      />
-
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          background: `linear-gradient(90deg, rgba(26,0,53,0.72) 0%, rgba(36,0,70,0.45) 60%, transparent 100%)`,
-        }}
-        animate={{ opacity: hovered ? 0.9 : 0.75 }}
-        transition={{ duration: 0.4 }}
-      />
-
-      <motion.div
-        className="absolute left-0 top-0 bottom-0 w-[2px]"
-        style={{ background: project.accentColor }}
-        animate={{ opacity: hovered ? 1 : 0.35, scaleY: hovered ? 1 : 0.6 }}
-        transition={{ duration: 0.3 }}
-      />
-
-      {/* Rank number */}
-      <div
-        className="absolute select-none pointer-events-none"
-        style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: "clamp(80px, 12vw, 120px)",
-          fontWeight: 800,
-          fontStyle: "italic",
-          color: "rgba(255,255,255,0.06)",
-          lineHeight: 1,
-          top: "50%",
-          left: 24,
-          transform: "translateY(-50%)",
-          letterSpacing: "-0.05em",
-        }}
-      >
-        {project.rank}
-      </div>
-
-      {/* Desktop Content */}
-      <div className="absolute inset-0 hidden md:flex items-center px-8 md:px-12 gap-8">
-        <div className="flex-shrink-0">
-          <span
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: 11,
-              color: project.accentColor,
-              letterSpacing: "0.2em",
-              opacity: 0.8,
-            }}
-          >
-            {project.rank}
-          </span>
-        </div>
-
-        <div
-          className="flex-shrink-0 w-px h-8"
-          style={{ background: "rgba(255,255,255,0.12)" }}
-        />
-
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-3 mb-1">
-            <p
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 10,
-                color: project.accentColor,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-              }}
-            >
-              {project.category} · {project.year}
-            </p>
-            <span style={{ color: statusLabel.color, fontSize: 9 }}>{statusLabel.text}</span>
-          </div>
-          <h3
-            className="leading-tight truncate"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(16px, 3vw, 22px)",
-              fontWeight: 700,
-              color: "#ffffff",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {project.title}
-          </h3>
-          <p
-            className="mt-1 truncate"
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: 10,
-              color: "rgba(255,255,255,0.5)",
-              letterSpacing: "0.06em",
-            }}
-          >
-            {project.client}
-          </p>
-        </div>
-
-        <motion.div
-          className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full"
-          style={{ border: `1px solid ${project.accentColor}44` }}
-          animate={{
-            opacity: hovered ? 1 : 0,
-            x: hovered ? 0 : 8,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M2 6h8M7 3l3 3-3 3" stroke={project.accentColor}
-              strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </motion.div>
-      </div>
-
-      {/* Mobile Content - No overlap */}
-      <div className="md:hidden absolute inset-0 flex items-center px-6">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <span
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 10,
-                color: project.accentColor,
-                letterSpacing: "0.22em",
-              }}
-            >
-              {project.rank}
-            </span>
-            <span className="text-[8px] px-2 py-0.5 rounded-full" style={{ background: `${project.accentColor}20`, color: project.accentColor }}>
-              {project.category}
-            </span>
-            <span style={{ color: statusLabel.color, fontSize: 8 }}>{statusLabel.text}</span>
-          </div>
-          <h3
-            className="leading-tight text-white text-base font-bold truncate"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            {project.title}
-          </h3>
-          <p
-            className="text-[9px] text-white/50 truncate mt-0.5"
-            style={{ fontFamily: "'Space Mono', monospace" }}
-          >
-            {project.client}
-          </p>
-        </div>
-        <div
-          className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full ml-3"
-          style={{ border: `1px solid ${project.accentColor}66` }}
-        >
-          <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-            <path d="M2 6h8M7 3l3 3-3 3" stroke={project.accentColor}
-              strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-      </div>
-    </motion.div>
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+        {dir === "left"
+          ? <path d="M6 1L2 4.5l4 3.5" stroke={h?"#fff":T.muted} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+          : <path d="M3 1l4 3.5-4 3.5" stroke={h?"#fff":T.muted} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+        }
+      </svg>
+    </button>
   );
 }
 
-// Project Detail Overlay
-function ProjectDetail({ project, onClose }) {
+/* ── Floating cursor thumbnail (desktop only) */
+function FloatingThumb({ index, visible, x, y }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            position:"fixed",
+            left: x + 20,
+            top: y - 70,
+            width: 200, height: 130,
+            pointerEvents:"none",
+            zIndex: 9999,
+            overflow:"hidden",
+            boxShadow:"0 12px 40px rgba(14,14,13,0.16)",
+          }}
+        >
+          <img src={imgUrl(index)} alt=""
+            style={{ width:"100%", height:"100%", objectFit:"cover",
+              filter:"saturate(0.85) contrast(1.04)" }} />
+          <div style={{
+            position:"absolute", top:0, left:0, right:0,
+            height:2, background:T.orange1,
+          }} />
+          {/* purple tint on thumb */}
+          <div style={{
+            position:"absolute", inset:0, pointerEvents:"none",
+            background:"linear-gradient(135deg, rgba(157,78,221,0.1) 0%, transparent 60%)",
+          }} />
+          <Marks size={8} />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* ── Side panel ───────────────────────────── */
+function SidePanel({ project, index, onClose }) {
+  const status = STATUS[project.status] || { label: project.status, color: T.muted };
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
-  }, []);
-
-  const tagStyles = {
-    background: "rgba(255,109,0,0.08)",
-    border: "1px solid rgba(255,109,0,0.22)",
-    color: "#ff6d00",
-    borderRadius: 4,
-    padding: "3px 10px",
-    fontFamily: "'Space Mono', monospace",
-    fontSize: 10,
-    letterSpacing: "0.08em",
-  };
-
-  const statusLabel = {
-    live: { text: "● LIVE", color: "#22c55e" },
-    delivered: { text: "✓ DELIVERED", color: "#9d4edd" },
-    internal: { text: "◈ INTERNAL", color: "#ff8500" },
-  }[project.status] || { text: project.status, color: "#888" };
+    const esc = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", esc);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", esc);
+    };
+  }, [onClose]);
 
   return (
     <motion.div
-      className="fixed inset-0 z-[200] flex items-end md:items-center justify-center p-0 md:p-6"
+      className="fixed inset-0 z-[300] flex justify-end"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+      {/* scrim */}
       <motion.div
         className="absolute inset-0"
-        style={{ background: "rgba(26,0,53,0.6)", backdropFilter: "blur(8px)" }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        style={{ background:"rgba(14,14,13,0.2)" }}
+        initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }}
         onClick={onClose}
       />
 
+      {/* panel */}
       <motion.div
-        className="relative w-full md:max-w-3xl max-h-[92vh] overflow-y-auto rounded-t-2xl md:rounded-2xl"
+        className="relative flex flex-col overflow-y-auto"
         style={{
-          background: "#f5f0eb",
-          border: "1px solid rgba(60,9,108,0.1)",
-          boxShadow: "0 -8px 60px rgba(26,0,53,0.18)",
+          width:"min(100%, 500px)",
+          height:"100%",
+          background:T.surface,
+          borderLeft:`1px solid ${T.faint}`,
+          boxShadow:"-16px 0 48px rgba(14,14,13,0.07)",
         }}
-        initial={{ y: 60, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 60, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        initial={{ x:"100%" }}
+        animate={{ x:0 }}
+        exit={{ x:"100%" }}
+        transition={{ type:"spring", stiffness:340, damping:36 }}
       >
-        <div className="md:hidden flex justify-center pt-3 pb-1">
-          <div className="w-10 h-1 rounded-full" style={{ background: "rgba(60,9,108,0.15)" }} />
-        </div>
+        {/* purple radial wash */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background:`radial-gradient(ellipse at top right, rgba(36,0,70,0.06) 0%, transparent 65%)`,
+        }} />
+        {/* orange top bar */}
+        <div style={{
+          position:"absolute", top:0, left:0, right:0,
+          height:2, background:T.orange1,
+          boxShadow:`0 0 10px rgba(255,109,0,0.28)`,
+        }} />
 
-        <div
-          className="sticky top-0 z-10 flex items-center justify-between px-6 py-4"
-          style={{
-            background: "rgba(245,240,235,0.95)",
-            backdropFilter: "blur(12px)",
-            borderBottom: "1px solid rgba(60,9,108,0.07)",
-          }}
-        >
-          <div className="flex items-center gap-3">
-            <span
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 11,
-                color: project.accentColor,
-                letterSpacing: "0.2em",
-              }}
-            >
-              {project.rank}
-            </span>
-            <div className="w-px h-4" style={{ background: "rgba(60,9,108,0.15)" }} />
-            <span
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 9,
-                color: statusLabel.color,
-                letterSpacing: "0.15em",
-              }}
-            >
-              {statusLabel.text}
-            </span>
+        {/* header */}
+        <div className="flex items-start justify-between relative z-10"
+          style={{ padding:"28px 28px 20px", borderBottom:`1px solid ${T.faint}` }}>
+          <div>
+            <p style={{
+              fontFamily:T.F.mono, fontSize:9,
+              color:T.orange1, letterSpacing:"0.28em",
+              textTransform:"uppercase", marginBottom:8,
+            }}>
+              {String(index + 1).padStart(2,"0")} / {project.category}
+            </p>
+            <h3 style={{
+              fontFamily:T.F.display,
+              fontSize:"clamp(18px, 2.5vw, 24px)",
+              fontWeight:700, color:T.ink,
+              letterSpacing:"-0.02em", lineHeight:1.12,
+            }}>
+              {project.title}
+            </h3>
+            <p style={{
+              fontFamily:T.F.mono, fontSize:9,
+              color:T.muted, letterSpacing:"0.1em", marginTop:6,
+            }}>
+              {project.client} · {project.year}
+            </p>
           </div>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full transition-colors"
-            style={{ border: "1px solid rgba(60,9,108,0.12)" }}
+          <button onClick={onClose}
+            style={{
+              flexShrink:0, marginLeft:12,
+              width:30, height:30,
+              border:`1px solid ${T.faint}`,
+              background:"transparent", cursor:"pointer",
+              display:"flex", alignItems:"center", justifyContent:"center",
+              transition:"border-color 0.2s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = T.orange1}
+            onMouseLeave={e => e.currentTarget.style.borderColor = T.faint}
           >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M1 1l10 10M11 1L1 11" stroke="#1a0035" strokeWidth="1.5"
-                strokeLinecap="round" />
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M1 1l8 8M9 1L1 9" stroke={T.muted} strokeWidth="1.3" strokeLinecap="round"/>
             </svg>
           </button>
         </div>
 
-        <div className="px-6 py-6 flex flex-col gap-8">
-          <div>
-            <p
-              className="mb-1"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 10,
-                color: project.accentColor,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-              }}
-            >
-              {project.category} · {project.year} · {project.client}
-            </p>
-            <h2
-              className="leading-tight"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(22px, 5vw, 32px)",
-                fontWeight: 700,
-                color: "#1a0035",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              {project.title}
-            </h2>
+        {/* body */}
+        <div className="flex flex-col relative z-10"
+          style={{ padding:"24px 28px 40px", gap:22, flex:1 }}>
+
+          {/* slideshow */}
+          <Slideshow screenshots={project.screenshots} projectIndex={index} />
+
+          {/* status row */}
+          <div className="flex items-center gap-3">
+            <span style={{
+              width:5, height:5, borderRadius:"50%",
+              background:status.color, display:"inline-block",
+            }} />
+            <span style={{ fontFamily:T.F.mono, fontSize:9,
+              color:T.muted, letterSpacing:"0.12em" }}>
+              {status.label}
+            </span>
           </div>
 
-          <ScreenshotGallery screenshots={project.screenshots} />
-
-          <div className="w-full h-px" style={{ background: "rgba(60,9,108,0.07)" }} />
-
+          {/* description */}
           <div>
-            <p
-              className="mb-3"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 9,
-                color: "rgba(36,0,70,0.4)",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-              }}
-            >
-              Overview
-            </p>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: 14,
-                color: "rgba(26,0,53,0.75)",
-                lineHeight: 1.75,
-              }}
-            >
+            <PanelLabel>Overview</PanelLabel>
+            <p style={{ fontFamily:T.F.sans, fontSize:13.5,
+              color:"rgba(14,14,13,0.62)", lineHeight:1.82, fontWeight:300 }}>
               {project.description}
             </p>
           </div>
 
-          <div
-            className="rounded-lg p-5"
-            style={{
-              background: `${project.accentColor}08`,
-              border: `1px solid ${project.accentColor}22`,
-            }}
-          >
-            <p
-              className="mb-2"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 9,
-                color: project.accentColor,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-              }}
-            >
-              The Challenge
-            </p>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: 13.5,
-                color: "rgba(26,0,53,0.68)",
-                lineHeight: 1.7,
-              }}
-            >
+          <div style={{ height:1, background:T.faint }} />
+
+          {/* challenge */}
+          <div style={{ borderLeft:`2px solid ${T.orange1}`, paddingLeft:14 }}>
+            <PanelLabel orange>Challenge</PanelLabel>
+            <p style={{ fontFamily:T.F.sans, fontSize:13,
+              color:T.muted, lineHeight:1.8, fontWeight:300 }}>
               {project.challenge}
             </p>
           </div>
 
+          {/* stack — purple tags */}
           <div>
-            <p
-              className="mb-3"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: 9,
-                color: "rgba(36,0,70,0.4)",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-              }}
-            >
-              Stack
-            </p>
+            <PanelLabel>Stack</PanelLabel>
             <div className="flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <span key={tech} style={tagStyles}>{tech}</span>
+              {project.stack.map(t => (
+                <span key={t} style={{
+                  fontFamily:T.F.mono, fontSize:9,
+                  color:T.purple5, letterSpacing:"0.08em",
+                  border:`1px solid rgba(157,78,221,0.28)`,
+                  background:`rgba(36,0,70,0.04)`,
+                  padding:"3px 10px",
+                }}>
+                  {t}
+                </span>
               ))}
             </div>
           </div>
 
-          {project.liveUrl && (
-            <div className="pt-2">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all"
-                style={{
-                  background: project.accentColor,
-                  color: "#ffffff",
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: 11,
-                  letterSpacing: "0.1em",
-                  textDecoration: "none",
-                }}
-              >
-                View Live
-                <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 10L10 2M10 2H5M10 2v5" stroke="white" strokeWidth="1.5"
-                    strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-          )}
+          {/* cta */}
+          {project.liveUrl && <PanelCTA href={project.liveUrl} />}
         </div>
       </motion.div>
     </motion.div>
   );
 }
 
-// Featured Projects Section
-function FeaturedProjects() {
-  const [selected, setSelected] = useState(null);
+function PanelLabel({ children, orange }) {
+  return (
+    <p style={{
+      fontFamily:T.F.mono, fontSize:8,
+      color: orange ? T.orange1 : T.faint,
+      letterSpacing:"0.28em", textTransform:"uppercase", marginBottom:8,
+    }}>
+      {children}
+    </p>
+  );
+}
+
+function PanelCTA({ href }) {
+  const [h, setH] = useState(false);
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer"
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        alignSelf:"flex-start",
+        fontFamily:T.F.mono, fontSize:10,
+        letterSpacing:"0.14em", textDecoration:"none",
+        color:"#fff",
+        background: h ? T.orangeD : T.orange1,
+        padding:"10px 20px",
+        display:"inline-flex", alignItems:"center", gap:8,
+        transition:"all 0.22s",
+        boxShadow: h
+          ? "0 6px 20px rgba(255,109,0,0.36)"
+          : "0 2px 10px rgba(255,109,0,0.18)",
+      }}
+    >
+      View Live
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+        <path d="M1 9L9 1M9 1H4M9 1v5" stroke="#fff" strokeWidth="1.4"
+          strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </a>
+  );
+}
+
+/* ── Single project row ───────────────────── */
+function ProjectRow({ project, index, onOpen, isTouch }) {
+  const [hovered, setHovered] = useState(false);
+  const [cursor, setCursor] = useState({ x:0, y:0 });
+  const ref = useRef(null);
+  const inView = useInView(ref, { once:true, margin:"-30px" });
+
+  const onMouseMove = useCallback((e) => {
+    setCursor({ x:e.clientX, y:e.clientY });
+  }, []);
+
+  // Purple hover color cycles through config scale
+  const purpleHoverColors = [T.purple3, T.purple4, T.purple5, T.purple2, T.purple4];
+  const hoverPurple = purpleHoverColors[index % purpleHoverColors.length];
+
+  return (
+    <>
+      {/* floating thumb — desktop only */}
+      {!isTouch && (
+        <FloatingThumb
+          index={index}
+          visible={hovered}
+          x={cursor.x}
+          y={cursor.y}
+        />
+      )}
+
+      <motion.div
+        ref={ref}
+        initial={{ opacity:0, y:12 }}
+        animate={inView ? { opacity:1, y:0 } : {}}
+        transition={{ duration:0.5, delay:index * 0.07, ease:[0.22,1,0.36,1] }}
+        style={{ borderTop:`1px solid ${T.faint}` }}
+      >
+        <div
+          onMouseEnter={() => !isTouch && setHovered(true)}
+          onMouseLeave={() => !isTouch && setHovered(false)}
+          onMouseMove={!isTouch ? onMouseMove : undefined}
+          onClick={() => onOpen(index)}
+          style={{
+            display:"flex",
+            alignItems:"center",
+            justifyContent:"space-between",
+            gap:"clamp(12px, 2vw, 28px)",
+            padding:"clamp(16px, 2.5vh, 24px) 0",  // Increased padding for more space
+            cursor:"pointer",
+            position:"relative",
+          }}
+        >
+          {/* orange underline on hover */}
+          <motion.div
+            animate={{ scaleX: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
+            transition={{ duration:0.28, ease:[0.22,1,0.36,1] }}
+            style={{
+              position:"absolute",
+              bottom:"clamp(12px, 1.8vh, 16px)",
+              left:0, right:0,
+              height:1.5,
+              background:`linear-gradient(90deg, ${T.orange1}, ${hoverPurple})`,
+              transformOrigin:"left",
+              pointerEvents:"none",
+            }}
+          />
+
+          {/* index */}
+          <span style={{
+            fontFamily:T.F.mono, fontSize:10,
+            color: hovered ? T.orange1 : T.faint,
+            letterSpacing:"0.2em", flexShrink:0,
+            transition:"color 0.22s",
+            width:24,
+          }}>
+            {String(index + 1).padStart(2,"0")}
+          </span>
+
+          {/* title — uniform size */}
+          <h3 style={{
+            fontFamily:T.F.display,
+            fontSize:"clamp(18px, 2.2vw, 26px)",
+            fontWeight:700,
+            fontStyle: hovered ? "italic" : "normal",
+            letterSpacing:"-0.02em",
+            lineHeight:1,
+            color: hovered ? hoverPurple : "rgba(14,14,13,0.78)",
+            transition:"color 0.22s, font-style 0.22s",
+            flex:1, minWidth:0,
+            whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
+          }}>
+            {project.title}
+          </h3>
+
+          {/* right meta — hidden on mobile */}
+          <div className="hidden sm:flex items-center gap-5 flex-shrink-0">
+            <span style={{
+              fontFamily:T.F.mono, fontSize:9,
+              color: hovered ? hoverPurple : T.muted,
+              letterSpacing:"0.14em", textTransform:"uppercase",
+              transition:"color 0.22s",
+            }}>
+              {project.category}
+            </span>
+            <span style={{
+              fontFamily:T.F.mono, fontSize:9,
+              color:T.faint, letterSpacing:"0.12em",
+            }}>
+              {project.year}
+            </span>
+            {/* status dot */}
+            <span style={{
+              width:5, height:5, borderRadius:"50%", flexShrink:0,
+              background:(STATUS[project.status]||{}).color || T.muted,
+              display:"inline-block",
+              boxShadow: hovered
+                ? `0 0 5px ${(STATUS[project.status]||{}).color || T.muted}`
+                : "none",
+              transition:"box-shadow 0.22s",
+            }} />
+          </div>
+
+          {/* arrow */}
+          <motion.span
+            animate={{ opacity: hovered ? 1 : 0, x: hovered ? 0 : -5 }}
+            transition={{ duration:0.18 }}
+            className="hidden sm:inline-flex flex-shrink-0"
+          >
+            <svg width="13" height="9" viewBox="0 0 13 9" fill="none">
+              <path d="M0 4.5h12M8 1l4 3.5L8 8"
+                stroke={hoverPurple} strokeWidth="1.3"
+                strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </motion.span>
+        </div>
+      </motion.div>
+    </>
+  );
+}
+
+/* ── Main export ──────────────────────────── */
+export default function FeaturedProjects() {
+  const [openIndex, setOpenIndex] = useState(null);
   const projects = projectsData.featuredProjects;
+  const isTouch = useIsTouch();
 
   return (
     <section
       id="projects"
-      className="relative py-12 overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #fffaf5 0%, #fff5ea 25%, #fffaf0 50%, #fff5ea 75%, #fffaf5 100%)",
+        
+        position:"relative",
+        overflow:"hidden",
       }}
     >
       {/* Background pattern - same as hero */}
@@ -582,38 +608,62 @@ function FeaturedProjects() {
         </svg>
       </div>
 
-      {/* Floating orbs - same as hero */}
+      {/* Floating orbs - subtle */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-retro-orange-1/5 blur-3xl" />
         <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-retro-purple-5/5 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full bg-retro-orange-1/3 blur-3xl" />
       </div>
 
-          {/* Header */}
-<div className="relative z-10 mr-2 md:ml-8 lg:ml-4 mr-8">
-  <TerminalHeading title="featured_projects" delay={0} darkBg={false} />
-</div>
 
-      {/* Project list - with left padding for navbar */}
-      <div className="relative z-10 md:ml-16 lg:ml-28">
-        {projects.map((p, i) => (
-          <RankCard
-            key={p.id}
-            project={p}
-            index={i}
-            onClick={() => setSelected(p)}
-          />
-        ))}
+        {/* TerminalHeading */}
+        <div className="relative z-10 mr-2 md:ml-8 lg:ml-4 mr-8">
+          <TerminalHeading title="featured_projects" delay={0} darkBg={false} />
+        </div>
+
+      <div style={{ maxWidth:860, margin:"0 auto", position:"relative" }}>
+
+
+        {/* project list */}
+        <div>
+          {projects.map((p, i) => (
+            <ProjectRow
+              key={p.id}
+              project={p}
+              index={i}
+              onOpen={setOpenIndex}
+              isTouch={isTouch}
+            />
+          ))}
+          {/* closing rule */}
+          <div style={{ height:1, background:T.faint, marginTop:8 }} />
+        </div>
+
+        {/* footnote hint */}
+        <motion.p
+          initial={{ opacity:0 }}
+          animate={{ opacity:1 }}
+          transition={{ delay:0.9, duration:0.5 }}
+          style={{
+            fontFamily:T.F.mono, fontSize:8,
+            color:T.faint, letterSpacing:"0.22em",
+            textTransform:"uppercase",
+            textAlign:"right", marginTop:24,
+          }}
+        >
+          {isTouch ? "Tap to explore" : "Hover to preview · Click to explore"}
+        </motion.p>
       </div>
 
-      {/* Project detail overlay */}
+      {/* side panel */}
       <AnimatePresence>
-        {selected && (
-          <ProjectDetail project={selected} onClose={() => setSelected(null)} />
+        {openIndex !== null && (
+          <SidePanel
+            project={projects[openIndex]}
+            index={openIndex}
+            onClose={() => setOpenIndex(null)}
+          />
         )}
       </AnimatePresence>
     </section>
   );
 }
-
-export default FeaturedProjects;

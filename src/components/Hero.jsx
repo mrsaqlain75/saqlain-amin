@@ -224,7 +224,7 @@ export default function Hero() {
           cursor: "pointer",
           fontWeight: "bold"
         }}
-        onClick={() => window.open('/saqlain-amin/resume.html', '_blank')}
+        onClick={() => window.open('/resume.html', '_blank')}
       >
         <span className="relative z-10">Get My Resume</span>
       </motion.button>
@@ -507,7 +507,7 @@ export default function Hero() {
       cursor: "pointer",
       fontWeight: "bold"
     }}
-    onClick={() => window.open('/saqlain-amin/resume.html', '_blank')}
+    onClick={() => window.open('/resume.html', '_blank')}
   >
     <span className="relative z-10">Get My Resume</span>
   </motion.button>

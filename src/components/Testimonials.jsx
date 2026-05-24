@@ -122,7 +122,7 @@ export default function Testimonials() {
 
           {/* Header */}
 <div className="relative z-10 mr-2 md:ml-8 lg:ml-4 mr-8">
-  <TerminalHeading title="featured_projects" delay={0} darkBg={true} />
+  <TerminalHeading title="testimonials" delay={0} darkBg={true} />
 </div>
 
       {/* Main Carousel */}
