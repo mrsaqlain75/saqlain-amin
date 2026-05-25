@@ -6,45 +6,38 @@ import TerminalHeading from "./TerminalHeading";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    feedback: "Exceptional design work. Understood our brand instantly and delivered assets that exceeded expectations.",
+    name: "Alison Zara Singh",
+    feedback: "Saqlain trained me for 6 months and guess what, I got the Comptia ITF+ certification.",
     rating: 5,
-    platform: "upwork"
+    platform: "Fiverr"
   },
   {
     id: 2,
-    name: "Michael Chen",
-    feedback: "The booking system transformed our business. 200% increase in online bookings. Highly recommend!",
+    name: "Arif Ullah",
+    feedback: "Delivered the app weeks before the dealine and still maintains it perfectly.",
     rating: 5,
-    platform: "fiverr"
+    platform: "local"
   },
   {
     id: 3,
-    name: "David Thompson",
-    feedback: "Best instructor I've ever had. Passed my certification on the first try!",
+    name: "Zubaida Khalid",
+    feedback: "Well mannered, great communication and very responsive",
     rating: 5,
     platform: "local"
   },
   {
     id: 4,
-    name: "Ahmed Raza",
-    feedback: "From zero digital presence to full online booking system. Game changer for our hotel.",
-    rating: 5,
-    platform: "local"
-  },
-  {
-    id: 5,
-    name: "Emily Martinez",
-    feedback: "Attention to detail and creative vision is outstanding. Will definitely work with him again.",
+    name: "Karla Gomez",
+    feedback: "His last minute session saved my automata exam. Cheers",
     rating: 5,
     platform: "upwork"
   },
   {
-    id: 6,
-    name: "Dr. James Wilson",
-    feedback: "Trained 50+ students in our region. His dedication to education is truly inspiring.",
+    id: 5,
+    name: "Ahmad Khan",
+    feedback: "As his 1st fiverr client, really tested him. He's great. ",
     rating: 5,
-    platform: "local"
+    platform: "fiverr"
   }
 ];
 
