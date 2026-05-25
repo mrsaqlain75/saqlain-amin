@@ -23,7 +23,7 @@ const testimonials = [
     name: "Zubaida Khalid",
     feedback: "Well mannered, great communication and very responsive",
     rating: 5,
-    platform: "local"
+    platform: "fiverr"
   },
   {
     id: 4,
