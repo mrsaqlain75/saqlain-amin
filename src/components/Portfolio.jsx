@@ -3,18 +3,6 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import projectsData from "../data/projects.json";
 import TerminalHeading from "./TerminalHeading";
 
-/*
-  FEATURED WORK — "The Footnote" v2
-  ─────────────────────────────────
-  Changes from v1:
-  1. Uniform title sizes across all rows
-  2. Removed "5 Projects" pill
-  3. TerminalHeading used instead of custom heading
-  4. Compact row heights — entire list fits one viewport
-  5. FloatingThumb disabled on touch/mobile
-  6. Image slideshow with prev/next in side panel
-  7. Purple from config used on hover states
-*/
 
 const T = {
   ground:   "#f8f7f4",
@@ -46,16 +34,6 @@ const STATUS = {
   delivered: { label: "Delivered", color: T.purple5  },
   internal:  { label: "Internal",  color: T.orange1  },
 };
-
-const SEEDS = [
-  "1461749280684-dccba630e2f6",
-  "1498050108023-c5249f4df085",
-  "1555066931-4365d14bab8c",
-  "1593642632559-0c6d3fc62b89",
-  "1547658719-da2b51169166",
-];
-const imgUrl = (i, w = 800) =>
-  `https://images.unsplash.com/photo-${SEEDS[i % SEEDS.length]}?w=${w}&q=80`;
 
 /* ── detect touch device ─────────────────── */
 function useIsTouch() {
@@ -94,35 +72,34 @@ function Marks({ size = 10, color = T.orange1 }) {
 /* ── Image slideshow (for panel) ─────────── */
 function Slideshow({ screenshots, projectIndex }) {
   const [cur, setCur] = useState(0);
-  // build array: use screenshots if available, else single seed image
   const slides = screenshots && screenshots.length > 0
     ? screenshots
-    : [{ caption: null }];
+    : [{ url: null, caption: null }];
   const n = slides.length;
 
   const go = (dir) => setCur(i => (i + dir + n) % n);
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
+      <div className="relative overflow-hidden rounded-lg" style={{ aspectRatio: "16/9", background: "#f5f0eb" }}>
         <AnimatePresence mode="wait">
           <motion.img
             key={cur}
-            src={imgUrl(projectIndex + cur, 800)}
+            src={slides[cur]?.url || "/placeholder.png"}
             alt={slides[cur]?.caption || ""}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-contain"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            style={{ filter: "saturate(0.88) contrast(1.03)" }}
+            onError={(e) => { e.target.src = "/placeholder.png"; }}
           />
         </AnimatePresence>
 
         {/* purple-bottom wash */}
         <div style={{
           position:"absolute", inset:0, pointerEvents:"none",
-          background:"linear-gradient(to top, rgba(36,0,70,0.14) 0%, transparent 55%)",
+          background:"linear-gradient(to top, rgba(36,0,70,0.1) 0%, transparent 55%)",
         }} />
         <Marks />
 
@@ -198,7 +175,9 @@ function SlideBtn({ dir, onClick }) {
 }
 
 /* ── Floating cursor thumbnail (desktop only) */
-function FloatingThumb({ index, visible, x, y }) {
+function FloatingThumb({ project, visible, x, y }) {
+  const thumbImage = project.screenshots?.[0]?.url || "/placeholder.png";
+  
   return (
     <AnimatePresence>
       {visible && (
@@ -211,21 +190,23 @@ function FloatingThumb({ index, visible, x, y }) {
             position:"fixed",
             left: x + 20,
             top: y - 70,
-            width: 200, height: 130,
+            width: 220, height: 140,
             pointerEvents:"none",
             zIndex: 9999,
             overflow:"hidden",
+            background: "#fff",
+            borderRadius: 8,
             boxShadow:"0 12px 40px rgba(14,14,13,0.16)",
+            border: `1px solid ${T.faint}`,
           }}
         >
-          <img src={imgUrl(index)} alt=""
-            style={{ width:"100%", height:"100%", objectFit:"cover",
-              filter:"saturate(0.85) contrast(1.04)" }} />
+          <img src={thumbImage} alt={project.title}
+            style={{ width:"100%", height:"100%", objectFit:"cover" }}
+            onError={(e) => { e.target.src = "/placeholder.png"; }} />
           <div style={{
             position:"absolute", top:0, left:0, right:0,
             height:2, background:T.orange1,
           }} />
-          {/* purple tint on thumb */}
           <div style={{
             position:"absolute", inset:0, pointerEvents:"none",
             background:"linear-gradient(135deg, rgba(157,78,221,0.1) 0%, transparent 60%)",
@@ -270,7 +251,7 @@ function SidePanel({ project, index, onClose }) {
       <motion.div
         className="relative flex flex-col overflow-y-auto"
         style={{
-          width:"min(100%, 500px)",
+          width:"min(100%, 550px)",
           height:"100%",
           background:T.surface,
           borderLeft:`1px solid ${T.faint}`,
@@ -442,12 +423,29 @@ function PanelCTA({ href }) {
   );
 }
 
+/* ── Thumbnail component for row ─────────── */
+function RowThumbnail({ src, alt }) {
+  const [imgError, setImgError] = useState(false);
+  
+  return (
+    <div className="flex-shrink-0 w-16 h-12 md:w-24 md:h-14 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+      <img
+        src={imgError ? "/placeholder.png" : src}
+        alt={alt}
+        className="w-full h-full object-cover"
+        onError={() => setImgError(true)}
+      />
+    </div>
+  );
+}
+
 /* ── Single project row ───────────────────── */
 function ProjectRow({ project, index, onOpen, isTouch }) {
   const [hovered, setHovered] = useState(false);
   const [cursor, setCursor] = useState({ x:0, y:0 });
   const ref = useRef(null);
   const inView = useInView(ref, { once:true, margin:"-30px" });
+  const thumbnailSrc = project.screenshots?.[0]?.url || "/placeholder.png";
 
   const onMouseMove = useCallback((e) => {
     setCursor({ x:e.clientX, y:e.clientY });
@@ -462,7 +460,7 @@ function ProjectRow({ project, index, onOpen, isTouch }) {
       {/* floating thumb — desktop only */}
       {!isTouch && (
         <FloatingThumb
-          index={index}
+          project={project}
           visible={hovered}
           x={cursor.x}
           y={cursor.y}
@@ -485,8 +483,8 @@ function ProjectRow({ project, index, onOpen, isTouch }) {
             display:"flex",
             alignItems:"center",
             justifyContent:"space-between",
-            gap:"clamp(12px, 2vw, 28px)",
-            padding:"clamp(16px, 2.5vh, 24px) 0",  // Increased padding for more space
+            gap:"clamp(16px, 2vw, 24px)",
+            padding:"clamp(24px, 4vh, 36px) 0",
             cursor:"pointer",
             position:"relative",
           }}
@@ -497,7 +495,7 @@ function ProjectRow({ project, index, onOpen, isTouch }) {
             transition={{ duration:0.28, ease:[0.22,1,0.36,1] }}
             style={{
               position:"absolute",
-              bottom:"clamp(12px, 1.8vh, 16px)",
+              bottom:"clamp(20px, 3vh, 28px)",
               left:0, right:0,
               height:1.5,
               background:`linear-gradient(90deg, ${T.orange1}, ${hoverPurple})`,
@@ -508,23 +506,26 @@ function ProjectRow({ project, index, onOpen, isTouch }) {
 
           {/* index */}
           <span style={{
-            fontFamily:T.F.mono, fontSize:10,
+            fontFamily:T.F.mono, fontSize:12,
             color: hovered ? T.orange1 : T.faint,
             letterSpacing:"0.2em", flexShrink:0,
             transition:"color 0.22s",
-            width:24,
+            width:32,
           }}>
             {String(index + 1).padStart(2,"0")}
           </span>
 
-          {/* title — uniform size */}
+          {/* Thumbnail image - NEW */}
+          <RowThumbnail src={thumbnailSrc} alt={project.title} />
+
+          {/* title — larger for better visibility */}
           <h3 style={{
             fontFamily:T.F.display,
-            fontSize:"clamp(18px, 2.2vw, 26px)",
+            fontSize:"clamp(20px, 2.2vw, 26px)",
             fontWeight:700,
             fontStyle: hovered ? "italic" : "normal",
             letterSpacing:"-0.02em",
-            lineHeight:1,
+            lineHeight:1.2,
             color: hovered ? hoverPurple : "rgba(14,14,13,0.78)",
             transition:"color 0.22s, font-style 0.22s",
             flex:1, minWidth:0,
@@ -534,7 +535,7 @@ function ProjectRow({ project, index, onOpen, isTouch }) {
           </h3>
 
           {/* right meta — hidden on mobile */}
-          <div className="hidden sm:flex items-center gap-5 flex-shrink-0">
+          <div className="hidden sm:flex items-center gap-6 flex-shrink-0">
             <span style={{
               fontFamily:T.F.mono, fontSize:9,
               color: hovered ? hoverPurple : T.muted,
@@ -551,7 +552,7 @@ function ProjectRow({ project, index, onOpen, isTouch }) {
             </span>
             {/* status dot */}
             <span style={{
-              width:5, height:5, borderRadius:"50%", flexShrink:0,
+              width:6, height:6, borderRadius:"50%", flexShrink:0,
               background:(STATUS[project.status]||{}).color || T.muted,
               display:"inline-block",
               boxShadow: hovered
@@ -567,9 +568,8 @@ function ProjectRow({ project, index, onOpen, isTouch }) {
             transition={{ duration:0.18 }}
             className="hidden sm:inline-flex flex-shrink-0"
           >
-            <svg width="13" height="9" viewBox="0 0 13 9" fill="none">
-              <path d="M0 4.5h12M8 1l4 3.5L8 8"
-                stroke={hoverPurple} strokeWidth="1.3"
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+              <path d="M0 5h12M8 1l4 4-4 4" stroke={hoverPurple} strokeWidth="1.5"
                 strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </motion.span>
@@ -588,9 +588,9 @@ export default function FeaturedProjects() {
   return (
     <section
       id="projects"
+      className="relative py-20 overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #fffaf5 0%, #fff5ea 25%, #fffaf0 50%, #fff5ea 75%, #fffaf5 100%)",
-        
         position:"relative",
         overflow:"hidden",
       }}
@@ -615,16 +615,13 @@ export default function FeaturedProjects() {
       </div>
 
 
-        {/* TerminalHeading */}
-        <div className="relative z-10 mr-2 md:ml-8 lg:ml-4 mr-8">
-          <TerminalHeading title="featured_projects" delay={0} darkBg={false} />
-        </div>
-
-      <div style={{ maxWidth:860, margin:"0 auto", position:"relative" }}>
-
-
-        {/* project list */}
-        <div>
+          {/* Header */}
+<div className="relative z-10 mr-2 md:ml-8 lg: pl-1 pr-12">
+  <TerminalHeading title="feature_projects" delay={0} darkBg={false} />
+</div>
+      {/* Project list - Full width */}
+      <div className="relative z-10 w-full px-6 md:px-8 md:ml-16 lg:ml-24 w-[92%]">
+        <div className="w-full">
           {projects.map((p, i) => (
             <ProjectRow
               key={p.id}
@@ -635,7 +632,7 @@ export default function FeaturedProjects() {
             />
           ))}
           {/* closing rule */}
-          <div style={{ height:1, background:T.faint, marginTop:8 }} />
+          <div style={{ height:1, background:T.faint, marginTop:16 }} />
         </div>
 
         {/* footnote hint */}
@@ -647,7 +644,7 @@ export default function FeaturedProjects() {
             fontFamily:T.F.mono, fontSize:8,
             color:T.faint, letterSpacing:"0.22em",
             textTransform:"uppercase",
-            textAlign:"right", marginTop:24,
+            textAlign:"right", marginTop:32,
           }}
         >
           {isTouch ? "Tap to explore" : "Hover to preview · Click to explore"}

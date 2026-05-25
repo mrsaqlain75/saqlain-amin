@@ -6,7 +6,7 @@ export default function Hero() {
   const [currentPhrase, setCurrentPhrase] = useState(0);
 
   const phrases = [
-    "build immersive web experiences",
+    "build immersive full stack web apps",
     "design intuitive interfaces",  
     "engineer scalable backends",
     "craft pixel-perfect visuals",

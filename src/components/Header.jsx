@@ -159,7 +159,7 @@ const Header = ({ onSectionChange }) => {
                     <h1 className="font-['Playfair_Display'] text-xl font-bold text-white">
                       Saqlain Amin
                     </h1>
-                    <p className="text-[10px] text-retro-purple-5">Full Stack Engineer</p>
+                    <p className="text-[10px] text-retro-orange-5">Full Stack Engineer</p>
                   </div>
                 </motion.div>
 
