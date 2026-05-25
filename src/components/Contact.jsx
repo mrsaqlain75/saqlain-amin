@@ -12,7 +12,7 @@ const contactMeta = [
 const socials = [
   { name: "GitHub", url: "https://github.com/mrsaqlain75", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
   { name: "LinkedIn", url: "https://linkedin.com/in/saqlain-amin-99206b260", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" },
-  { name: "Twitter", url: "https://twitter.com/x_saqlain", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" },
+  { name: "Twitter", url: "https://x.com/x_saqlain", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" },
   { name: "Instagram", url: "https://instagram.com/saqlainsta", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" },
   { name: "Facebook", url: "https://facebook.com/fb.saqlain.75", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" },
   { name: "TikTok", url: "https://tiktok.com/@saqlain_amin_sadevs", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" },
