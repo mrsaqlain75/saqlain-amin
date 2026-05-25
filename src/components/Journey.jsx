@@ -26,13 +26,13 @@ const COLORS = {
   purple: "#9d4edd",
   purpleDark: "#3c096c",
   purpleLight: "#7b2cbf",
-  bg: "#fffaf5",
+  bg: "#0a0a0f",
   line: "rgba(255, 109, 0, 0.15)",
   dot: "#ff6d00",
   dotIdle: "rgba(255,109,0,0.25)",
-  textPrimary: "#240046",
-  textMuted: "rgba(36,0,70,0.45)",
-  accent: "#ff8500",
+  textPrimary: "#ffffff",
+  textMuted: "rgba(255,255,255,0.45)",
+  accent: "#ff9e00",
 };
 
 function Node({ m, index, active, setActive }) {
@@ -154,7 +154,7 @@ function TextBlock({ m, inView, index, isActive, setActive, dir }) {
           fontFamily: "'Playfair Display', serif",
           fontSize: 15,
           fontWeight: isActive ? 700 : 500,
-          color: isActive ? COLORS.textPrimary : "rgba(36,0,70,0.75)",
+          color: isActive ? COLORS.orangeLight : COLORS.textPrimary,
           transition: "all 0.3s",
           letterSpacing: "-0.01em",
         }}
@@ -182,7 +182,7 @@ function TextBlock({ m, inView, index, isActive, setActive, dir }) {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: 12.5,
-              color: "rgba(36,0,70,0.65)",
+              color: "rgba(255,255,255,0.65)",
               maxWidth: 280,
             }}
             initial={{ height: 0, opacity: 0, y: -4 }}
@@ -237,26 +237,26 @@ export default function Journey() {
     <section
       id="journey"
       className="relative min-h-screen py-16 px-4 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #fffaf5 0%, #fff5ea 25%, #fffaf0 50%, #fff5ea 75%, #fffaf5 100%)" }}
+      style={{ background: "#0a0a0f" }}
     >
-      {/* Background pattern - same as hero */}
+      {/* Background pattern - dark theme */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.08]">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="gridJourney" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ff9e00" strokeWidth="0.5" />
-              <circle cx="30" cy="30" r="1" fill="#9d4edd" opacity="0.5" />
+              <circle cx="30" cy="30" r="1" fill="#ff9e00" opacity="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#gridJourney)" />
         </svg>
       </div>
 
-      {/* Floating orbs - same as hero */}
+      {/* Floating orbs - dark theme */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-retro-orange-1/5 blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-retro-purple-5/5 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full bg-retro-orange-1/3 blur-3xl" />
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-retro-orange-1/10 blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-retro-purple-5/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full bg-retro-orange-1/8 blur-3xl" />
       </div>
 
       {/* Corner brackets */}
@@ -287,12 +287,10 @@ export default function Journey() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-
-
           {/* Header */}
-<div className="relative z-10 -ml-4 mr-0 md:ml-8 lg:ml-0 mr-4">
-  <TerminalHeading title="my_journey" delay={0} darkBg={false} />
-</div>
+          <div className="relative z-10 -ml-4 mr-0 md:ml-8 lg:ml-0 mr-4">
+            <TerminalHeading title="my_journey" delay={0} darkBg={true} />
+          </div>
         </motion.div>
       </div>
 
@@ -351,7 +349,6 @@ export default function Journey() {
           </p>
         </motion.div>
       </div>
-
     </section>
   );
 }

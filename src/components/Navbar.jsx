@@ -7,10 +7,12 @@ import {
   Layers,
   Star,
   MessageCircle,
+  Settings,
 } from 'lucide-react';
 
 const navItems = [
   { id: 'hero', icon: Home, label: 'Home', activeColor: '#ff6d00', defaultColor: '#9d4edd' },
+  { id: 'services', icon: Settings, label: 'Services', activeColor: '#ff8500', defaultColor: '#9d4edd' },
   { id: 'stack', icon: Code2, label: 'Stack', activeColor: '#ff7900', defaultColor: '#9d4edd' },
   { id: 'journey', icon: TrendingUp, label: 'Journey', activeColor: '#ff8500', defaultColor: '#9d4edd' },
   { id: 'portfolio', icon: Layers, label: 'Work', activeColor: '#ff9100', defaultColor: '#9d4edd' },
@@ -136,7 +138,6 @@ const Navbar = ({ activeSection, onSectionChange }) => {
                   onHoverStart={() => setHoveredItem(item.id)}
                   onHoverEnd={() => setHoveredItem(null)}
                 >
-                  {/* Changed from motion.button to motion.a */}
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => {

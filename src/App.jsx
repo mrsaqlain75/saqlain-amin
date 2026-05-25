@@ -9,6 +9,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import Services from './components/Services';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -30,7 +31,7 @@ function App() {
 };
 
 useEffect(() => {
-  const sections = ['hero', 'stack', 'journey', 'portfolio', 'testimonials', 'connect'];
+  const sections = ['hero', 'services', 'stack', 'journey', 'portfolio', 'testimonials', 'connect'];
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -64,6 +65,11 @@ useEffect(() => {
       <main>
         <section id="hero">
           <Hero />
+        </section>
+        
+
+        <section id="services">
+          <Services />
         </section>
         
         <section id="stack">

@@ -56,32 +56,33 @@ export default function Stack() {
       ref={sectionRef}
       className="relative py-16 overflow-hidden"
       style={{
-        background: "#0a0a0f",
+        background: "linear-gradient(135deg, #fffaf5 0%, #fff5ea 25%, #fffaf0 50%, #fff5ea 75%, #fffaf5 100%)",
       }}
     >
-      {/* Background pattern */}
+      {/* Background pattern - same as hero */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.08]">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="gridBelt" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
               <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ff9e00" strokeWidth="0.5" />
-              <circle cx="30" cy="30" r="1" fill="#ff9e00" opacity="0.5" />
+              <circle cx="30" cy="30" r="1" fill="#9d4edd" opacity="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#gridBelt)" />
         </svg>
       </div>
 
-      {/* Floating orbs */}
+      {/* Floating orbs - light theme */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-retro-orange-1/10 blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-retro-purple-5/10 blur-3xl" />
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-retro-orange-1/5 blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-retro-purple-5/5 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full bg-retro-orange-1/8 blur-3xl" />
       </div>
 
-
+      {/* Header */}
       <div className="relative z-10 md:ml-8 lg:ml-4 mr-8">
-  <TerminalHeading title="my_tech_stack" delay={0} darkBg={true} />
-</div>
+        <TerminalHeading title="my_tech_stack" delay={0} darkBg={false} />
+      </div>
 
       {/* Main Content - Full width belts */}
       <div className="relative z-10">
@@ -95,10 +96,11 @@ export default function Stack() {
               transformOrigin: "center center",
             }}
           >
+            {/* Retro Purple belt background */}
             <div
               className="absolute inset-0 w-full"
               style={{
-                background: "#ffffff",
+                background: "linear-gradient(135deg, #3c096c, #240046)",
               }}
             />
             
@@ -117,7 +119,7 @@ export default function Stack() {
                     src={tech.logo}
                     alt={tech.name}
                     className="w-8 h-8 object-contain"
-                    style={{ filter: "brightness(0) saturate(100%) invert(15%) sepia(89%) saturate(5000%) hue-rotate(268deg) brightness(70%) contrast(120%)" }}
+                    style={{ filter: "brightness(0) invert(1)" }}
                   />
                 </div>
               ))}
@@ -134,10 +136,11 @@ export default function Stack() {
               transformOrigin: "center center",
             }}
           >
+            {/* Retro Purple belt background */}
             <div
               className="absolute inset-0 w-full"
               style={{
-                background: "#ffffff",
+                background: "linear-gradient(135deg, #3c096c, #240046)",
               }}
             />
             
@@ -156,7 +159,7 @@ export default function Stack() {
                     src={tech.logo}
                     alt={tech.name}
                     className="w-8 h-8 object-contain"
-                    style={{ filter: "brightness(0) saturate(100%) invert(15%) sepia(89%) saturate(5000%) hue-rotate(268deg) brightness(70%) contrast(120%)" }}
+                    style={{ filter: "brightness(0) invert(1)" }}
                   />
                 </div>
               ))}
