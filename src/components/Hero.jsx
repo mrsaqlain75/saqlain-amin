@@ -7,7 +7,7 @@ export default function Hero() {
 
   const phrases = [
     "build immersive full stack web apps",
-    "design intuitive interfaces",  
+    "build agentic AI",  
     "engineer scalable backends",
     "craft pixel-perfect visuals",
     "optimize performance metrics",
