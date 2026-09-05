@@ -37,7 +37,7 @@ export default function WhatsAppFloat() {
   // Responsive sizing
   const buttonSize = isMobile ? "w-10 h-10" : "w-14 h-14";
   const iconSize = isMobile ? 20 : 28;
-  const bottomPosition = isMobile ? "bottom-24" : "bottom-6";
+  const bottomPosition = isMobile ? "bottom-6" : "bottom-6";
   const rightPosition = "right-6";
 
   return (

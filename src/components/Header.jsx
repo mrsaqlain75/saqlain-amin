@@ -210,208 +210,92 @@ const Header = ({ onSectionChange }) => {
     );
   }
 
-  // Mobile Header
+  // Mobile Header — matches the standalone content pages (sticky top bar)
   return (
-    <>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 pt-2"
-      >
-        <div className="relative">
-          {/* Animated Border Effect for Mobile */}
-          <motion.div
-            className="absolute -inset-[2px] rounded-2xl"
-            animate={{
-              opacity: [0.4, 0.9, 0.4],
-              background: [
-                'linear-gradient(90deg, #ff6d00, #9d4edd, #ff6d00, #9d4edd)',
-                'linear-gradient(270deg, #ff6d00, #9d4edd, #ff6d00, #9d4edd)',
-                'linear-gradient(90deg, #ff6d00, #9d4edd, #ff6d00, #9d4edd)',
-              ],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            style={{
-              borderRadius: '1rem',
-              filter: 'blur(3px)',
-            }}
-          />
+    <motion.header
+      initial={{ y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        background: 'rgba(36, 0, 70, 0.97)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(255, 109, 0, 0.25)',
+      }}
+    >
+      <div className="flex items-center gap-3 px-4 py-3">
+        {/* Brand */}
+        <button
+          onClick={() => handleNavClick('hero')}
+          className="flex items-center gap-2"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+        >
+          <img src="/favicon-96x96.png" alt="Saqlain Amin logo" width="24" height="24" />
+          <span className="font-['Playfair_Display'] text-base font-bold text-white">Saqlain Amin</span>
+        </button>
 
-          {/* Main Mobile Header Container */}
-          <div
-            className="relative rounded-2xl px-4 py-3"
-            style={{
-              background: 'linear-gradient(90deg, rgba(36, 0, 70, 0.95) 0%, rgba(60, 9, 108, 0.9) 100%)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 109, 0, 0.3)',
-            }}
-          >
-            {/* Animated inner border for mobile */}
-            <motion.div
-              className="absolute inset-0 rounded-2xl pointer-events-none"
-              animate={{
-                boxShadow: [
-                  'inset 0 0 10px rgba(255, 109, 0, 0.1)',
-                  'inset 0 0 20px rgba(157, 78, 221, 0.2)',
-                  'inset 0 0 10px rgba(255, 109, 0, 0.1)',
-                ],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
+        {/* Burger */}
+        <button
+          onClick={() => setIsMenuOpen((o) => !o)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          className="ml-auto w-9 h-9 rounded-lg flex items-center justify-center"
+          style={{ background: 'rgba(255, 109, 0, 0.12)', border: '1px solid rgba(255, 109, 0, 0.3)' }}
+        >
+          {isMenuOpen
+            ? <X size={18} className="text-retro-orange-5" />
+            : <Menu size={18} className="text-retro-orange-5" />}
+        </button>
+      </div>
 
-            <div className="flex items-center justify-between">
-              {/* Logo and Full Name for Mobile */}
-              <motion.div
-                className="flex items-center gap-2 cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                onClick={() => handleNavClick('hero')}
-              >
-                <motion.div
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: 'linear',
-                  }}
-                >
-                  <div className="w-7 h-7 flex items-center justify-center">
-                    <img src='logo.png' alt="Saqlain Amin logo" />
-                  </div>
-                </motion.div>
-                <div className="flex flex-col">
-                  <span className="block font-['Playfair_Display'] text-sm font-bold text-white leading-normal">
-                    Saqlain Amin
-                  </span>
-                  <p className="text-[9px] text-retro-orange-5">Web &amp; E-Commerce Developer · IT Educator</p>
-                </div>
-              </motion.div>
-
-              {/* Hamburger Menu Button */}
-              <motion.button
-                onClick={() => setIsMenuOpen(true)}
-                className="relative w-8 h-8 rounded-full flex items-center justify-center"
-                style={{
-                  background: 'rgba(255, 109, 0, 0.15)',
-                  border: '1px solid rgba(255, 109, 0, 0.3)',
-                }}
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <Menu size={16} className="text-retro-orange-1" />
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  animate={{
-                    boxShadow: [
-                      '0 0 0px rgba(255, 109, 0, 0)',
-                      '0 0 10px rgba(255, 109, 0, 0.3)',
-                      '0 0 0px rgba(255, 109, 0, 0)',
-                    ],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                />
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Mobile Menu */}
+      {/* Dropdown */}
       <AnimatePresence>
         {isMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 bg-black/90 backdrop-blur-xl z-50"
-            />
-            
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            >
-              <div className="relative w-full max-w-sm mx-auto">
-                <motion.button
+          <motion.nav
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            style={{ borderTop: '1px solid rgba(255, 109, 0, 0.15)' }}
+          >
+            <div className="flex flex-col pb-4">
+              {pageLinks.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="absolute -top-12 right-0 p-2 text-retro-orange-1"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X size={24} />
-                </motion.button>
-                
-                <div
-                  className="rounded-2xl p-6"
+                  className="px-4 py-3.5 text-white/85 hover:text-retro-orange-5 transition-colors"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(36, 0, 70, 0.98) 0%, rgba(60, 9, 108, 0.95) 100%)',
-                    backdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(255, 109, 0, 0.2)',
+                    fontFamily: '"Space Mono", monospace',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    textDecoration: 'none',
                   }}
                 >
-                  <div className="flex flex-col gap-3">
-                    {pageLinks.map((item, idx) => (
-                      <motion.a
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className="w-full py-2 rounded-lg text-center"
-                        style={{ textDecoration: 'none' }}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: idx * 0.03 }}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <span className="font-['Playfair_Display'] text-lg text-white">
-                          {item.label}
-                        </span>
-                      </motion.a>
-                    ))}
-                  </div>
-
-                  {/* Mobile Hire Me Button */}
-                  <a href="/hire" style={{ textDecoration: 'none' }}>
-                  <motion.button
-                    className="mt-4 w-full py-2 rounded-lg font-['Playfair_Display'] font-medium text-sm relative overflow-hidden"
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(255, 109, 0, 0.15), rgba(255, 158, 0, 0.1))',
-                      border: '1px solid rgba(255, 109, 0, 0.4)',
-                    }}
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="text-retro-orange-1">Hire Me</span>
-                      <ArrowRight size={14} className="text-retro-orange-1" />
-                    </span>
-                  </motion.button>
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </>
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="/hire"
+                onClick={() => setIsMenuOpen(false)}
+                className="mx-4 mt-3 py-2.5 rounded-full text-center text-white"
+                style={{
+                  background: 'linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)',
+                  border: '1px solid rgba(255, 109, 0, 0.4)',
+                  fontFamily: '"Space Mono", monospace',
+                  fontSize: '0.8rem',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                }}
+              >
+                Hire Me
+              </a>
+            </div>
+          </motion.nav>
         )}
       </AnimatePresence>
-    </>
+    </motion.header>
   );
 };
 
