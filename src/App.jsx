@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Services from './components/Services';
 import Stack from './components/Stack';
 import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
@@ -29,7 +30,7 @@ function App() {
 };
 
 useEffect(() => {
-  const sections = ['hero', 'stack', 'portfolio', 'testimonials', 'connect'];
+  const sections = ['hero', 'services', 'stack', 'portfolio', 'testimonials', 'connect'];
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -59,6 +60,13 @@ useEffect(() => {
       <main>
         <section id="hero">
           <Hero />
+        </section>
+
+        <section id="services" aria-label="Services">
+          <h2 className="sr-only">
+            Services — full-stack web &amp; mobile development, e-commerce websites, and IT tutoring in Chitral
+          </h2>
+          <Services />
         </section>
 
         <section id="stack" aria-label="Tech stack">
