@@ -7,11 +7,9 @@ export default function Hero() {
 
   const phrases = [
     "build full-stack web & mobile apps",
-    "develop e-commerce websites with Next.js",
+    "develop Next.js e-commerce websites",
     "teach computer science, Python & IT",
-    "engineer scalable backends with Prisma",
     "tutor students online & in Chitral",
-    "craft high-performance React interfaces"
   ];
 
   useEffect(() => {

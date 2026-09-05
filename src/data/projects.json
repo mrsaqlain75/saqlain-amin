@@ -24,6 +24,44 @@
     {
       "id": 2,
       "rank": "02",
+      "title": "SADEVZ Tools — 53 Free Web Tools",
+      "client": "SADEVZ (Product)",
+      "category": "Web App / Product",
+      "categoryTag": "fullstack",
+      "year": "2026",
+      "status": "live",
+      "liveUrl": "https://sadevz.com/tools",
+      "description": "A suite of 53 free, browser-based utilities for developers, designers and everyday tasks — JSON/SQL/XML formatters, a regex tester, Base64 and JWT tools, a 10-tool PDF kit (merge, split, compress, convert, reorder), password and hash generators, an image compressor and WebP converter, an AI colour-palette generator, and 10 finance and date calculators. Every tool runs 100% client-side — files never leave the browser, nothing is tracked — alongside cheat-sheet resources and original format and compression benchmarks.",
+      "challenge": "Building 53 genuinely useful tools to one consistent quality bar — each fast, each fully client-side — inside a single cohesive, searchable interface that stays lightweight despite the breadth, spanning nine categories from developer utilities to PDF processing to calculators.",
+      "stack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Web APIs", "pdf-lib", "Terser", "Vercel"],
+      "screenshots": [
+        { "url": "/tools.png", "caption": "Tools index — 53 utilities across 9 categories" }
+      ],
+      "previewAvailable": true,
+      "accentColor": "#ff8500"
+    },
+    {
+      "id": 3,
+      "rank": "03",
+      "title": "PocketPeshi — Legal Case Diary",
+      "client": "SADEVZ (Product)",
+      "category": "Full Stack Web App",
+      "categoryTag": "fullstack",
+      "year": "2026",
+      "status": "live",
+      "liveUrl": "https://pocketpeshi.sadevz.com",
+      "description": "\"Your case diary, in your pocket.\" A mobile-first case-management app for advocates and their assistants in Pakistan. A monthly calendar shows hearing density and flags cases with missed proceedings; each case carries a chronological proceedings history, litigation-stage mapping (appeals, revisions, executions), fee tracking with running balances, and audit trails for voided entries. It works offline — a proceeding recorded with no signal syncs on reconnect — and lets users photograph and file order sheets and pleadings directly with the case. Role-based for admins, lawyers and assistants.",
+      "challenge": "Modelling the real procedural movement of Pakistani litigation — appeals, revisions, remands, executions — as structured data, and making note-taking reliable inside courthouses with no connectivity through an offline-first sync layer with visible pending status.",
+      "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Supabase", "Capacitor", "Vercel"],
+      "screenshots": [
+        { "url": "/pocketpeshi.png", "caption": "Calendar home — cause lists and hearing density" }
+      ],
+      "previewAvailable": true,
+      "accentColor": "#5a189a"
+    },
+    {
+      "id": 4,
+      "rank": "04",
       "title": "Native Resort & Camping Bamborate",
       "client": "Native Resort, Chitral",
       "category": "Full Stack Web App",
@@ -45,8 +83,8 @@
       "accentColor": "#ff8500"
     },
     {
-      "id": 3,
-      "rank": "03",
+      "id": 5,
+      "rank": "05",
       "title": "Madina Home Textile — E-Commerce Store",
       "client": "Madina Home Textile",
       "category": "E-Commerce Website (Next.js)",
@@ -57,13 +95,15 @@
       "description": "An e-commerce storefront for a home textile retailer selling curtains, foam, carpets and household items. Shoppers browse the catalog and check out directly on the site, while a purpose-built admin panel lets the owner manage products, track orders and read sales analytics without a spreadsheet. A lightweight built-in CMS handles banners, categories and promotional copy, so the shop updates itself without a developer.",
       "challenge": "Delivering a fast, SEO-friendly online store on a small budget that a non-technical owner could run entirely alone — product management, orders, and storefront content — with checkout that works reliably for customers in Pakistan.",
       "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Prisma", "PostgreSQL", "Supabase", "Stripe", "Vercel"],
-      "screenshots": [],
+      "screenshots": [
+        { "url": "/madina.png", "caption": "Storefront — product catalog and checkout" }
+      ],
       "previewAvailable": true,
       "accentColor": "#ff6d00"
     },
     {
-      "id": 4,
-      "rank": "04",
+      "id": 6,
+      "rank": "06",
       "title": "Chitral Bazar — Marketplace Directory",
       "client": "Independent Product",
       "category": "E-Commerce Website (Next.js)",
@@ -79,8 +119,8 @@
       "accentColor": "#9d4edd"
     },
     {
-      "id": 5,
-      "rank": "05",
+      "id": 7,
+      "rank": "07",
       "title": "SaFit AI Diet Tracker",
       "client": "SADEVZ (Internal Product)",
       "category": "AI Web App",
@@ -102,8 +142,8 @@
       "accentColor": "#2ecc71"
     },
     {
-      "id": 6,
-      "rank": "06",
+      "id": 8,
+      "rank": "08",
       "title": "Drosh Inn Hotel Platform",
       "client": "Drosh Inn Hotel, Chitral",
       "category": "Full Stack Web App",
@@ -124,8 +164,8 @@
       "accentColor": "#ff6d00"
     },
     {
-      "id": 7,
-      "rank": "07",
+      "id": 9,
+      "rank": "09",
       "title": "Zubi VPN App",
       "client": "International Networking Client",
       "category": "Android Application",
