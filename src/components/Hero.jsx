@@ -221,7 +221,7 @@ export default function Hero() {
     <div className="flex gap-4">
       {/* Get My Resume Button */}
       <motion.a
-        href="/resume.html"
+        href="/resume"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ opacity: 0, y: 20 }}
@@ -519,7 +519,7 @@ export default function Hero() {
 <div className="flex justify-center gap-3 mt-6">
   {/* Get My Resume Button */}
   <motion.a
-    href="/resume.html"
+    href="/resume"
     target="_blank"
     rel="noopener noreferrer"
     initial={{ opacity: 0, y: 20 }}
