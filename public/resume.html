@@ -1,650 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saqlain Amin — Full Stack Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          display: ['Cormorant Garamond','serif'],
-          body: ['DM Sans','sans-serif'],
-          mono: ['DM Mono','monospace'],
-        },
-        colors: {
-          ink: '#0f0f0f',
-          paper: '#faf9f6',
-          mist: '#f2efe8',
-          stone: '#8a8680',
-          gold: '#b8935a',
-        }
-      }
-    }
-  }
-</script>
+<meta name="description" content="Saqlain Amin — Full Stack Developer, IT Educator, Head of Engineering at SADEVZ. Resume.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500;1,700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink:#0f0f0f; --paper:#faf9f6; --mist:#f2efe8;
-    --stone:#8a8680; --gold:#b8935a;
+  :root{
+    --paper:#F4EEE1;
+    --paper-dim:#ECE3CE;
+    --white:#FFFDF8;
+    --ink:#221E2A;
+    --ink-soft:#4B4558;
+    --muted:#8A8272;
+    --orange:#E1592B;
+    --orange-deep:#B84420;
+    --purple:#493876;
+    --purple-deep:#2A2049;
+    --line:#D9CBA9;
+    --line-soft:#E3D9BE;
   }
-  *{box-sizing:border-box;}
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
   html{scroll-behavior:smooth;}
-  body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;}
 
-  /* grain */
-  body::before{content:'';position:fixed;inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events:none;z-index:1000;opacity:.4;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding-top:64px;
+  }
 
-  /* animations */
-  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-  @keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-  @keyframes barFill{from{width:0}}
-  @keyframes dotPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.5);opacity:.5}}
+  ::selection{background:var(--orange);color:var(--white);}
 
-  .anim-fade-up{opacity:0;animation:fadeUp .7s ease forwards;}
-  .anim-fade-in{opacity:0;animation:fadeIn .6s ease forwards;}
-  .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
-  .d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
-  .d7{animation-delay:.7s}.d8{animation-delay:.8s}
+  a{color:inherit;text-decoration:none;}
 
-  /* scroll reveal */
-  .reveal{opacity:0;transform:translateY(32px);transition:opacity .65s ease,transform .65s ease;}
-  .reveal.visible{opacity:1;transform:translateY(0);}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--orange-deep);
+    font-weight:700;
+  }
 
-  /* section rule */
-  .srule{height:1px;background:linear-gradient(to right,var(--gold),transparent);
-    transform-origin:left;transform:scaleX(0);transition:transform .8s ease;}
-  .reveal.visible .srule{transform:scaleX(1);}
+  h1,h2,h3{font-family:'Playfair Display',serif;color:var(--ink);}
 
-  /* skill bar */
-  .sbar{height:2px;background:var(--gold);width:0;transition:width 1.2s ease;}
-  .reveal.visible .sbar{width:var(--w);}
+  /* ---------- Fixed top bar ---------- */
+  .topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    height:64px;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 clamp(20px,5vw,64px);
+    background:rgba(244,238,225,0.86);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .mark{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .topbar .mark .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block;}
+  .topbar-actions{display:flex;align-items:center;gap:10px;}
+  .btn{
+    font-family:'Space Mono',monospace;
+    font-size:0.74rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:9px 16px;
+    border-radius:3px;
+    border:1px solid var(--ink);
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    transition:all .18s ease;
+    white-space:nowrap;
+  }
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  .btn-solid{background:var(--orange);color:var(--white);border-color:var(--orange);}
+  .btn-solid:hover{background:var(--orange-deep);border-color:var(--orange-deep);}
 
-  /* timeline */
-  .tl-line{position:absolute;left:7px;top:16px;bottom:0;width:1px;
-    background:linear-gradient(to bottom,var(--gold),transparent);}
-  .tl-dot{width:15px;height:15px;border-radius:50%;background:var(--paper);
-    border:2px solid var(--gold);flex-shrink:0;margin-top:4px;
-    transition:background .3s;}
-  .tl-item:hover .tl-dot{background:var(--gold);animation:dotPulse .8s infinite;}
+  @media (max-width:520px){
+    .topbar .mark span.full{display:none;}
+    .btn{padding:8px 11px;font-size:0.68rem;}
+  }
 
-  /* exp card */
-  .exp-card{border-left:2px solid transparent;
-    transition:border-color .3s,background .3s,transform .3s;padding:1rem;}
-  .exp-card:hover{border-left-color:var(--gold);background:var(--mist);transform:translateX(4px);}
+  /* ---------- Layout ---------- */
+  .wrap{max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,40px);}
 
-  /* edu card */
-  .edu-card{border:1px solid rgba(138,134,128,.18);padding:1.25rem;
-    transition:border-color .3s,transform .3s;}
-  .edu-card:hover{border-color:rgba(184,147,90,.5);transform:translateY(-2px);}
-  .edu-card:hover .edu-title{color:var(--gold);}
-  .edu-title{transition:color .3s;}
+  section{padding:52px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
 
-  /* distinction cards */
-  .dist-dark{background:var(--ink);color:var(--paper);padding:1.5rem;
-    transition:background .5s;}
-  .dist-dark:hover{background:var(--gold);}
-  .dist-dark:hover .dist-sub{color:rgba(0,0,0,.5);}
-  .dist-sub{transition:color .5s;color:rgba(255,255,255,.5);}
-  .dist-border{border:1px solid rgba(138,134,128,.18);padding:1.5rem;
-    transition:border-color .3s;}
-  .dist-border:hover{border-color:rgba(184,147,90,.5);}
-  .dist-border:hover .dist-title{color:var(--gold);}
-  .dist-title{transition:color .3s;}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px;}
+  .section-head h2{font-size:1.5rem;font-weight:700;}
+  .section-head .rule{flex:1;height:1px;background:var(--line);}
 
-  /* lang pill */
-  .lang-pill{border:1px solid rgba(138,134,128,.18);padding:.75rem 1.25rem;
-    display:inline-flex;align-items:center;gap:.75rem;
-    transition:border-color .3s;}
-  .lang-pill:hover{border-color:rgba(184,147,90,.5);}
-  .lang-pill:hover .lang-name{color:var(--gold);}
-  .lang-name{transition:color .3s;font-family:'Cormorant Garamond',serif;font-size:1.15rem;}
+  /* ---------- Hero ---------- */
+  .hero{padding:96px 0 44px;}
+  .hero .eyebrow{margin-bottom:18px;}
+  .hero h1{
+    font-size:clamp(2.6rem,7vw,4.4rem);
+    font-weight:700;
+    line-height:1.02;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:italic;font-weight:500;color:var(--purple);}
+  .hero .title-line{
+    margin-top:14px;
+    font-size:clamp(1rem,2vw,1.2rem);
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  .hero .meta-row{
+    margin-top:22px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 16px;
+    font-family:'Space Mono',monospace;
+    font-size:0.82rem;
+    color:var(--muted);
+  }
+  .hero .meta-row a{color:var(--purple);border-bottom:1px dotted var(--purple);}
+  .hero .meta-row .sep{color:var(--line);}
 
-  /* milestone timeline */
-  .ms-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--gold);
-    background:var(--paper);flex-shrink:0;}
-  .ms-dot.active{background:var(--gold);animation:dotPulse 1.2s infinite;}
-  .ms-line{flex-shrink:0;width:2rem;border-top:1px dashed rgba(184,147,90,.35);margin-top:6px;}
+  .profile-text{
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:64ch;
+    font-weight:400;
+  }
 
-  /* print btn */
-  .print-btn{transition:background .25s,transform .2s;}
-  .print-btn:hover{transform:translateY(-2px);}
+  /* ---------- Experience ---------- */
+  .job{
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:24px;
+    padding:22px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .job:first-of-type{border-top:none;}
+  .job .when{
+    font-family:'Space Mono',monospace;
+    font-size:0.78rem;
+    color:var(--orange-deep);
+    font-weight:700;
+    padding-top:3px;
+  }
+  .job .role{font-size:1.08rem;font-weight:700;font-family:'Playfair Display',serif;}
+  .job .org{font-size:0.92rem;color:var(--purple);font-weight:600;margin-top:2px;margin-bottom:10px;}
+  .job ul{list-style:none;}
+  .job li{
+    position:relative;
+    padding-left:16px;
+    margin-bottom:6px;
+    color:var(--ink-soft);
+    font-size:0.95rem;
+  }
+  .job li::before{content:"–";position:absolute;left:0;color:var(--muted);}
+  .concurrent{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:10px;
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    color:var(--purple);
+    background:rgba(73,56,118,0.08);
+    border:1px solid rgba(73,56,118,0.25);
+    padding:4px 9px;
+    border-radius:20px;
+  }
+  .concurrent::before{content:"⇄";}
 
-  /* gold links */
-  .glink{color:var(--stone);transition:color .2s;}
-  .glink:hover{color:var(--gold);}
+  @media (max-width:640px){
+    .job{grid-template-columns:1fr;gap:6px;}
+  }
+
+  /* ---------- Education ---------- */
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .edu-card{border-top:1px solid var(--line-soft);padding-top:16px;}
+  .edu-card .when{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--orange-deep);font-weight:700;}
+  .edu-card h3{font-size:1.05rem;margin-top:6px;}
+  .edu-card .org{color:var(--purple);font-size:0.9rem;font-weight:600;margin-top:2px;}
+  .edu-card .note{color:var(--muted);font-size:0.85rem;margin-top:6px;}
+  @media (max-width:640px){.edu-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Skills ---------- */
+  .skill-group{margin-bottom:22px;}
+  .skill-group h3{
+    font-family:'Space Mono',monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--ink-soft);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{
+    font-family:'Space Mono',monospace;
+    font-size:0.78rem;
+    padding:6px 12px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:var(--white);
+    color:var(--ink);
+  }
+
+  /* ---------- Work / Projects ---------- */
+  .project{
+    border:1px solid var(--line);
+    background:var(--white);
+    border-radius:6px;
+    padding:22px 24px;
+    margin-bottom:16px;
+    border-left:4px solid var(--orange);
+  }
+  .project.secondary{border-left-color:var(--purple);}
+  .project-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .project h3{font-size:1.15rem;}
+  .status{
+    font-family:'Space Mono',monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:4px 10px;
+    border-radius:20px;
+    white-space:nowrap;
+    font-weight:700;
+  }
+  .status.live{background:rgba(52,140,90,0.12);color:#2E7A4F;border:1px solid rgba(52,140,90,0.3);}
+  .status.private{background:rgba(73,56,118,0.1);color:var(--purple);border:1px solid rgba(73,56,118,0.25);}
+  .status.dev{background:rgba(225,89,43,0.1);color:var(--orange-deep);border:1px solid rgba(225,89,43,0.25);}
+  .project p{color:var(--ink-soft);font-size:0.93rem;margin-top:10px;max-width:70ch;}
+  .stack-row{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;}
+  .stack-tag{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);}
+  .stack-tag:not(:last-child)::after{content:"·";margin-left:6px;color:var(--line);}
+  .project-link{
+    display:inline-block;margin-top:12px;font-family:'Space Mono',monospace;font-size:0.78rem;
+    color:var(--orange-deep);border-bottom:1px dotted var(--orange-deep);
+  }
+  .work-subhead{margin:34px 0 14px;font-family:'Space Mono',monospace;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+  .work-note{font-size:0.85rem;color:var(--muted);margin-top:10px;}
+
+  /* ---------- Distinctions ---------- */
+  .dist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .dist-card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:18px;}
+  .dist-card .when{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);}
+  .dist-card h3{font-size:1rem;margin-top:6px;color:var(--purple);}
+  .dist-card p{font-size:0.85rem;color:var(--ink-soft);margin-top:6px;}
+  @media (max-width:700px){.dist-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Languages / Interests ---------- */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .tag-list .pill{background:var(--paper-dim);}
+  @media (max-width:700px){.two-col{grid-template-columns:1fr;gap:36px;}}
+
+  /* ---------- Online presence / footer ---------- */
+  .links-row{display:flex;flex-wrap:wrap;gap:14px 26px;}
+  .links-row a{
+    font-family:'Space Mono',monospace;font-size:0.85rem;color:var(--purple);
+    border-bottom:1px dotted var(--purple);padding-bottom:2px;
+  }
+  footer{
+    padding:44px 0 70px;
+    text-align:center;
+  }
+  footer .foot-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;}
+  footer .foot-meta{font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--muted);margin-top:8px;}
+  footer .foot-actions{margin-top:20px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
 
   @media print{
-    .no-print{display:none!important;}
-    body::before{display:none;}
-    .reveal{opacity:1!important;transform:none!important;}
-    .srule{transform:scaleX(1)!important;}
-    .sbar{width:var(--w)!important;}
-    body{background:#fff;}
+    .topbar{display:none;}
+    body{padding-top:0;}
   }
 </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-<!-- PRINT BUTTON -->
-<div class="no-print fixed top-5 right-5 z-50 anim-fade-in d8">
-  <button onclick="window.print()" class="print-btn flex items-center gap-2 bg-ink text-paper font-mono text-xs tracking-widest uppercase px-5 py-3 shadow-lg" style="background:var(--ink);color:var(--paper);">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    Print
-  </button>
+<div class="topbar">
+  <a href="#top" class="mark"><span class="dot"></span><span class="full">SAQLAIN AMIN</span><span style="display:none"></span></a>
+  <div class="topbar-actions">
+    <a class="btn btn-ghost" href="https://saqlainamin.online" target="_blank" rel="noopener">Portfolio ↗</a>
+    <a class="btn btn-solid" href="resume.pdf" download>Get PDF ↓</a>
+  </div>
 </div>
 
-<main class="max-w-4xl mx-auto px-6 md:px-12 py-20">
+<div class="wrap" id="top">
 
   <!-- HERO -->
-  <header class="mb-20 pt-4">
-    <p class="font-mono text-xs tracking-widest uppercase mb-4 anim-fade-in d1" style="color:var(--stone)">Portfolio · Resume</p>
-    <h1 class="font-display text-7xl md:text-9xl font-light leading-none tracking-tight anim-fade-up d2" style="color:var(--ink)">
-      Saqlain<br/><em class="not-italic" style="color:var(--gold)">Amin</em>
-    </h1>
-    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-1 items-center anim-fade-up d4">
-      <span class="font-display text-xl italic" style="color:var(--stone)">Full Stack Developer</span>
-      <span style="color:rgba(138,134,128,.4)">·</span>
-      <span class="font-display text-xl italic" style="color:var(--stone)">IT Educator</span>
-      <span style="color:rgba(138,134,128,.4)">·</span>
-      <span class="font-display text-xl italic" style="color:var(--stone)">Head of Engineering</span>
-    </div>
-    <div class="mt-5 flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs tracking-wide anim-fade-up d5" style="color:var(--stone)">
+  <section class="hero">
+    <div class="eyebrow">Résumé — Updated 2026</div>
+    <h1>Saqlain&nbsp;<em>Amin</em></h1>
+    <div class="title-line">Full Stack Developer · IT Educator · Head of Engineering</div>
+    <div class="meta-row">
       <span>Drosh, Chitral — Pakistan</span>
-      <span style="color:rgba(138,134,128,.4)">|</span>
-      <a href="mailto:saqlainamin646@gmail.com" class="glink">saqlainamin646@gmail.com</a>
+      <span class="sep">|</span>
+      <a href="mailto:saqlainamin646@gmail.com">saqlainamin646@gmail.com</a>
+      <span class="sep">|</span>
+      <a href="https://saqlainamin.online" target="_blank" rel="noopener">saqlainamin.online</a>
     </div>
-    <div class="mt-8 h-px anim-fade-in d6" style="background:linear-gradient(to right,var(--gold),rgba(184,147,90,.3),transparent)"></div>
-  </header>
-
-  <!-- PROFILE -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-6">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Profile</span>
-      <div class="flex-1 srule"></div>
-    </div>
-    <p class="font-display text-2xl md:text-3xl font-light leading-relaxed" style="color:rgba(15,15,15,.8)">
-      A results-driven engineer and educator who graduated top of his class with a
-      <span style="color:var(--gold)">Gold Medal</span> from the University of Chitral,
-      founded a software startup, and now leads a team of
-      <span style="color:var(--gold)">6 developers</span> delivering full-stack MERN solutions
-      for local and international clients — all from the mountains of Chitral.
-    </p>
   </section>
 
-  <!-- EDUCATION -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-8">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Education</span>
-      <div class="flex-1 srule"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-      <div class="edu-card">
-        <p class="font-mono text-xs tracking-widest uppercase mb-2" style="color:var(--stone)">2018 – 2022</p>
-        <p class="edu-title font-display text-xl font-semibold">BS Computer Science</p>
-        <p class="text-sm mt-1" style="color:var(--stone)">GDC Chitral</p>
-        <p class="font-mono text-xs mt-2" style="color:var(--gold)">3.86 GPA &nbsp;·&nbsp; Gold Medal — Highest CGPA across all CS batches</p>
-      </div>
-
-      <div class="edu-card">
-        <p class="font-mono text-xs tracking-widest uppercase mb-2" style="color:var(--stone)">In Progress</p>
-        <p class="edu-title font-display text-xl font-semibold">MS Computer Science</p>
-        <p class="text-sm mt-1" style="color:var(--stone)">VU Chitral Campus</p>
-        <p class="font-mono text-xs mt-2" style="color:rgba(138,134,128,.5)">Currently enrolled</p>
-      </div>
-
-      <div class="edu-card">
-        <p class="font-mono text-xs tracking-widest uppercase mb-2" style="color:var(--stone)">2016 – 2018</p>
-        <p class="edu-title font-display text-xl font-semibold">FSc (Intermediate)</p>
-        <p class="text-sm mt-1" style="color:var(--stone)">JPS Drosh</p>
-        <p class="font-mono text-xs mt-2" style="color:rgba(138,134,128,.5)">763 / 1100 &nbsp;(69%)</p>
-      </div>
-
-      <div class="edu-card">
-        <p class="font-mono text-xs tracking-widest uppercase mb-2" style="color:var(--stone)">2014 – 2016</p>
-        <p class="edu-title font-display text-xl font-semibold">SSC (Matric)</p>
-        <p class="text-sm mt-1" style="color:var(--stone)">JPS Drosh</p>
-        <p class="font-mono text-xs mt-2" style="color:rgba(138,134,128,.5)">858 / 1100 &nbsp;(79%)</p>
-      </div>
-
-    </div>
+  <!-- PROFILE -->
+  <section>
+    <div class="section-head"><h2>Profile</h2><div class="rule"></div></div>
+    <p class="profile-text">A results-driven engineer and educator who graduated top of his class with a Gold Medal from the University of Chitral, founded a software startup, and now leads a team of 6 developers delivering full-stack MERN and Next.js solutions for local and international clients — all from the mountains of Chitral. Portfolio and full case studies live at <a href="https://saqlainamin.online" target="_blank" rel="noopener" style="color:var(--purple);border-bottom:1px dotted var(--purple);">saqlainamin.online</a>.</p>
   </section>
 
   <!-- EXPERIENCE -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-8">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Experience</span>
-      <div class="flex-1 srule"></div>
+  <section>
+    <div class="section-head"><h2>Experience</h2><div class="rule"></div></div>
+
+    <div class="job">
+      <div class="when">April 2026 – Present</div>
+      <div>
+        <div class="role">Head of Engineering</div>
+        <div class="org">SADEVZ</div>
+        <ul>
+          <li>Lead a cross-functional team of 6 developers across 5+ simultaneous active projects</li>
+          <li>Oversee architecture, code quality, and delivery of full-stack MERN and Next.js applications</li>
+          <li>Scaled SADEVZ from a solo venture to a structured software development studio</li>
+        </ul>
+      </div>
     </div>
-    <div class="relative">
-      <div class="tl-line"></div>
-      <div class="space-y-6 pl-10">
 
-        <!-- 1 -->
-        <div class="tl-item flex gap-4 group">
-          <div class="tl-dot"></div>
-          <div class="exp-card flex-1">
-            <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:var(--stone)">April 2026 – Present</p>
-            <p class="font-display text-xl font-semibold" style="color:var(--gold)">Head of Engineering</p>
-            <p class="text-sm mb-3" style="color:var(--stone)">SADEVZ</p>
-            <ul class="space-y-1 text-sm" style="color:rgba(15,15,15,.7)">
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Lead a cross-functional team of 6 developers across 5+ simultaneous active projects</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Oversee architecture, code quality, and delivery of full-stack MERN applications</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Scaled SADEVZ from a solo venture to a structured software development studio</li>
-            </ul>
-          </div>
-        </div>
+    <div class="job">
+      <div class="when">March 2024 – March 2026</div>
+      <div>
+        <div class="role">Director Academics</div>
+        <div class="org">MAIIT Chitral</div>
+        <ul>
+          <li>Managed the institute on both academic and administrative sides</li>
+          <li>Developed and maintained curricula for 9+ subjects followed across the institution</li>
+          <li>Trained 50+ students in Website Development within Chitral</li>
+        </ul>
+        <span class="concurrent">Concurrent with founding &amp; running SADEVZ</span>
+      </div>
+    </div>
 
-        <!-- 2 -->
-        <div class="tl-item flex gap-4 group">
-          <div class="tl-dot"></div>
-          <div class="exp-card flex-1">
-            <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:var(--stone)">March 2024 – March 2026</p>
-            <p class="font-display text-xl font-semibold">Director Academics</p>
-            <p class="text-sm mb-3" style="color:var(--stone)">MAIIT Chitral</p>
-            <ul class="space-y-1 text-sm" style="color:rgba(15,15,15,.7)">
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Managed the institute on both academic and administrative sides</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Developed and maintained curricula for 9+ subjects followed across the institution</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Trained 50+ students in Website Development within Chitral</li>
-            </ul>
-          </div>
-        </div>
+    <div class="job">
+      <div class="when">March 2024 – Present</div>
+      <div>
+        <div class="role">Founder</div>
+        <div class="org">SADEVZ — Software Development Startup</div>
+        <ul>
+          <li>Founded a full-stack development studio delivering web and mobile solutions</li>
+          <li>First project: Drosh Inn Hotel (June 2024); major project: Native Resort &amp; Camping Bamborate full-stack system (May 2026)</li>
+          <li>Completed 10+ international graphic design projects, including one for the Free Library Foundation Philadelphia (by Jan 2025)</li>
+          <li>Rebooted with a team of 6 in Feb 2026; currently working on 5+ active projects</li>
+        </ul>
+        <span class="concurrent">Concurrent with Director Academics role at MAIIT (through Mar 2026)</span>
+      </div>
+    </div>
 
-        <!-- 3 -->
-        <div class="tl-item flex gap-4 group">
-          <div class="tl-dot"></div>
-          <div class="exp-card flex-1">
-            <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:var(--stone)">March 2024 – Present</p>
-            <p class="font-display text-xl font-semibold">Founder</p>
-            <p class="text-sm mb-3" style="color:var(--stone)">SADEVZ — Software Development Startup</p>
-            <ul class="space-y-1 text-sm" style="color:rgba(15,15,15,.7)">
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Founded a full-stack development studio delivering web and mobile solutions</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>First project: Drosh Inn Hotel (June 2024); major project: Native Resort &amp; Camping Bamborate full-stack system (May 2026)</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Completed 10+ international graphic design projects, including one for the Free Library Foundation Philadelphia (by Jan 2025)</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Rebooted with a team of 6 in Feb 2026; currently working on 5+ active projects</li>
-            </ul>
-          </div>
-        </div>
+    <div class="job">
+      <div class="when">August 2023 – March 2024</div>
+      <div>
+        <div class="role">Lecturer</div>
+        <div class="org">Govt. Degree College Chitral</div>
+        <ul>
+          <li>Instructed core Computer Science subjects to BS-level university students</li>
+          <li>Supervised students in their final-year projects and research assignments</li>
+        </ul>
+        <span class="concurrent">Concurrent with IT Educator role at MAIIT Chitral</span>
+      </div>
+    </div>
 
-        <!-- 4 -->
-        <div class="tl-item flex gap-4 group">
-          <div class="tl-dot"></div>
-          <div class="exp-card flex-1">
-            <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:var(--stone)">August 2023 – March 2024</p>
-            <p class="font-display text-xl font-semibold">Lecturer</p>
-            <p class="text-sm mb-3" style="color:var(--stone)">Govt. Degree College Chitral</p>
-            <ul class="space-y-1 text-sm" style="color:rgba(15,15,15,.7)">
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Instructed core Computer Science subjects to BS-level university students</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Supervised students in their final-year projects and research assignments</li>
-            </ul>
-          </div>
-        </div>
+    <div class="job">
+      <div class="when">March 2022 – March 2024</div>
+      <div>
+        <div class="role">IT Educator</div>
+        <div class="org">MAIIT Chitral</div>
+        <ul>
+          <li>Taught DIT courses: Computer Networks, Operating Systems, Python Programming, Website Development, and Database Concepts</li>
+        </ul>
+        <span class="concurrent">Concurrent with Lecturer role at GDC Chitral (Aug 2023 – Mar 2024)</span>
+      </div>
+    </div>
 
-        <!-- 5 -->
-        <div class="tl-item flex gap-4 group">
-          <div class="tl-dot"></div>
-          <div class="exp-card flex-1">
-            <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:var(--stone)">March 2022 – March 2024</p>
-            <p class="font-display text-xl font-semibold">IT Educator</p>
-            <p class="text-sm mb-3" style="color:var(--stone)">MAIIT Chitral</p>
-            <ul class="space-y-1 text-sm" style="color:rgba(15,15,15,.7)">
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Taught DIT courses: Computer Networks, Operating Systems, Python Programming, Website Development, and Database Concepts</li>
-            </ul>
-          </div>
-        </div>
+    <div class="job">
+      <div class="when">2022 – Present</div>
+      <div>
+        <div class="role">Freelance Developer &amp; Educator</div>
+        <div class="org">Fiverr · Upwork · YouTube</div>
+        <ul>
+          <li>Delivered first foreign project: a VPN Android app (January 2023)</li>
+          <li>Trained first international student from the US for CompTIA A+ certification (June 2023)</li>
+          <li>Delivered online sessions to 10+ international clients on Fiverr and Upwork</li>
+          <li>Produces IT educational video content on YouTube</li>
+        </ul>
+        <span class="concurrent">Ongoing throughout all roles above</span>
+      </div>
+    </div>
+  </section>
 
-        <!-- 6 -->
-        <div class="tl-item flex gap-4 group">
-          <div class="tl-dot"></div>
-          <div class="exp-card flex-1">
-            <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:var(--stone)">2022 – Present</p>
-            <p class="font-display text-xl font-semibold">Freelance Developer &amp; Educator</p>
-            <p class="text-sm mb-3" style="color:var(--stone)">Fiverr · Upwork · YouTube</p>
-            <ul class="space-y-1 text-sm" style="color:rgba(15,15,15,.7)">
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Delivered first foreign project: a VPN Android app (January 2023)</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Trained first international student from the US for CompTIA A+ certification (June 2023)</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Delivered online sessions to 10+ international clients on Fiverr and Upwork</li>
-              <li class="flex gap-2"><span style="color:rgba(184,147,90,.6)">—</span>Produces high-quality IT educational video content on YouTube</li>
-            </ul>
-          </div>
-        </div>
-
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-head"><h2>Education</h2><div class="rule"></div></div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="when">2018 – 2022</div>
+        <h3>BS Computer Science</h3>
+        <div class="org">GDC Chitral</div>
+        <div class="note">3.86 GPA · Gold Medal — Highest CGPA across all CS batches</div>
+      </div>
+      <div class="edu-card">
+        <div class="when">In Progress</div>
+        <h3>MS Computer Science</h3>
+        <div class="org">VU Chitral Campus</div>
+        <div class="note">Currently enrolled</div>
+      </div>
+      <div class="edu-card">
+        <div class="when">2016 – 2018</div>
+        <h3>FSc (Intermediate)</h3>
+        <div class="org">JPS Drosh</div>
+        <div class="note">763 / 1100 (69%)</div>
+      </div>
+      <div class="edu-card">
+        <div class="when">2014 – 2016</div>
+        <h3>SSC (Matric)</h3>
+        <div class="org">JPS Drosh</div>
+        <div class="note">858 / 1100 (79%)</div>
       </div>
     </div>
   </section>
 
   <!-- SKILLS -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-8">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Skills</span>
-      <div class="flex-1 srule"></div>
+  <section>
+    <div class="section-head"><h2>Skills</h2><div class="rule"></div></div>
+
+    <div class="skill-group">
+      <h3>Frontend</h3>
+      <div class="pill-row">
+        <span class="pill">React</span><span class="pill">Next.js</span><span class="pill">TypeScript</span>
+        <span class="pill">Tailwind CSS</span><span class="pill">Framer Motion</span><span class="pill">JavaScript (ES6+)</span>
+      </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-      <div>
-        <p class="font-mono text-xs tracking-widest uppercase mb-6" style="color:var(--stone)">Technical</p>
-        <div class="space-y-5">
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">MERN Stack (MongoDB, Express, React, Node)</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">92%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:92%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">Website Development</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">90%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:90%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">REST APIs &amp; Database Design</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">85%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:85%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">Android Development</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">80%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:80%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">Python Programming</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">78%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:78%"></div></div>
-          </div>
-        </div>
+    <div class="skill-group">
+      <h3>Backend &amp; Data</h3>
+      <div class="pill-row">
+        <span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">MongoDB</span>
+        <span class="pill">PostgreSQL</span><span class="pill">Prisma ORM</span><span class="pill">Supabase</span>
+        <span class="pill">Neon</span><span class="pill">REST API Design</span>
       </div>
+    </div>
 
-      <div>
-        <p class="font-mono text-xs tracking-widest uppercase mb-6" style="color:var(--stone)">Professional</p>
-        <div class="space-y-5">
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">Curriculum Design &amp; Teaching</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">88%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:88%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">Team Leadership &amp; Engineering Management</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">85%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:85%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">Graphic Design (Photoshop)</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">75%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:75%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">SEO &amp; Digital Marketing</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">70%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:70%"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1">
-              <span class="text-sm" style="color:rgba(15,15,15,.8)">Office Automation (Word, Excel, PowerPoint)</span>
-              <span class="font-mono text-xs" style="color:var(--stone)">90%</span>
-            </div>
-            <div class="h-px" style="background:rgba(138,134,128,.2)"><div class="sbar" style="--w:90%"></div></div>
-          </div>
-        </div>
+    <div class="skill-group">
+      <h3>DevOps &amp; Deployment</h3>
+      <div class="pill-row">
+        <span class="pill">Docker</span><span class="pill">AWS / Cloud Basics</span><span class="pill">CI/CD</span>
+        <span class="pill">Automated Testing</span><span class="pill">Vercel</span><span class="pill">Railway</span>
       </div>
+    </div>
 
+    <div class="skill-group">
+      <h3>Mobile &amp; Other Tools</h3>
+      <div class="pill-row">
+        <span class="pill">Android Development</span><span class="pill">Capacitor</span>
+        <span class="pill">Leaflet.js &amp; OpenStreetMap</span><span class="pill">Cloudinary</span><span class="pill">Python</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Professional</h3>
+      <div class="pill-row">
+        <span class="pill">Curriculum Design &amp; Teaching</span><span class="pill">Team Leadership &amp; Engineering Management</span>
+        <span class="pill">Graphic Design (Photoshop)</span><span class="pill">SEO &amp; Digital Marketing</span>
+        <span class="pill">Office Automation (Word, Excel, PowerPoint)</span>
+      </div>
     </div>
   </section>
 
-  <!-- CAREER JOURNEY -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-2">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Career Journey</span>
-      <div class="flex-1 srule"></div>
-    </div>
-    <p class="font-mono text-xs mb-8" style="color:rgba(138,134,128,.6)">From Hello World to Head of Engineering</p>
+  <!-- WORK / PROJECTS -->
+  <section>
+    <div class="section-head"><h2>Work</h2><div class="rule"></div></div>
+    <p class="work-note" style="margin-top:-14px;margin-bottom:22px;">Selected projects — full case studies at <a href="https://saqlainamin.online" target="_blank" rel="noopener" style="color:var(--purple);border-bottom:1px dotted var(--purple);">saqlainamin.online</a>.</p>
 
-    <div class="overflow-x-auto pb-6 no-scrollbar">
-      <div class="flex items-start" style="min-width:max-content;gap:0">
+    <div class="work-subhead">Independent Products</div>
 
-        <!-- Each milestone: dot + year + label, connected by dashed lines -->
-        <div class="flex flex-col items-center" style="width:110px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">2018</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:100px">First Hello World in C</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:110px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">2020</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:100px">First Website Built</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:110px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Jan 2022</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:100px">First Android App</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Jan 2023</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">First Foreign Project (VPN Android App)</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Jun 2023</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">First Intl. Student — CompTIA A+ (US)</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Aug 2023</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">Lecturer — Govt. Degree College</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Dec 2023</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">Switched to MERN Stack</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Mar 2024</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">Founded SADEVZ</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Jun 2024</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">Drosh Inn Hotel Project</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Jan 2025</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">10+ Foreign Design Projects (incl. Philadelphia Free Library)</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Dec 2025</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">50+ Students Trained in Chitral</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Feb 2026</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">SADEVZ Rebooted — Team of 6</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Apr 2026</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">Appointed Head of Engineering</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:120px">
-          <div class="ms-dot"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">May 2026</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:rgba(15,15,15,.7);max-width:110px">Native Resort &amp; Camping Bamborate — Full Stack</p>
-        </div>
-        <div class="ms-line"></div>
-
-        <div class="flex flex-col items-center" style="width:110px">
-          <div class="ms-dot active"></div>
-          <p class="font-mono text-center mt-2" style="font-size:10px;color:var(--gold)">Now</p>
-          <p class="text-center mt-1 leading-tight" style="font-size:11px;color:var(--gold);font-weight:500;max-width:100px">5+ Active Projects at SADEVZ</p>
-        </div>
-
+    <div class="project">
+      <div class="project-top">
+        <h3>PocketPeshi</h3>
+        <span class="status private">Private use</span>
       </div>
+      <p>PocketPeshi rebuilds the lawyer's traditional case diary as a mobile-first app. The home screen is a live calendar — opening any date surfaces that day's cases, so a lawyer or their assistant can record what happened at each proceeding and fix the next hearing date right from the entry, including miscellaneous and interim proceedings that don't fit a single case's timeline. Built as a role-based system for admins, lawyers, and assistants, so a whole chamber can run its diary from one shared tool instead of paper registers.</p>
+      <div class="stack-row">
+        <span class="stack-tag">Next.js</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Tailwind</span>
+        <span class="stack-tag">Prisma</span><span class="stack-tag">Supabase</span><span class="stack-tag">Capacitor</span><span class="stack-tag">Vercel</span>
+      </div>
+      <p class="work-note">Developed and shipped — currently in daily private use by 17 lawyers; public portfolio listing pending paperwork.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Madina Home Textile</h3>
+        <span class="status live">Live demo</span>
+      </div>
+      <p>An ecommerce storefront for a home textile retailer selling curtains, foam, carpets, and related household items. Shoppers browse the catalog and check out directly on the site, while a purpose-built admin panel lets the owner manage products, track orders, and read sales analytics without a spreadsheet. A lightweight built-in CMS handles the storefront's content — banners, categories, and promotional copy — so the shop can update itself without a developer.</p>
+      <div class="stack-row">
+        <span class="stack-tag">Next.js</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Tailwind</span>
+        <span class="stack-tag">Framer Motion</span><span class="stack-tag">Prisma</span><span class="stack-tag">Supabase</span><span class="stack-tag">Vercel</span>
+      </div>
+      <a class="project-link" href="https://madina-home-textile.vercel.app/" target="_blank" rel="noopener">View live demo ↗</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Chitral Bazar</h3>
+        <span class="status dev">Under development</span>
+      </div>
+      <p>A directory app for the whole Chitral Bazar: every registered shop is pinned on a custom-designed map of the bazar, shown right on the home screen, so users find a shop by location rather than scrolling a list. Shoppers can follow their favorite shops and leave reviews; ecommerce ordering is planned as the next layer once the shop directory and map are complete.</p>
+      <div class="stack-row">
+        <span class="stack-tag">Next.js</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Tailwind</span>
+        <span class="stack-tag">Framer Motion</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">Prisma</span>
+        <span class="stack-tag">Supabase</span><span class="stack-tag">Cloudinary</span><span class="stack-tag">Leaflet.js</span><span class="stack-tag">OpenStreetMap</span>
+      </div>
+    </div>
+
+    <div class="work-subhead">SADEVZ Client Work</div>
+
+    <div class="project secondary">
+      <div class="project-top">
+        <h3>Native Resort &amp; Camping — Bamborate</h3>
+        <span class="status live">Delivered</span>
+      </div>
+      <p>A full-stack booking and management system for a resort and camping site in Bamborate — covering reservations, guest and site management, and day-to-day operations from a single admin dashboard. SADEVZ's largest project to date, delivered May 2026.</p>
+    </div>
+
+    <div class="project secondary">
+      <div class="project-top">
+        <h3>Drosh Inn Hotel Platform</h3>
+        <span class="status live">Delivered</span>
+      </div>
+      <p>A multi-page hotel website with a full admin dashboard for managing bookings and rooms, Chart.js-powered analytics for tracking occupancy and revenue, and PKR pricing tailored to local guests. SADEVZ's first client project, delivered June 2024.</p>
+    </div>
+
+    <div class="project secondary">
+      <div class="project-top">
+        <h3>SaFit — AI Diet Tracker</h3>
+        <span class="status live">Delivered</span>
+      </div>
+      <p>An AI-assisted diet and nutrition tracking application, built under the SADEVZ portfolio to help users log meals and stay on top of their nutrition goals.</p>
+    </div>
+
+    <div class="project secondary">
+      <div class="project-top">
+        <h3>Zubi VPN App</h3>
+        <span class="status live">Delivered</span>
+      </div>
+      <p>An Android VPN application focused on simple, secure browsing — SADEVZ's first foreign/international project, delivered January 2023.</p>
     </div>
   </section>
 
   <!-- DISTINCTIONS -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-8">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Distinctions</span>
-      <div class="flex-1 srule"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-      <div class="dist-dark group">
-        <p class="font-mono text-xs tracking-widest uppercase dist-sub mb-3">2022 · University of Chitral</p>
-        <p class="font-display text-2xl">Gold Medal</p>
-        <p class="text-sm dist-sub mt-2">Highest CGPA across all Computer Science batches in university history</p>
+  <section>
+    <div class="section-head"><h2>Distinctions</h2><div class="rule"></div></div>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="when">2022 · University of Chitral</div>
+        <h3>Gold Medal</h3>
+        <p>Highest CGPA across all Computer Science batches in university history</p>
       </div>
-
-      <div class="dist-border group">
-        <p class="font-mono text-xs tracking-widest uppercase mb-3" style="color:var(--stone)">Certification</p>
-        <p class="dist-title font-display text-2xl">DIT</p>
-        <p class="text-sm mt-2" style="color:var(--stone)">Diploma in Information Technology — foundation of core IT expertise</p>
+      <div class="dist-card">
+        <div class="when">Certification</div>
+        <h3>DIT</h3>
+        <p>Diploma in Information Technology — foundation of core IT expertise</p>
       </div>
-
-      <div class="dist-border group">
-        <p class="font-mono text-xs tracking-widest uppercase mb-3" style="color:var(--stone)">Government</p>
-        <p class="dist-title font-display text-2xl">BPS-17</p>
-        <p class="text-sm mt-2" style="color:var(--stone)">Appointed Federal Govt Lecturer in FG Colleges; declined offer for personal reasons</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- LANGUAGES -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-8">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Languages</span>
-      <div class="flex-1 srule"></div>
-    </div>
-    <div class="flex flex-wrap gap-4">
-      <div class="lang-pill">
-        <span class="lang-name">English</span>
-        <span style="color:rgba(138,134,128,.4)">·</span>
-        <span class="font-mono text-xs tracking-wide" style="color:var(--stone)">Proficient</span>
-      </div>
-      <div class="lang-pill">
-        <span class="lang-name">Urdu</span>
-        <span style="color:rgba(138,134,128,.4)">·</span>
-        <span class="font-mono text-xs tracking-wide" style="color:var(--stone)">Fluent</span>
-      </div>
-      <div class="lang-pill">
-        <span class="lang-name">Khowar</span>
-        <span style="color:rgba(138,134,128,.4)">·</span>
-        <span class="font-mono text-xs tracking-wide" style="color:var(--stone)">Native</span>
+      <div class="dist-card">
+        <div class="when">Government</div>
+        <h3>BPS-17</h3>
+        <p>Appointed Federal Govt Lecturer in FG Colleges; declined the offer for personal reasons</p>
       </div>
     </div>
   </section>
 
-  <!-- INTERESTS -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-6">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Interests</span>
-      <div class="flex-1 srule"></div>
-    </div>
-    <p class="font-display text-xl font-light" style="color:rgba(15,15,15,.7)">
-      Table Tennis &nbsp;·&nbsp; Cricket &nbsp;·&nbsp; Writing code for real-life problems
-    </p>
-  </section>
-
-  <!-- ONLINE -->
-  <section class="mb-20 reveal">
-    <div class="flex items-center gap-4 mb-6">
-      <span class="font-mono text-xs tracking-widest uppercase" style="color:var(--stone)">Online Presence</span>
-      <div class="flex-1 srule"></div>
-    </div>
-    <div class="space-y-3">
-      <a href="http://www.maiit.org/pages/faculty.php" target="_blank" class="glink flex items-center gap-3 font-mono text-sm">
-        <span style="color:var(--gold)">↗</span>
-        MAIIT Chitral — Faculty Profile &nbsp;<span style="color:rgba(138,134,128,.5)">maiit.org/pages/faculty.php</span>
-      </a>
-      <a href="https://www.youtube.com/@saqlain_amin" target="_blank" class="glink flex items-center gap-3 font-mono text-sm">
-        <span style="color:var(--gold)">↗</span>
-        YouTube Channel &nbsp;<span style="color:rgba(138,134,128,.5)">@saqlain_amin</span>
-      </a>
-      <a href="https://medium.com/@saqlain9696382" target="_blank" class="glink flex items-center gap-3 font-mono text-sm">
-        <span style="color:var(--gold)">↗</span>
-        Medium Articles &nbsp;<span style="color:rgba(138,134,128,.5)">@saqlain9696382</span>
-      </a>
+  <!-- LANGUAGES / INTERESTS -->
+  <section>
+    <div class="two-col">
+      <div>
+        <div class="section-head"><h2>Languages</h2><div class="rule"></div></div>
+        <div class="tag-list">
+          <span class="pill">English · Proficient</span>
+          <span class="pill">Urdu · Fluent</span>
+          <span class="pill">Khowar · Native</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-head"><h2>Interests</h2><div class="rule"></div></div>
+        <div class="tag-list">
+          <span class="pill">Cricket</span>
+          <span class="pill">Singing</span>
+          <span class="pill">Table Tennis</span>
+          <span class="pill">History, in small doses (Paladin &amp; similar apps)</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="pt-8 flex flex-wrap justify-between items-center gap-4" style="border-top:1px solid rgba(138,134,128,.18)">
-    <p class="font-display text-lg italic" style="color:var(--stone)">Drosh, Chitral — Pakistan</p>
-    <p class="font-mono text-xs tracking-widest" style="color:rgba(138,134,128,.5)">saqlainamin646@gmail.com</p>
+  <!-- ONLINE PRESENCE -->
+  <section>
+    <div class="section-head"><h2>Online Presence</h2><div class="rule"></div></div>
+    <div class="links-row">
+      <a href="https://saqlainamin.online" target="_blank" rel="noopener">↗ Portfolio — saqlainamin.online</a>
+      <a href="http://www.maiit.org/pages/faculty.php" target="_blank" rel="noopener">↗ MAIIT Chitral — Faculty Profile</a>
+      <a href="https://www.youtube.com/@saqlain_amin" target="_blank" rel="noopener">↗ YouTube — @saqlain_amin</a>
+      <a href="https://medium.com/@saqlain9696382" target="_blank" rel="noopener">↗ Medium — @saqlain9696382</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-name">Saqlain Amin</div>
+    <div class="foot-meta">Drosh, Chitral — Pakistan · saqlainamin646@gmail.com · saqlainamin.online</div>
+    <div class="foot-actions">
+      <a class="btn btn-solid" href="resume.pdf" download>Get PDF ↓</a>
+      <a class="btn btn-ghost" href="mailto:saqlainamin646@gmail.com">Email Me</a>
+    </div>
   </footer>
 
-</main>
-
-<script>
-  // Hide scrollbar on milestone track
-  const style = document.createElement('style');
-  style.textContent = '.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}';
-  document.head.appendChild(style);
-
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+</div>
 </body>
 </html>
