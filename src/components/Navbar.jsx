@@ -3,18 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Home,
   Code2,
-  TrendingUp,
   Layers,
   Star,
   MessageCircle,
-  Settings,
 } from 'lucide-react';
 
 const navItems = [
   { id: 'hero', icon: Home, label: 'Home', activeColor: '#ff6d00', defaultColor: '#9d4edd' },
-  { id: 'services', icon: Settings, label: 'Services', activeColor: '#ff8500', defaultColor: '#9d4edd' },
   { id: 'stack', icon: Code2, label: 'Stack', activeColor: '#ff7900', defaultColor: '#9d4edd' },
-  { id: 'journey', icon: TrendingUp, label: 'Journey', activeColor: '#ff8500', defaultColor: '#9d4edd' },
   { id: 'portfolio', icon: Layers, label: 'Work', activeColor: '#ff9100', defaultColor: '#9d4edd' },
   { id: 'testimonials', icon: Star, label: 'Reviews', activeColor: '#ff9e00', defaultColor: '#9d4edd' },
   { id: 'connect', icon: MessageCircle, label: 'Connect', activeColor: '#9d4edd', defaultColor: '#9d4edd' },

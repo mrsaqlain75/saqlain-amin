@@ -4,9 +4,7 @@ import { Menu, X, Zap, ArrowRight, Sparkles } from 'lucide-react';
 
 const mobileNavItems = [
   { id: 'hero', label: 'Home' },
-  { id: 'services', label: 'Services'},
   { id: 'stack', label: 'Stack' },
-  { id: 'journey', label: 'Journey' },
   { id: 'portfolio', label: 'Work' },
   { id: 'testimonials', label: 'Reviews' },
   { id: 'connect', label: 'Connect' },

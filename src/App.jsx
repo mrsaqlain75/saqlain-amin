@@ -3,13 +3,11 @@ import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stack from './components/Stack';
-import Journey from './components/Journey';
 import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
-import Services from './components/Services';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -22,7 +20,7 @@ function App() {
     const navbarHeight = 80;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.scrollY - navbarHeight;
-    
+
     window.scrollTo({
       top: offsetPosition,
       behavior: 'smooth'
@@ -31,26 +29,22 @@ function App() {
 };
 
 useEffect(() => {
-  const sections = ['hero', 'services', 'stack', 'journey', 'portfolio', 'testimonials', 'connect'];
+  const sections = ['hero', 'stack', 'portfolio', 'testimonials', 'connect'];
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log('Section visible:', entry.target.id); // Debug log
           setActiveSection(entry.target.id);
         }
       });
     },
-    { threshold: 0.2, rootMargin: '-50px 0px 0px 0px' } // Reduced from 80px to 50px
+    { threshold: 0.2, rootMargin: '-50px 0px 0px 0px' }
   );
 
   sections.forEach((section) => {
     const element = document.getElementById(section);
     if (element) {
-      console.log('Observing section:', section); // Debug log
       observer.observe(element);
-    } else {
-      console.log('Section not found:', section); // Debug log
     }
   });
 
@@ -61,18 +55,10 @@ useEffect(() => {
     <div className="min-h-screen bg-white">
       <Navbar activeSection={activeSection} onSectionChange={handleSectionChange} />
       <Header onSectionChange={handleSectionChange} />
-      
+
       <main>
         <section id="hero">
           <Hero />
-        </section>
-
-
-        <section id="services" aria-label="Services">
-          <h2 className="sr-only">
-            Services — full-stack web &amp; mobile development, e-commerce websites, and IT tutoring in Chitral
-          </h2>
-          <Services />
         </section>
 
         <section id="stack" aria-label="Tech stack">
@@ -80,13 +66,6 @@ useEffect(() => {
             Tech stack — React, Next.js, TypeScript, Node.js, Prisma, PostgreSQL, React Native
           </h2>
           <Stack />
-        </section>
-
-        <section id="journey" aria-label="Journey">
-          <h2 className="sr-only">
-            Saqlain Amin's journey — from first line of code to Head of Engineering and IT educator in Chitral
-          </h2>
-          <Journey />
         </section>
 
         <section id="portfolio" aria-label="Portfolio">
@@ -109,7 +88,7 @@ useEffect(() => {
           </h2>
           <Contact />
         </section>
-        
+
         <Footer />
         <WhatsAppFloat />
       </main>
