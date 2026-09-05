@@ -130,7 +130,12 @@ export default function Hero() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.15 }}
-      className="text-base md:text-lg text-retro-purple-3 font-mono mb-3"
+      className="text-base md:text-lg font-medium mb-3"
+      style={{
+        color: "#240046",
+        opacity: 0.85,
+        fontFamily: "'Playfair Display', serif",
+      }}
     >
       Full-Stack &amp; E-Commerce Web Developer · IT Educator · Chitral, Pakistan
     </motion.p>
@@ -215,7 +220,10 @@ export default function Hero() {
     {/* CTA Buttons - Side by side Desktop */}
     <div className="flex gap-4">
       {/* Get My Resume Button */}
-      <motion.button
+      <motion.a
+        href="/resume.html"
+        target="_blank"
+        rel="noopener noreferrer"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35, duration: 0.6 }}
@@ -232,12 +240,12 @@ export default function Hero() {
           textTransform: "uppercase",
           fontFamily: '"Space Mono", monospace',
           cursor: "pointer",
-          fontWeight: "bold"
+          fontWeight: "bold",
+          textDecoration: "none"
         }}
-        onClick={() => window.open('/resume.html', '_blank')}
       >
         <span className="relative z-10">Get My Resume</span>
-      </motion.button>
+      </motion.a>
 
       {/* Connect Button */}
       <a href="#connect" style={{ textDecoration: 'none' }}>
@@ -417,7 +425,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Name */}
-      <motion.h1
+      <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
@@ -427,9 +435,16 @@ export default function Hero() {
         }}
       >
         Saqlain <span className="text-retro-orange-1">Amin</span>
-      </motion.h1>
+      </motion.p>
 
-      <p className="text-xs text-retro-purple-3 font-mono text-center mt-2 px-4">
+      <p
+        className="text-sm font-medium text-center mt-2 px-4"
+        style={{
+          color: "#240046",
+          opacity: 0.85,
+          fontFamily: "'Playfair Display', serif",
+        }}
+      >
         Full-Stack &amp; E-Commerce Web Developer · IT Educator · Chitral, Pakistan
       </p>
 
@@ -503,7 +518,10 @@ export default function Hero() {
 {/* CTA Buttons - Side by side */}
 <div className="flex justify-center gap-3 mt-6">
   {/* Get My Resume Button */}
-  <motion.button
+  <motion.a
+    href="/resume.html"
+    target="_blank"
+    rel="noopener noreferrer"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.35, duration: 0.6 }}
@@ -519,12 +537,12 @@ export default function Hero() {
       textTransform: "uppercase",
       fontFamily: '"Space Mono", monospace',
       cursor: "pointer",
-      fontWeight: "bold"
+      fontWeight: "bold",
+      textDecoration: "none"
     }}
-    onClick={() => window.open('/resume.html', '_blank')}
   >
     <span className="relative z-10">Get My Resume</span>
-  </motion.button>
+  </motion.a>
 
   {/* Connect Button */}
   <a href="#connect" style={{ textDecoration: 'none' }}>

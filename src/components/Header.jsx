@@ -157,9 +157,9 @@ const Header = ({ onSectionChange }) => {
                   </motion.div>
                   
                   <div>
-                    <h1 className="font-['Playfair_Display'] text-xl font-bold text-white">
+                    <span className="block font-['Playfair_Display'] text-xl font-bold text-white">
                       Saqlain Amin
-                    </h1>
+                    </span>
                     <p className="text-[10px] text-retro-orange-5">Web &amp; E-Commerce Developer · IT Educator</p>
                   </div>
                 </motion.div>
@@ -286,9 +286,9 @@ const Header = ({ onSectionChange }) => {
                   </div>
                 </motion.div>
                 <div className="flex flex-col">
-                  <h2 className="font-['Playfair_Display'] text-sm font-bold text-white leading-normal">
+                  <span className="block font-['Playfair_Display'] text-sm font-bold text-white leading-normal">
                     Saqlain Amin
-                  </h2>
+                  </span>
                   <p className="text-[9px] text-retro-orange-5">Web &amp; E-Commerce Developer · IT Educator</p>
                 </div>
               </motion.div>
