@@ -1,5 +1,6 @@
 /* Shared styles for saqlainamin.online content pages
    (projects, service pages, blog, hire) — retro palette, editorial layout */
+@import url("/site-nav.css");
 
 :root {
   --paper: #fffaf5;
@@ -35,57 +36,7 @@ img { max-width: 100%; display: block; }
 a { color: inherit; }
 ::selection { background: var(--orange); color: #fff; }
 
-/* ---------- header / nav ---------- */
-.site-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(36, 0, 70, 0.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 109, 0, 0.25);
-}
-.nav-wrap {
-  max-width: 1080px; margin: 0 auto;
-  display: flex; align-items: center; gap: 20px;
-  padding: 12px clamp(16px, 4vw, 32px);
-}
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-.brand img { width: 26px; height: 26px; }
-.brand b { font-family: var(--f-display); font-size: 1.05rem; color: #fff; font-weight: 700; }
-.nav-links { display: flex; gap: 4px 18px; flex-wrap: wrap; margin-left: auto; align-items: center; }
-.nav-links a {
-  font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em;
-  text-transform: uppercase; text-decoration: none; color: rgba(255,255,255,0.8);
-  padding: 6px 2px; transition: color 0.18s; white-space: nowrap;
-}
-.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--orange-5); }
-.nav-cta {
-  font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em;
-  text-transform: uppercase; text-decoration: none;
-  background: linear-gradient(135deg, #3c096c 0%, #ff6d00 130%);
-  color: #fff; padding: 9px 18px; border-radius: 999px;
-  border: 1px solid rgba(255,109,0,0.4);
-  box-shadow: 0 0 22px rgba(255,109,0,0.22);
-  white-space: nowrap; transition: transform 0.15s;
-}
-.nav-cta:hover { transform: translateY(-1px); }
-.nav-toggle { display: none; }
-.nav-burger {
-  display: none; margin-left: auto; width: 38px; height: 38px;
-  border: 1px solid rgba(255,109,0,0.3); border-radius: 8px;
-  background: rgba(255,109,0,0.12); color: var(--orange-5);
-  font-size: 18px; cursor: pointer; align-items: center; justify-content: center;
-}
-@media (max-width: 860px) {
-  .nav-burger { display: flex; }
-  .nav-links {
-    position: fixed; inset: 60px 0 auto 0; flex-direction: column; align-items: stretch;
-    gap: 0; background: rgba(36,0,70,0.99); padding: 8px 0 16px;
-    border-bottom: 1px solid rgba(255,109,0,0.25);
-    max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
-  }
-  .nav-links a { padding: 14px clamp(16px, 4vw, 32px); font-size: 0.8rem; }
-  .nav-links .nav-cta { margin: 12px clamp(16px, 4vw, 32px) 0; text-align: center; }
-  .nav-toggle:checked ~ .nav-links { max-height: 480px; }
-}
+/* header / nav lives in site-nav.css (shared with the React homepage) */
 
 /* ---------- layout ---------- */
 .page { max-width: 860px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 40px); }

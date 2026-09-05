@@ -55,7 +55,7 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar activeSection={activeSection} onSectionChange={handleSectionChange} />
-      <Header onSectionChange={handleSectionChange} />
+      <Header />
 
       <main>
         <section id="hero">

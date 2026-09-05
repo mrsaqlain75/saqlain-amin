@@ -81,7 +81,7 @@ export default function Footer() {
             { href: "/web-development", label: "Web Development" },
             { href: "/ecommerce-development", label: "E-Commerce Development" },
             { href: "/tutoring", label: "IT Tutoring" },
-            { href: "/blog", label: "Writing" },
+            { href: "/learn", label: "Learn" },
             { href: "/hire", label: "Hire Me" },
             { href: "/resume", label: "Résumé" },
           ].map((l) => (

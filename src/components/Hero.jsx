@@ -404,7 +404,7 @@ export default function Hero() {
   </div>
 
   {/* Content - Stack from top with flex column */}
-  <div className="relative z-10 flex flex-col justify-between h-full pt-16">
+  <div className="relative z-10 flex flex-col justify-between h-full pt-24">
     
 
     

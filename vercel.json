@@ -6,7 +6,7 @@
     { "source": "/web-development", "destination": "/web-development.html" },
     { "source": "/ecommerce-development", "destination": "/ecommerce-development.html" },
     { "source": "/tutoring", "destination": "/tutoring.html" },
-    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/learn", "destination": "/learn.html" },
     { "source": "/hire", "destination": "/hire.html" }
   ],
   "redirects": [
@@ -15,7 +15,9 @@
     { "source": "/web-development.html", "destination": "/web-development", "permanent": true },
     { "source": "/ecommerce-development.html", "destination": "/ecommerce-development", "permanent": true },
     { "source": "/tutoring.html", "destination": "/tutoring", "permanent": true },
-    { "source": "/blog.html", "destination": "/blog", "permanent": true },
-    { "source": "/hire.html", "destination": "/hire", "permanent": true }
+    { "source": "/learn.html", "destination": "/learn", "permanent": true },
+    { "source": "/hire.html", "destination": "/hire", "permanent": true },
+    { "source": "/blog", "destination": "/learn", "permanent": true },
+    { "source": "/blog.html", "destination": "/learn", "permanent": true }
   ]
 }
