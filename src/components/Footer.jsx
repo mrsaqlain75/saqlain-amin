@@ -69,6 +69,33 @@ export default function Footer() {
           </motion.p>
         </div>
 
+        {/* Page nav */}
+        <motion.nav
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8"
+        >
+          {[
+            { href: "/projects", label: "Projects" },
+            { href: "/web-development", label: "Web Development" },
+            { href: "/ecommerce-development", label: "E-Commerce Development" },
+            { href: "/tutoring", label: "IT Tutoring" },
+            { href: "/blog", label: "Writing" },
+            { href: "/hire", label: "Hire Me" },
+            { href: "/resume", label: "Résumé" },
+          ].map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-[11px] tracking-[0.12em] uppercase text-gray-400 hover:text-retro-orange-1 transition-colors"
+              style={{ fontFamily: "'Space Mono', monospace" }}
+            >
+              {l.label}
+            </a>
+          ))}
+        </motion.nav>
+
         {/* Divider */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}

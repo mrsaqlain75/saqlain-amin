@@ -1,9 +1,21 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/resume", "destination": "/resume.html" }
+    { "source": "/resume", "destination": "/resume.html" },
+    { "source": "/projects", "destination": "/projects.html" },
+    { "source": "/web-development", "destination": "/web-development.html" },
+    { "source": "/ecommerce-development", "destination": "/ecommerce-development.html" },
+    { "source": "/tutoring", "destination": "/tutoring.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/hire", "destination": "/hire.html" }
   ],
   "redirects": [
-    { "source": "/resume.html", "destination": "/resume", "permanent": true }
+    { "source": "/resume.html", "destination": "/resume", "permanent": true },
+    { "source": "/projects.html", "destination": "/projects", "permanent": true },
+    { "source": "/web-development.html", "destination": "/web-development", "permanent": true },
+    { "source": "/ecommerce-development.html", "destination": "/ecommerce-development", "permanent": true },
+    { "source": "/tutoring.html", "destination": "/tutoring", "permanent": true },
+    { "source": "/blog.html", "destination": "/blog", "permanent": true },
+    { "source": "/hire.html", "destination": "/hire", "permanent": true }
   ]
 }

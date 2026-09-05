@@ -246,7 +246,7 @@ export default function Hero() {
       </motion.a>
 
       {/* Connect Button */}
-      <a href="#connect" style={{ textDecoration: 'none' }}>
+      <a href="/hire" style={{ textDecoration: 'none' }}>
       <motion.button
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -275,7 +275,7 @@ export default function Hero() {
           animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
           transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
         />
-        <span className="relative z-10">Connect</span>
+        <span className="relative z-10">Hire Me</span>
         <ArrowRight size={11} className="relative z-10 opacity-70 transition-transform group-hover:translate-x-1" />
       </motion.button>
       </a>
@@ -543,7 +543,7 @@ export default function Hero() {
   </motion.a>
 
   {/* Connect Button */}
-  <a href="#connect" style={{ textDecoration: 'none' }}>
+  <a href="/hire" style={{ textDecoration: 'none' }}>
   <motion.button
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -562,7 +562,7 @@ export default function Hero() {
       boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
     }}
   >
-    <span className="relative z-10">Connect</span>
+    <span className="relative z-10">Hire Me</span>
     <ArrowRight size={10} className="relative z-10 opacity-70" />
   </motion.button>
   </a>

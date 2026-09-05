@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Zap, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
-const mobileNavItems = [
-  { id: 'hero', label: 'Home' },
-  { id: 'services', label: 'Services' },
-  { id: 'stack', label: 'Stack' },
-  { id: 'portfolio', label: 'Work' },
-  { id: 'testimonials', label: 'Reviews' },
-  { id: 'connect', label: 'Connect' },
+// Cross-page navigation (static pages under public/, served extensionless via vercel.json)
+const pageLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/web-development', label: 'Web Dev' },
+  { href: '/ecommerce-development', label: 'E-Commerce' },
+  { href: '/tutoring', label: 'Tutoring' },
+  { href: '/blog', label: 'Blog' },
 ];
 
 const Header = ({ onSectionChange }) => {
@@ -33,16 +34,6 @@ const Header = ({ onSectionChange }) => {
   const handleNavClick = (sectionId) => {
     onSectionChange(sectionId);
     setIsMenuOpen(false);
-  };
-
-  const handleConnectClick = () => {
-    const connectSection = document.getElementById('connect');
-    if (connectSection) {
-      window.scrollTo({
-        top: connectSection.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
   };
 
   // Desktop Header
@@ -117,10 +108,10 @@ const Header = ({ onSectionChange }) => {
                 }}
               />
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 {/* Logo and Name with Rotating Animation */}
                 <motion.div
-                  className="flex items-center gap-3 cursor-pointer group"
+                  className="flex items-center gap-3 cursor-pointer group flex-shrink-0"
                   onClick={() => handleNavClick('hero')}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -163,8 +154,22 @@ const Header = ({ onSectionChange }) => {
                   </div>
                 </motion.div>
 
-                {/* Desktop Connect Button - FIXED */}
-                <a href="#connect" style={{ textDecoration: 'none' }}>
+                {/* Cross-page nav links */}
+                <nav className="hidden lg:flex items-center gap-5">
+                  {pageLinks.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      className="text-[11px] tracking-[0.14em] uppercase text-white/75 hover:text-retro-orange-5 transition-colors whitespace-nowrap"
+                      style={{ fontFamily: '"Space Mono", monospace', textDecoration: 'none' }}
+                    >
+                      {l.label}
+                    </a>
+                  ))}
+                </nav>
+
+                {/* Desktop Hire Me Button */}
+                <a href="/hire" style={{ textDecoration: 'none' }} className="flex-shrink-0">
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -193,7 +198,7 @@ const Header = ({ onSectionChange }) => {
                     animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
                     transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
                   />
-                  <span className="relative z-10">Connect</span>
+                  <span className="relative z-10">Hire Me</span>
                   <ArrowRight size={12} className="relative z-10 opacity-60 transition-transform group-hover:translate-x-0.5" />
                 </motion.button>
                 </a>
@@ -363,11 +368,13 @@ const Header = ({ onSectionChange }) => {
                   }}
                 >
                   <div className="flex flex-col gap-3">
-                    {mobileNavItems.map((item, idx) => (
-                      <motion.button
-                        key={item.id}
-                        onClick={() => handleNavClick(item.id)}
+                    {pageLinks.map((item, idx) => (
+                      <motion.a
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setIsMenuOpen(false)}
                         className="w-full py-2 rounded-lg text-center"
+                        style={{ textDecoration: 'none' }}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.03 }}
@@ -377,12 +384,12 @@ const Header = ({ onSectionChange }) => {
                         <span className="font-['Playfair_Display'] text-lg text-white">
                           {item.label}
                         </span>
-                      </motion.button>
+                      </motion.a>
                     ))}
                   </div>
-                  
-                  {/* Mobile Connect Button - FIXED */}
-                  <a href="#connect" style={{ textDecoration: 'none' }}>
+
+                  {/* Mobile Hire Me Button */}
+                  <a href="/hire" style={{ textDecoration: 'none' }}>
                   <motion.button
                     className="mt-4 w-full py-2 rounded-lg font-['Playfair_Display'] font-medium text-sm relative overflow-hidden"
                     style={{
@@ -393,7 +400,7 @@ const Header = ({ onSectionChange }) => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <span className="flex items-center justify-center gap-2">
-                      <span className="text-retro-orange-1">Connect Now</span>
+                      <span className="text-retro-orange-1">Hire Me</span>
                       <ArrowRight size={14} className="text-retro-orange-1" />
                     </span>
                   </motion.button>
