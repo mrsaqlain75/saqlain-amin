@@ -6,12 +6,12 @@ export default function Hero() {
   const [currentPhrase, setCurrentPhrase] = useState(0);
 
   const phrases = [
-    "build immersive full stack web apps",
-    "build agentic AI",  
-    "engineer scalable backends",
-    "craft pixel-perfect visuals",
-    "optimize performance metrics",
-    "create seamless animations"
+    "build full-stack web & mobile apps",
+    "develop e-commerce websites with Next.js",
+    "teach computer science, Python & IT",
+    "engineer scalable backends with Prisma",
+    "tutor students online & in Chitral",
+    "craft high-performance React interfaces"
   ];
 
   useEffect(() => {
@@ -22,9 +22,9 @@ export default function Hero() {
   }, []);
 
   const achievements = [
-    { value: "10+", label: "Projects", icon: Briefcase, color: "#ff6d00" },
-    { value: "10+", label: "Graphics", icon: Palette, color: "#ff8500" },
-    { value: "50+", label: "Students", icon: GraduationCap, color: "#9d4edd" },
+    { value: "20+", label: "Projects Shipped", icon: Briefcase, color: "#ff6d00" },
+    { value: "5+", label: "E-Commerce Sites", icon: Palette, color: "#ff8500" },
+    { value: "50+", label: "Students Trained", icon: GraduationCap, color: "#9d4edd" },
   ];
 
   return (
@@ -117,13 +117,23 @@ export default function Hero() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.1 }}
-      className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-retro-purple-1"
+      className="text-5xl md:text-6xl lg:text-7xl font-bold mb-2 text-retro-purple-1 leading-[1.02]"
       style={{
         fontFamily: "'Playfair Display', serif",
       }}
     >
-      Saqlain
+      Saqlain <span className="text-retro-orange-1">Amin</span>
     </motion.h1>
+
+    {/* Role line */}
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.15 }}
+      className="text-base md:text-lg text-retro-purple-3 font-mono mb-3"
+    >
+      Full-Stack &amp; E-Commerce Web Developer · IT Educator · Chitral, Pakistan
+    </motion.p>
 
     {/* Animated Phrase Line */}
     <motion.div
@@ -329,7 +339,7 @@ export default function Hero() {
               
               <img
                 src="./pic.png"
-                alt="Saqlain Amin"
+                alt="Saqlain Amin — full-stack and e-commerce web developer and IT educator in Chitral, Pakistan"
                 className="object-contain relative z-10"
                 style={{
                   filter: "drop-shadow(0 30px 40px rgba(0,0,0,0.06))",
@@ -411,13 +421,17 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-6xl font-bold text-retro-purple-1 text-center mt-2"
+        className="text-5xl font-bold text-retro-purple-1 text-center mt-2 leading-[1.05]"
         style={{
           fontFamily: "'Playfair Display', serif",
         }}
       >
-        Saqlain
+        Saqlain <span className="text-retro-orange-1">Amin</span>
       </motion.h1>
+
+      <p className="text-xs text-retro-purple-3 font-mono text-center mt-2 px-4">
+        Full-Stack &amp; E-Commerce Web Developer · IT Educator · Chitral, Pakistan
+      </p>
 
       <div className="flex items-center justify-center gap-2 mt-3 text-center flex-wrap">
         <span 
@@ -591,7 +605,7 @@ export default function Hero() {
         
         <img
           src="./pic.png"
-          alt="Saqlain Amin"
+          alt="Saqlain Amin — full-stack and e-commerce web developer and IT educator in Chitral, Pakistan"
           className="object-contain relative z-10 block mx-auto"
           style={{
             width: "clamp(350px, 82vw, 420px)",

@@ -7,35 +7,35 @@ const testimonials = [
   {
     id: 1,
     name: "Alison Zara Singh",
-    feedback: "Saqlain trained me for 6 months and guess what, I got the Comptia ITF+ certification.",
+    feedback: "Saqlain tutored me in IT for 6 months and guess what — I passed the CompTIA ITF+ certification.",
     rating: 5,
-    platform: "Fiverr"
+    platform: "fiverr"
   },
   {
     id: 2,
     name: "Arif Ullah",
-    feedback: "Delivered the app weeks before the dealine and still maintains it perfectly.",
+    feedback: "Built our e-commerce site and delivered weeks before the deadline — still maintains it perfectly.",
     rating: 5,
     platform: "local"
   },
   {
     id: 3,
     name: "Zubaida Khalid",
-    feedback: "Well mannered, great communication and very responsive",
+    feedback: "Well mannered, great communication and very responsive.",
     rating: 5,
     platform: "fiverr"
   },
   {
     id: 4,
     name: "Karla Gomez",
-    feedback: "His last minute session saved my automata exam. Cheers",
+    feedback: "Booked him as an online computer science tutor before my automata exam — his last-minute session saved me. Cheers.",
     rating: 5,
     platform: "upwork"
   },
   {
     id: 5,
     name: "Ahmad Khan",
-    feedback: "As his 1st fiverr client, really tested him. He's great. ",
+    feedback: "As his 1st Fiverr client, I really tested him. He's a great web developer.",
     rating: 5,
     platform: "fiverr"
   }

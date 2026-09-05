@@ -33,6 +33,7 @@ const STATUS = {
   live:      { label: "Live",      color: "#3a8a58" },
   delivered: { label: "Delivered", color: T.purple5  },
   internal:  { label: "Internal",  color: T.orange1  },
+  building:  { label: "In Development", color: T.orange5 },
 };
 
 /* ── detect touch device ─────────────────── */

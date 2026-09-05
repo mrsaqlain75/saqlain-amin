@@ -43,7 +43,7 @@ export default function Footer() {
             transition={{ duration: 0.5 }}
             className="mb-4"
           >
-            <img src="sadevz.png" className="h-16" />
+            <img src="sadevz.png" className="h-16" alt="SADEVZ — software development studio in Chitral, Pakistan founded by Saqlain Amin" />
           </motion.div>
           
           <motion.p
@@ -53,7 +53,19 @@ export default function Footer() {
             className="text-gray-400 text-sm font-mono max-w-md"
             style={{ fontFamily: "'Space Mono', monospace" }}
           >
-            Learn. Create. Evlove.
+            Learn. Create. Evolve.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-gray-500 text-xs mt-3 max-w-lg"
+            style={{ fontFamily: "'Space Mono', monospace" }}
+          >
+            Saqlain Amin — full-stack &amp; e-commerce web developer, mobile developer and IT educator
+            in Chitral, Pakistan. Available for web &amp; Next.js e-commerce projects and online
+            computer science, Python &amp; IT tutoring worldwide.
           </motion.p>
         </div>
 

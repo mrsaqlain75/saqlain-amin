@@ -127,7 +127,7 @@ function GraphicDesignAnimation() {
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          CMYK
+          SHOP
         </motion.text>
       </svg>
     </div>
@@ -184,38 +184,38 @@ function EducatorAnimation() {
 const services = [
   {
     id: "fullstack",
-    title: "Full Stack Web App Development",
+    title: "Full-Stack Web & Mobile Development",
     side: "left",
-    tagline: "End-to-end systems, elegantly engineered.",
+    tagline: "A software engineer in Chitral, building end-to-end.",
     description:
-      "From database schema to pixel-perfect UI — I architect and ship complete web products. REST & GraphQL APIs, auth systems, cloud deployments, and clean component libraries. No handoffs. One mind, entire stack.",
+      "I architect and ship complete web and mobile products for clients in Chitral and worldwide — database schema to pixel-perfect UI. React, Next.js, TypeScript, Node.js, Prisma and PostgreSQL on the web; React Native and Android for mobile. REST APIs, auth, and cloud deployment. One mind, entire stack.",
     Animation: FullStackAnimation,
   },
   {
-    id: "frontend",
-    title: "Hyper-animated Frontend",
+    id: "ecommerce",
+    title: "E-Commerce Website Development",
     side: "right",
-    tagline: "Interfaces that move like they're alive.",
+    tagline: "E-commerce websites built with Next.js.",
     description:
-      "Motion-first React interfaces with Framer Motion, GSAP, and CSS sorcery. Scroll-driven narratives, physics-based interactions, and micro-animations that turn interfaces into experiences people remember.",
-    Animation: AnimatedFrontendAnimation,
-  },
-  {
-    id: "design",
-    title: "Graphic Designing",
-    side: "left",
-    tagline: "Visual language crafted with intention.",
-    description:
-      "Brand identities, digital illustrations, UI kits, and print collateral. Every color, weight, and whitespace chosen deliberately. Design that communicates before a single word is read.",
+      "As an e-commerce website developer I build fast, SEO-friendly online stores with Next.js, Prisma and Stripe: product catalog, cart and checkout, order management, and a self-service admin dashboard so the owner can run the shop without a developer. An e-commerce website builder tuned for real businesses.",
     Animation: GraphicDesignAnimation,
   },
   {
-    id: "educator",
-    title: "IT Educator & Trainer",
-    side: "right",
-    tagline: "Complex ideas, made crystal clear.",
+    id: "frontend",
+    title: "Frontend Engineering & Animation",
+    side: "left",
+    tagline: "Interfaces that move like they're alive.",
     description:
-      "Curriculum design, live workshops, and 1-on-1 mentoring across web dev, design systems, and software fundamentals. I don't just teach syntax — I build mental models that last.",
+      "Motion-first React and Next.js interfaces with Framer Motion and CSS craft. Scroll-driven narratives, physics-based interactions and micro-animations — high-performance frontends that stay fast on low-bandwidth connections.",
+    Animation: AnimatedFrontendAnimation,
+  },
+  {
+    id: "education",
+    title: "IT Educator & Online Tutor",
+    side: "right",
+    tagline: "Computer science & Python tutoring, online and in Chitral.",
+    description:
+      "I'm an IT educator and computer science tutor in Chitral and online worldwide. One-on-one and group tutoring in Python programming, computer science fundamentals, web development and IT — plus curriculum design and workshops. 50+ students trained; former Computer Science lecturer and Director Academics in Chitral.",
     Animation: EducatorAnimation,
   },
 ];

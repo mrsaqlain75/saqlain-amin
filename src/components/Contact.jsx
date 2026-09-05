@@ -149,8 +149,17 @@ export default function Contact() {
 
       {/* Two Column Layout */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 md:ml-16 lg:ml-24">
-        
 
+        <motion.p
+          {...stagger(0)}
+          className="max-w-2xl mb-10 text-sm md:text-base"
+          style={{ fontFamily: "'Inter', sans-serif", color: "rgba(36,0,70,0.62)", lineHeight: 1.8 }}
+        >
+          Available for full-stack &amp; e-commerce web development, mobile apps, and computer science,
+          Python &amp; IT tutoring — online worldwide and on-site in Chitral, Pakistan. Whether you need a
+          web developer in Chitral, a Next.js e-commerce website, or an online computer science tutor,
+          let&rsquo;s talk.
+        </motion.p>
 
         {/* Two Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

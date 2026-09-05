@@ -10,9 +10,9 @@
       "year": "2024",
       "status": "live",
       "liveUrl": "https://sadevz.com",
-      "description": "A professional company website and client portal for SADEVZ, a software agency based in Chitral. Built with a modern stack to showcase services, portfolio, and enable seamless client communication. Features an admin panel for managing projects, team members, and incoming inquiries.",
-      "challenge": "Designing a digital presence that communicates technical credibility while remaining approachable for local businesses unfamiliar with software development. Performance on low-bandwidth connections was a key consideration.",
-      "stack": ["React", "Next.js", "Node.js", "Express", "MongoDB", "AWS", "Tailwind CSS", "JWT Auth", "Railway"],
+      "description": "A professional company website and client portal for SADEVZ, a software development studio based in Chitral. Built with a modern React and Next.js stack to showcase services, portfolio, and enable seamless client communication. Features an admin panel for managing projects, team members, and incoming inquiries, and an e-commerce-ready component library reused across client stores.",
+      "challenge": "Designing a digital presence that communicates technical credibility while remaining approachable for local businesses unfamiliar with software development. Performance on low-bandwidth connections in Chitral was a key consideration.",
+      "stack": ["React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "Prisma", "AWS", "Tailwind CSS", "JWT Auth", "Railway"],
       "screenshots": [
         { "url": "/Sadevz/sadevz 1.png", "caption": "Homepage — hero section and services overview" },
         { "url": "/Sadevz/sadevz 2.png", "caption": "Portfolio listing page" },
@@ -31,7 +31,7 @@
       "year": "2026",
       "status": "live",
       "liveUrl": "https://native-resort-camping-bumborate.vercel.app/",
-      "description": "A complete hospitality platform for one of Chitral's premier eco-resorts. Built end-to-end: booking engine, real-time availability, admin dashboard for room and package management, gallery CMS, and a customer-facing experience that reflects the resort's natural setting. Every interaction was crafted to feel as serene as the destination itself.",
+      "description": "A complete hospitality platform for one of Chitral's premier eco-resorts. Built end-to-end: booking and e-commerce engine, real-time availability, admin dashboard for room and package management, gallery CMS, and a customer-facing experience that reflects the resort's natural setting. Every interaction was crafted to feel as serene as the destination itself.",
       "challenge": "The client needed a system that non-technical staff could operate daily — managing bookings, updating rooms, uploading photos — without any developer involvement. Reliability in a low-bandwidth mountain region was a hard constraint.",
       "stack": ["React", "Node.js", "Express", "MySQL", "Tailwind CSS", "Cloudinary", "JWT Auth", "Nodemailer"],
       "screenshots": [
@@ -47,6 +47,40 @@
     {
       "id": 3,
       "rank": "03",
+      "title": "Madina Home Textile — E-Commerce Store",
+      "client": "Madina Home Textile",
+      "category": "E-Commerce Website (Next.js)",
+      "categoryTag": "ecommerce",
+      "year": "2025",
+      "status": "live",
+      "liveUrl": "https://madina-home-textile.vercel.app/",
+      "description": "An e-commerce storefront for a home textile retailer selling curtains, foam, carpets and household items. Shoppers browse the catalog and check out directly on the site, while a purpose-built admin panel lets the owner manage products, track orders and read sales analytics without a spreadsheet. A lightweight built-in CMS handles banners, categories and promotional copy, so the shop updates itself without a developer.",
+      "challenge": "Delivering a fast, SEO-friendly online store on a small budget that a non-technical owner could run entirely alone — product management, orders, and storefront content — with checkout that works reliably for customers in Pakistan.",
+      "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Prisma", "PostgreSQL", "Supabase", "Stripe", "Vercel"],
+      "screenshots": [],
+      "previewAvailable": true,
+      "accentColor": "#ff6d00"
+    },
+    {
+      "id": 4,
+      "rank": "04",
+      "title": "Chitral Bazar — Marketplace Directory",
+      "client": "Independent Product",
+      "category": "E-Commerce Website (Next.js)",
+      "categoryTag": "ecommerce",
+      "year": "2026",
+      "status": "building",
+      "liveUrl": null,
+      "description": "A directory and marketplace app for the whole Chitral Bazar: every registered shop is pinned on a custom-designed map of the bazar shown on the home screen, so users find a shop by location rather than scrolling a list. Shoppers follow favourite shops and leave reviews; e-commerce ordering is the next layer once the shop directory and map are complete.",
+      "challenge": "Modelling a real, messy physical bazar as data — hundreds of shops, categories and locations — on an interactive custom map that stays fast on mobile, while keeping the codebase ready to bolt on cart, checkout and payments.",
+      "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Prisma", "PostgreSQL", "Supabase", "Cloudinary", "Leaflet.js", "OpenStreetMap"],
+      "screenshots": [],
+      "previewAvailable": false,
+      "accentColor": "#9d4edd"
+    },
+    {
+      "id": 5,
+      "rank": "05",
       "title": "SaFit AI Diet Tracker",
       "client": "SADEVZ (Internal Product)",
       "category": "AI Web App",
@@ -54,7 +88,7 @@
       "year": "2025",
       "status": "delivered",
       "liveUrl": null,
-      "description": "An AI-powered diet and nutrition tracking app built for health-conscious users. SaFit analyzes meals from natural texts, tracks macros and calories, and provides personalized dietary recommendations powered by a fine-tuned language model. Designed with a clean, motivating UI to keep users engaged with their health goals. \n This app is yet to be deployed, so would take a few more weeks.",
+      "description": "An AI-powered diet and nutrition tracking app built for health-conscious users. SaFit analyzes meals from natural text, tracks macros and calories, and provides personalized dietary recommendations powered by a language model. Designed with a clean, motivating UI to keep users engaged with their health goals. \n This app is yet to be deployed, so would take a few more weeks.",
       "challenge": "Accurately identifying food items and estimating nutritional values from natural language in real-world conditions. Building a recommendation engine that adapts to individual dietary needs and cultural food preferences was the core AI challenge.",
       "stack": ["React Native", "Node.js", "OpenAI API", "MongoDB", "Tailwind CSS", "Cloudinary"],
       "screenshots": [
@@ -68,8 +102,8 @@
       "accentColor": "#2ecc71"
     },
     {
-      "id": 4,
-      "rank": "04",
+      "id": 6,
+      "rank": "06",
       "title": "Drosh Inn Hotel Platform",
       "client": "Drosh Inn Hotel, Chitral",
       "category": "Full Stack Web App",
@@ -90,8 +124,8 @@
       "accentColor": "#ff6d00"
     },
     {
-      "id": 5,
-      "rank": "05",
+      "id": 7,
+      "rank": "07",
       "title": "Zubi VPN App",
       "client": "International Networking Client",
       "category": "Android Application",
@@ -99,7 +133,7 @@
       "year": "2023",
       "status": "delivered",
       "liveUrl": null,
-      "description": "A production-grade VPN client for Android built for an international networking company. The app handles protocol selection, server switching, kill-switch logic, and a clean onboarding flow, all wrapped in a technical UI that communicates security without intimidation. \n The preview of this application is not available due to the concerns of the client.",
+      "description": "A production-grade VPN client for Android, built as a mobile developer in Chitral for an international networking company. The app handles protocol selection, server switching, kill-switch logic, and a clean onboarding flow, all wrapped in a technical UI that communicates security without intimidation. \n The preview of this application is not available due to the concerns of the client.",
       "challenge": "Integrating multiple VPN protocols within a single Android codebase while maintaining a smooth, consumer-friendly UX. Battery and connection-state management across Android versions was the hardest technical surface.",
       "stack": ["Java", "Kotlin", "Android SDK", "OpenVPN3", "WireGuard", "Retrofit", "Room DB", "Material Design"],
       "screenshots": [

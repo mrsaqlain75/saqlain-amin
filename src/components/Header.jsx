@@ -137,7 +137,7 @@ const Header = ({ onSectionChange }) => {
                     }}
                   >
                     <div className="w-8 h-8 flex items-center justify-center">
-                      <img src='logo.png' alt="logo" />
+                      <img src='logo.png' alt="Saqlain Amin logo" />
                     </div>
                     <motion.div
                       className="absolute inset-0 rounded-full"
@@ -160,7 +160,7 @@ const Header = ({ onSectionChange }) => {
                     <h1 className="font-['Playfair_Display'] text-xl font-bold text-white">
                       Saqlain Amin
                     </h1>
-                    <p className="text-[10px] text-retro-orange-5">Full Stack Engineer</p>
+                    <p className="text-[10px] text-retro-orange-5">Web &amp; E-Commerce Developer · IT Educator</p>
                   </div>
                 </motion.div>
 
@@ -282,14 +282,14 @@ const Header = ({ onSectionChange }) => {
                   }}
                 >
                   <div className="w-7 h-7 flex items-center justify-center">
-                    <img src='logo.png' alt="logo" />
+                    <img src='logo.png' alt="Saqlain Amin logo" />
                   </div>
                 </motion.div>
                 <div className="flex flex-col">
                   <h2 className="font-['Playfair_Display'] text-sm font-bold text-white leading-normal">
                     Saqlain Amin
                   </h2>
-                  <p className="text-[9px] text-retro-orange-5">Full Stack Engineer</p>
+                  <p className="text-[9px] text-retro-orange-5">Web &amp; E-Commerce Developer · IT Educator</p>
                 </div>
               </motion.div>
 
