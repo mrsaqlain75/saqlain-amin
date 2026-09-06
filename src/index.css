@@ -80,3 +80,11 @@
 .animate-phrase {
   animation: fadeSlideUp 2.5s ease-in-out infinite;
 }
+
+/* Homepage only: keep the shared footer clear of the fixed left rail
+   in the band where the centered .foot-wrap would otherwise sit under it. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .site-footer .foot-wrap {
+    padding-left: 88px;
+  }
+}

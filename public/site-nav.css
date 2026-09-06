@@ -1,6 +1,7 @@
-/* Shared site header / nav — used by both the React homepage and the
-   standalone content pages. Self-contained (literal colours, class
-   selectors only) so it is safe to load alongside any other stylesheet. */
+/* Shared site chrome — header/nav + footer — used by both the React
+   homepage and the standalone content pages. Self-contained (literal
+   colours, class selectors only) so it is safe to load alongside any
+   other stylesheet. */
 
 .site-header {
   position: sticky;
@@ -120,3 +121,44 @@
     padding: 12px 26px;
   }
 }
+
+/* ---------- footer ---------- */
+.site-footer {
+  background: #0a0a0f;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+}
+.foot-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 44px clamp(16px, 4vw, 36px);
+}
+.foot-wrap .fn {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  color: #fff;
+}
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 16px 0;
+}
+.foot-links a {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.foot-links a:hover { color: #ff9e00; }
+.foot-meta {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 12px;
+  line-height: 1.8;
+}
+.foot-meta a { color: rgba(255, 255, 255, 0.55); }

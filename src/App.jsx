@@ -97,9 +97,10 @@ useEffect(() => {
           <Contact />
         </section>
 
-        <Footer />
-        <WhatsAppFloat />
       </main>
+
+      <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }

@@ -176,15 +176,7 @@ strong { color: var(--ink); }
 .contact-methods .k { font-family: var(--f-mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 .contact-methods .v { font-family: var(--f-mono); font-size: 0.9rem; color: var(--ink); margin-top: 4px; word-break: break-word; }
 
-/* ---------- footer ---------- */
-.site-footer { background: var(--dark); color: rgba(255,255,255,0.7); margin-top: 20px; }
-.foot-wrap { max-width: 1080px; margin: 0 auto; padding: 40px clamp(16px, 4vw, 32px); }
-.foot-wrap .fn { font-family: var(--f-display); font-size: 1.1rem; color: #fff; }
-.foot-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 14px 0; }
-.foot-links a { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; }
-.foot-links a:hover { color: var(--orange-5); }
-.foot-meta { font-family: var(--f-mono); font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 12px; line-height: 1.7; }
-.foot-meta a { color: rgba(255,255,255,0.55); }
+/* footer lives in site-nav.css (shared with the React homepage) */
 
 .qa { margin-top: 8px; }
 .qa h3 { font-size: 1.05rem; margin-bottom: 4px; }
