@@ -63,6 +63,7 @@ h1 em { font-style: italic; color: var(--purple); }
 
 section { padding: 34px 0; border-bottom: 1px solid var(--line); }
 section:last-of-type { border-bottom: none; }
+section[id] { scroll-margin-top: 90px; }
 h2 {
   font-family: var(--f-display); font-weight: 700;
   font-size: clamp(1.35rem, 3vw, 1.9rem); line-height: 1.2; margin-bottom: 14px;
@@ -102,10 +103,13 @@ strong { color: var(--ink); }
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .btn-primary {
-  background: linear-gradient(135deg, #3c096c 0%, #ff6d00 130%); color: #fff;
-  border-color: rgba(255,109,0,0.4); box-shadow: 0 0 26px rgba(255,109,0,0.22);
+  background: #ff6d00; color: #fff;
+  border-color: #ff6d00; box-shadow: 0 2px 12px rgba(255,109,0,0.22);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,109,0,0.3); }
+.btn-primary:hover {
+  transform: translateY(-2px); background: #e55f00; border-color: #e55f00;
+  box-shadow: 0 8px 22px rgba(255,109,0,0.28);
+}
 .btn-ghost { background: rgba(255,255,255,0.6); border-color: rgba(255,109,0,0.3); color: var(--orange-deep); }
 .btn-ghost:hover { transform: translateY(-2px); }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }

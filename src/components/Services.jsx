@@ -545,7 +545,7 @@ export default function ServicesSection() {
 </div>
 
       {/* Main content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-8 md:ml-16 lg:ml-24">
+      <div className="relative z-10 max-w-6xl xl:max-w-[1500px] 2xl:max-w-[1750px] mx-auto px-6 md:px-8 lg:px-12 md:ml-16 lg:ml-24">
 
 
 

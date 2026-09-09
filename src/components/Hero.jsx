@@ -93,10 +93,10 @@ export default function Hero() {
       </div>
 
       {/* DESKTOP LAYOUT */}
-      <div className="hidden md:block relative min-h-screen">
+      <div className="hidden md:block relative min-h-screen w-full max-w-[1760px] 2xl:max-w-[2100px] mx-auto">
 {/* LEFT SIDE - Content */}
 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 w-full md:w-auto md:pt-16 lg:pt-20">
-  <div className="md:pl-32 pl-8 pr-8 md:pr-0 max-w-2xl">
+  <div className="md:pl-32 lg:pl-40 xl:pl-48 pl-8 pr-8 md:pr-0 max-w-2xl xl:max-w-3xl">
     
     {/* Subtitle */}
     <motion.div
@@ -251,30 +251,21 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.6 }}
-        whileHover={{ scale: 1.03 }}
+        whileHover={{ scale: 1.03, backgroundColor: "#e55f00" }}
         whileTap={{ scale: 0.98 }}
-        className="relative group flex items-center gap-2 px-6 py-2.5 rounded-full overflow-hidden"
+        className="relative group flex items-center gap-2 px-6 py-2.5 rounded-full"
         style={{
-          background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
-          border: "1px solid rgba(255,109,0,0.4)",
+          background: "#ff6d00",
+          border: "1px solid #ff6d00",
           color: "#fff",
           fontSize: "11px",
           letterSpacing: "0.16em",
           textTransform: "uppercase",
           fontFamily: '"Space Mono", monospace',
           cursor: "pointer",
-          boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
+          boxShadow: "0 2px 16px rgba(255,109,0,0.22)",
         }}
       >
-        <motion.span
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.13) 50%, transparent 70%)",
-            backgroundSize: "300% 100%",
-          }}
-          animate={{ backgroundPosition: ["300% 0", "-300% 0"] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
-        />
         <span className="relative z-10">Hire Me</span>
         <ArrowRight size={11} className="relative z-10 opacity-70 transition-transform group-hover:translate-x-1" />
       </motion.button>
@@ -284,7 +275,7 @@ export default function Hero() {
 </div>
 
         {/* RIGHT SIDE - Image */}
-        <div className="absolute bottom-0 right-auto z-10" style={{ margin: 0, padding: 0, right: "5%" }}>
+        <div className="absolute bottom-0 right-auto z-10" style={{ margin: 0, padding: 0, right: "0" }}>
           <div style={{ margin: 0, padding: 0, lineHeight: 0 }}>
             <motion.div
               className="relative"
@@ -352,7 +343,7 @@ export default function Hero() {
                   display: "block",
                   margin: 0,
                   padding: 0,
-                  width: "clamp(280px, 32vw, 480px)",
+                  width: "clamp(340px, 38vw, 660px)",
                 }}
               />
               
@@ -549,17 +540,17 @@ export default function Hero() {
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.4, duration: 0.6 }}
     whileTap={{ scale: 0.98 }}
-    className="relative group flex items-center gap-2 px-5 py-2.5 rounded-full overflow-hidden"
+    className="relative group flex items-center gap-2 px-5 py-2.5 rounded-full"
     style={{
-      background: "linear-gradient(135deg, #3c096c 0%, #ff6d00 130%)",
-      border: "1px solid rgba(255,109,0,0.4)",
+      background: "#ff6d00",
+      border: "1px solid #ff6d00",
       color: "#fff",
       fontSize: "10px",
       letterSpacing: "0.16em",
       textTransform: "uppercase",
       fontFamily: '"Space Mono", monospace',
       cursor: "pointer",
-      boxShadow: "0 0 28px rgba(255,109,0,0.22), inset 0 1px 0 rgba(255,255,255,0.09)",
+      boxShadow: "0 2px 16px rgba(255,109,0,0.22)",
     }}
   >
     <span className="relative z-10">Hire Me</span>

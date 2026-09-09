@@ -65,7 +65,7 @@ export default function WhatsAppFloat() {
             rel="noopener noreferrer"
             className={`relative flex items-center justify-center ${buttonSize} rounded-full shadow-2xl cursor-pointer transition-all duration-300`}
             style={{
-              background: "linear-gradient(135deg, #25D366, #128C7E)",
+              background: "#25D366",
               boxShadow: "0 4px 20px rgba(37, 211, 102, 0.3)",
             }}
             whileHover={{ scale: 1.1 }}

@@ -27,6 +27,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/pages.css">
+<style>
+  .list-grid.two-up { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .option-card { display: flex; flex-direction: column; padding: 22px; }
+  .option-card h3 { margin: 10px 0 6px; font-size: 1.15rem; }
+  .option-card p { flex: 1 1 auto; font-size: 0.9rem; margin: 0; }
+  .option-card .card-btn { margin-top: 18px; align-self: flex-start; }
+  .option-card .card-btn:hover { transform: none; }
+  @media (max-width: 640px) { .list-grid.two-up { grid-template-columns: 1fr; } }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -105,6 +114,36 @@
     </p>
   </div>
 
+  <section id="connect-options">
+    <p class="section-label">Two ways to start</p>
+    <h2>Pick what works for you</h2>
+    <div class="list-grid two-up">
+      <a class="list-card option-card" href="#enquiry">
+        <span class="cat">Option 1</span>
+        <h3>Send a message</h3>
+        <p>Fill in the short enquiry form below with what you're building or want to learn. I reply
+        within one business day with a plan, a timeline and a price.</p>
+        <span class="btn btn-ghost card-btn">Go to the form &#8594;</span>
+      </a>
+
+      <!-- SCHEDULE A MEETING
+           Replace the href below with your own Google Calendar booking link.
+           How to get it: Google Calendar → Create → "Appointment schedule" → set your
+           available hours → under "Booked appointment settings" turn on "Add video
+           conferencing: Google Meet" → Save → "Share" → "Copy booking page link".
+           The link looks like:  https://calendar.app.google/AbCd1234EfGh
+           Paste it in place of REPLACE-WITH-YOUR-BOOKING-LINK (keep the https://). -->
+      <a class="list-card option-card" href="https://calendar.app.google/REPLACE-WITH-YOUR-BOOKING-LINK" target="_blank" rel="noopener">
+        <span class="cat">Option 2</span>
+        <h3>Schedule a video call</h3>
+        <p>Book a free 30-minute slot straight from my calendar. A Google Meet link is created
+        automatically and I get a notification to confirm the time. Prefer Zoom? Note it in the
+        booking and I'll send a Zoom link instead.</p>
+        <span class="btn btn-primary card-btn">Open my calendar &#8594;</span>
+      </a>
+    </div>
+  </section>
+
   <section>
     <p class="section-label">What I can help with</p>
     <div class="list-grid">
@@ -121,12 +160,13 @@
       <a href="mailto:saqlainamin646@gmail.com"><span class="k">Email</span><div class="v">saqlainamin646@gmail.com</div></a>
       <a href="https://wa.me/923275857692?text=Hi%20Saqlain%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener"><span class="k">WhatsApp</span><div class="v">+92 327 585 7692</div></a>
       <a href="tel:+923275857692"><span class="k">Phone</span><div class="v">+92 327 585 7692</div></a>
+      <a href="https://preply.in/SAQLAIN6EN40982134102?ts=17889393" target="_blank" rel="noopener"><span class="k">Preply</span><div class="v">Book me as a tutor</div></a>
       <div><span class="k">Location</span><div class="v">Drosh, Chitral, Pakistan</div></div>
     </div>
   </section>
 
-  <section>
-    <p class="section-label">Or send a message</p>
+  <section id="enquiry">
+    <p class="section-label">Option 1 — send a message</p>
     <h2>Project enquiry</h2>
     <form class="form" action="mailto:saqlainamin646@gmail.com" method="post" enctype="text/plain">
       <div class="row">
@@ -164,6 +204,7 @@
       <a href="https://x.com/x_saqlain" target="_blank" rel="noopener" style="color:var(--ink-soft)">Twitter / X</a>
       <a href="https://youtube.com/@saqlain_amin" target="_blank" rel="noopener" style="color:var(--ink-soft)">YouTube</a>
       <a href="https://medium.com/@saqlain9696382" target="_blank" rel="noopener" style="color:var(--ink-soft)">Medium</a>
+      <a href="https://preply.in/SAQLAIN6EN40982134102?ts=17889393" target="_blank" rel="noopener" style="color:var(--ink-soft)">Preply</a>
       <a href="/resume" style="color:var(--ink-soft)">Résumé</a>
     </div>
   </section>

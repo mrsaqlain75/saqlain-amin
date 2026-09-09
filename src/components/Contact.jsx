@@ -12,6 +12,7 @@ const contactMeta = [
 const socials = [
   { name: "GitHub", url: "https://github.com/mrsaqlain75", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
   { name: "LinkedIn", url: "https://linkedin.com/in/saqlain-amin-99206b260", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" },
+  { name: "Preply", url: "https://preply.in/SAQLAIN6EN40982134102?ts=17889393", logo: "/preply.svg" },
   { name: "Twitter", url: "https://x.com/x_saqlain", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" },
   { name: "Instagram", url: "https://instagram.com/saqlainsta", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" },
   { name: "Facebook", url: "https://facebook.com/fb.saqlain.75", logo: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" },
@@ -148,7 +149,7 @@ export default function Contact() {
 </div>
 
       {/* Two Column Layout */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 md:ml-16 lg:ml-24">
+      <div className="relative z-10 max-w-6xl xl:max-w-[1500px] 2xl:max-w-[1750px] mx-auto px-6 md:px-8 lg:px-12 md:ml-16 lg:ml-24">
 
         <motion.p
           {...stagger(0)}
@@ -250,48 +251,25 @@ export default function Contact() {
               <div className="pt-4">
                 <motion.button
                   type="submit"
-                  className="relative group overflow-hidden rounded-full px-8 py-3 flex items-center gap-3"
+                  className="relative group rounded-full px-8 py-3 flex items-center gap-3"
                   style={{
-                    background: "linear-gradient(135deg, #3c096c, #240046)",
+                    background: "#ff6d00",
                     cursor: "pointer",
                     fontFamily: "'Space Mono', monospace",
                     fontSize: 12,
                     fontWeight: 600,
                     letterSpacing: "0.1em",
                     color: "#fff",
-                    border: "none",
+                    border: "1px solid #ff6d00",
+                    boxShadow: "0 2px 14px rgba(255,109,0,0.22)",
                   }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.02, backgroundColor: "#e55f00" }}
                   whileTap={{ scale: 0.98 }}
-                  animate={{
-                    boxShadow: [
-                      "0 0 0px rgba(60,9,108,0)",
-                      "0 0 20px rgba(60,9,108,0.5)",
-                      "0 0 0px rgba(60,9,108,0)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
                 >
-                  <motion.span
-                    className="absolute inset-0"
-                    style={{
-                      background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
-                    }}
-                    animate={{ x: ["-100%", "100%"] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  />
                   <span className="relative z-10">Send Message</span>
-                  <motion.span
-                    className="relative z-10"
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
+                  <span className="relative z-10">
                     <Send size={14} />
-                  </motion.span>
+                  </span>
                 </motion.button>
               </div>
             </motion.form>
