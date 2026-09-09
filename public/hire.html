@@ -35,6 +35,11 @@
   .option-card .card-btn { margin-top: 18px; align-self: flex-start; }
   .option-card .card-btn:hover { transform: none; }
   @media (max-width: 640px) { .list-grid.two-up { grid-template-columns: 1fr; } }
+  .calendar-embed {
+    margin-top: 18px; border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden; background: var(--card);
+  }
+  .calendar-embed iframe { display: block; width: 100%; min-height: 700px; }
 </style>
 <script type="application/ld+json">
 {
@@ -126,20 +131,13 @@
         <span class="btn btn-ghost card-btn">Go to the form &#8594;</span>
       </a>
 
-      <!-- SCHEDULE A MEETING
-           Replace the href below with your own Google Calendar booking link.
-           How to get it: Google Calendar → Create → "Appointment schedule" → set your
-           available hours → under "Booked appointment settings" turn on "Add video
-           conferencing: Google Meet" → Save → "Share" → "Copy booking page link".
-           The link looks like:  https://calendar.app.google/AbCd1234EfGh
-           Paste it in place of REPLACE-WITH-YOUR-BOOKING-LINK (keep the https://). -->
-      <a class="list-card option-card" href="https://calendar.app.google/REPLACE-WITH-YOUR-BOOKING-LINK" target="_blank" rel="noopener">
+      <a class="list-card option-card" href="#schedule">
         <span class="cat">Option 2</span>
         <h3>Schedule a video call</h3>
-        <p>Book a free 30-minute slot straight from my calendar. A Google Meet link is created
+        <p>Book a free slot straight from my calendar below. A Google Meet link is created
         automatically and I get a notification to confirm the time. Prefer Zoom? Note it in the
         booking and I'll send a Zoom link instead.</p>
-        <span class="btn btn-primary card-btn">Open my calendar &#8594;</span>
+        <span class="btn btn-primary card-btn">Go to the calendar &#8594;</span>
       </a>
     </div>
   </section>
@@ -180,6 +178,23 @@
     <p style="margin-top:10px;font-size:0.85rem;color:var(--muted)">
       This opens your email app with the message filled in. If it doesn't, email
       <a href="mailto:saqlainamin646@gmail.com">saqlainamin646@gmail.com</a> directly.
+    </p>
+  </section>
+
+  <section id="schedule">
+    <p class="section-label">Option 2 — schedule a call</p>
+    <h2>Book a video call</h2>
+    <p>Pick any free slot that works for you. You'll get a calendar invite with a Google Meet link,
+    and I get a notification to confirm. Prefer Zoom? Add a note in the booking and I'll send a Zoom
+    link instead.</p>
+    <div class="calendar-embed">
+      <iframe
+        title="Book a call with Saqlain Amin"
+        src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3FbElLvfOrRrX9Ta_hfAKeeUY-9JapOTACIVTwDK2sAF2lxjBFaKSobyHFqPFCIX9v48MTs311?gv=true"
+        style="border:0" width="100%" height="700" frameborder="0" loading="lazy"></iframe>
+    </div>
+    <p style="margin-top:10px;font-size:0.85rem;color:var(--muted)">
+      Calendar not loading? <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3FbElLvfOrRrX9Ta_hfAKeeUY-9JapOTACIVTwDK2sAF2lxjBFaKSobyHFqPFCIX9v48MTs311?gv=true" target="_blank" rel="noopener">Open the booking page in a new tab</a>.
     </p>
   </section>
 
